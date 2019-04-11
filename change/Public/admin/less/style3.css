@@ -1,0 +1,2441 @@
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 12px;
+  font-size: 1.2rem ;
+   font-family: "微软雅黑"!important;
+}
+}
+.auto {
+  margin: 0 auto;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right!important;
+}
+.middle {
+  vertical-align: middle;
+}
+.center {
+  text-align: center;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.inline-block {
+  display: inline-block;
+}
+.pointer {
+  cursor: pointer;
+}
+.width_20 {
+  width: 20%!important;
+}
+.width_25 {
+  width: 25%!important;
+}
+.width_80 {
+  width: 80%!important;
+}
+.margin_top_45 {
+  margin-top: 45px;
+}
+.margin_bot_20 {
+  margin-bottom: 20px!important;
+}
+.margin_bot_50 {
+  margin-bottom: 50px!important;
+}
+.cus_style1 {
+  margin-top: 80px;
+  width: 100%;
+  height: 30px!important;
+  float: left;
+}
+.top_42 {
+  top: 42%!important;
+}
+.font-size-12 {
+  font-size: 12px;
+}
+.font-size-14 {
+  font-size: 14px;
+}
+.font-size-18 {
+  font-size: 18px!important;
+}
+.font-size-20 {
+  font-size: 20px!important;
+}
+.white {
+  color: white;
+}
+.black {
+  color: black;
+}
+.blue {
+  color: #008cd6!important;
+}
+.gray {
+  color: #3e3a39;
+}
+.gray01 {
+  color: #3e3a39;
+}
+.gray02 {
+  color: #bfbfbf!important;
+}
+.bg_white {
+  background: white;
+}
+.bg_blue {
+  background: #008cd6;
+}
+.bg_gray01 {
+  background: #bfbfbf;
+}
+.bg_gray02 {
+  background: #e5e5e5;
+}
+.bg_gray03 {
+  background: #eeeeee;
+}
+.bg_gray04 {
+  background: #dcdcdc;
+}
+.border_01 {
+  border: 1px solid #e5e5e5;
+}
+.border_02 {
+  border: 1px solid #dcdcdc;
+}
+.border_03 {
+  border: 1px solid #eeeeee;
+}
+.border_bot {
+  border-bottom: 1px solid #e5e5e5;
+}
+.border_bot_none {
+  border-bottom: none!important;
+}
+.common {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 35px;
+}
+.common .Customer_top {
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+}
+.common .Customer_top .blue_wire {
+  background: #008cd6;
+  position: absolute;
+  width: 3%;
+  height: 3px;
+  bottom: 0;
+  left: 3%;
+}
+.common .Customer_top .UID {
+  font-size: 20px!important;
+  float: left;
+  letter-spacing: 2px;
+}
+.common .Customer_top .handle {
+  font-size: 14px;
+}
+.common .Customer_top .handle span {
+  float: right;
+}
+.common .Customer_top .handle span a {
+  color: #008cd6!important;
+}
+.Order .top dl dt:last-child {
+  width: 15%!important;
+}
+.Order .top dl dt:last-child span {
+  display: inline-block;
+  width: 50%;
+}
+.Order .top dl dt:last-child select {
+  width: 50%;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  height: 26px;
+  line-height: 26px;
+  text-indent: 6%;
+}
+.Order .order_add {
+  height: 50px;
+}
+.Order .order_add dl dt {
+  width: 20%;
+  float: left;
+}
+.Order .order_add dl dt span {
+  display: inline-block;
+  height: 28px;
+  line-height: 28px;
+  width: 30%;
+  text-align: center;
+}
+.Order .order_add dl dt input {
+  height: 26px;
+  line-height: 26px;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  text-indent: 6%;
+  width: 58%;
+}
+.Order .order_add dl dt:last-child {
+  width: 25%;
+}
+.Order .order_add dl dt:last-child span {
+  width: 40%;
+}
+.Order .order_add dl dt:last-child input {
+  width: 46%;
+}
+.newOrder .box_01 {
+  height: 320px;
+}
+.newOrder .box_01 li:nth-of-type(n+2) {
+  height: 30px!important;
+  line-height: 20px!important;
+}
+.newOrder .box_01 ul:first-child li:last-child {
+  margin-bottom: 20px;
+}
+.newOrder .box_01 ul:first-child li:last-child select {
+  width: 80%!important;
+}
+.newOrder .BOX:nth-of-type(3) .box_01 li:nth-of-type(7) span select {
+  width: 75%!important;
+}
+.newOrder .BOX:nth-of-type(3) .box_01 li:nth-of-type(7) div select:last-child {
+  float: right!important;
+  margin-right: 20%;
+}
+.newOrder .BOX:nth-of-type(3) .box_01 li:nth-of-type(8) {
+  height: 50px!important;
+  width: 86%;
+  color: #3e3a39;
+}
+.newOrder .BOX:last-child a:first-child {
+  display: inline-block;
+  width: 60%;
+  color: #008cd6;
+}
+.newOrder .BOX:last-child .box_01 ul li:nth-of-type(2) select {
+  width: 80%!important;
+}
+.newOrder .BOX:last-child .box_01 ul li:nth-of-type(4) span {
+  width: 45%;
+}
+.newOrder .BOX:last-child .box_01 .jian,
+.newOrder .BOX:last-child .box_01 .jia {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  line-height: 11px;
+  border-radius: 50%;
+  border: 1px solid  #B5B5B5;
+  text-align: center;
+  vertical-align: middle;
+}
+.newOrder .BOX:last-child .box_01 .jian {
+  margin-right: 5%;
+}
+.newOrder .remark {
+  color: #3e3a39;
+  height: 55px;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.newOrder .remark span {
+  height: 55px;
+  line-height: 55px;
+  display: inline-block;
+  width: 5%;
+  background: #eeeeee;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  float: left;
+}
+.newOrder .remark p {
+  height: 45px;
+  padding: 10px 0 0 2%;
+  align-items: center;
+  justify-content: center;
+  display: -webkit-flex;
+  width: 70%;
+  float: left;
+}
+.newOrder .remark p textarea {
+  display: inherit;
+  height: 40px;
+  width: 100%;
+  border: 0;
+  word-break: normal;
+  outline: none;
+  resize: none;
+}
+.newOrder .newOrder_bot .newadd {
+  padding-left: 1%;
+  height: 40px;
+  line-height: 40px;
+  color: #008cd6;
+}
+.newOrder .newOrder_bot .newadd .add {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  line-height: 14px;
+  border-radius: 50%;
+  border: 1px solid  #008cd6;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 1%;
+}
+.newOrder .newOrder_bot .table {
+  width: 100%;
+  display: inline-block;
+  border: 1px solid #eeeeee;
+}
+.newOrder .newOrder_bot .table ul li {
+  position: relative;
+  width: 11%;
+  float: left;
+  text-align: center;
+}
+.newOrder .newOrder_bot .table ul img {
+  vertical-align: middle;
+}
+.newOrder .newOrder_bot .table ul input {
+  height: 25px;
+  line-height: 25px;
+  width: 60%;
+  text-align: center;
+  border: 0;
+  border: 1px solid #dcdcdc;
+}
+.newOrder .newOrder_bot .table ul .delete {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  line-height: 12px;
+  border-radius: 50%;
+  border: 1px solid  red;
+  background: red;
+  text-align: center;
+  color: white;
+  vertical-align: middle;
+  position: absolute;
+  left: 10px;
+  top: 34px;
+  font-size: 20px;
+}
+.newOrder .newOrder_bot .table ul:first-child {
+  height: 35px;
+  line-height: 35px;
+  background: #dcdcdc;
+}
+.newOrder .newOrder_bot .table ul:nth-of-type(n+2) {
+  height: 88px;
+  line-height: 88px;
+  border-bottom: 1px solid #eeeeee;
+}
+.newOrder .newOrder_bot .table dl {
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 1px solid #eeeeee;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+}
+.newOrder .newOrder_bot .table dl div {
+  width: 30%;
+  float: right;
+}
+.newOrder .newOrder_bot .table dl div dt,
+.newOrder .newOrder_bot .table dl div dd {
+  text-align: right;
+  float: left;
+}
+.newOrder .newOrder_bot .table dl div dt {
+  width: 53%;
+  float: left;
+  letter-spacing: 1px;
+}
+.newOrder .newOrder_bot .table dl div dd {
+  width: 30%;
+  float: left;
+}
+.newOrder .newOrder_bot .table dl:last-child {
+  border-bottom: none;
+}
+.newOrder .newOrder_bot .table dl:last-child dt:first-child {
+  font-weight: normal;
+  font-size: 12px;
+}
+.newOrder .newOrder_bot .affirm {
+  height: 88px;
+  line-height: 88px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.newOrder .newOrder_bot .affirm span {
+  display: inline-block;
+  width: 85px;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  color: white;
+  background: #008cd6;
+  border-radius: 5px;
+}
+.newOrder .modal_01 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+.newOrder .fade_01 {
+  opacity: 0;
+  top: -25%;
+  display: block;
+  -webkit-transition: top 0.3s linear;
+  -o-transition: top 0.3s linear;
+  transition: top 0.3s linear;
+}
+.newOrder .fade_01.in_01 {
+  opacity: 1;
+  top: 25%;
+  position: fixed;
+}
+.newOrder .modal-body_01 {
+  width: 50%;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 3px;
+}
+.newOrder .modal-body_01 .modal-title {
+  text-align: center;
+}
+.newOrder .modal-body_01 .modal-content_01 .content_table_01 {
+  display: inline-block;
+  width: 100%;
+  border: 1px solid #dcdcdc;
+  padding-bottom: 50px;
+}
+.newOrder .modal-body_01 .modal-content_01 .content_table_01 ul li {
+  float: left;
+  text-align: center;
+}
+.newOrder .modal-body_01 .modal-content_01 .content_table_01 ul li:first-child,
+.newOrder .modal-body_01 .modal-content_01 .content_table_01 ul li:nth-of-type(3),
+.newOrder .modal-body_01 .modal-content_01 .content_table_01 ul li:nth-of-type(4) {
+  width: 25%;
+}
+.newOrder .modal-body_01 .modal-content_01 .content_table_01 ul li:nth-of-type(2),
+.newOrder .modal-body_01 .modal-content_01 .content_table_01 ul li:last-child {
+  width: 7.5%;
+}
+.newOrder .modal-body_01 .modal-content_01 .content_table_01 ul li:nth-of-type(4) {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.newOrder .modal-body_01 .modal-content_01 .content_table_01 ul:first-child {
+  height: 30px;
+  line-height: 30px;
+  background: #eeeeee;
+}
+.newOrder .modal-body_01 .modal-content_01 .content_table_01 ul:nth-of-type(n+2) {
+  height: 25px;
+  line-height: 25px;
+  font-size: 10px;
+  display: inline-block;
+  width: 100%;
+}
+.newOrder .modal-body_01 .modal-content_01 .content_table_01 ul:nth-of-type(n+2) li:nth-of-type(3) {
+  color: #008cd6;
+}
+.newOrder .modal-body_01 .modal-content_01 .content_table_01 ul:nth-of-type(n+2) a {
+  color: #008cd6;
+}
+.newOrder .modal-body_01 .modal-content_01 .content_table_01 .hr_01 {
+  width: 90%;
+  margin: 0 auto;
+  border-bottom: 1px solid #eeeeee;
+}
+.newOrder .modal-title_01 {
+  position: relative;
+  height: 70px;
+  line-height: 40px;
+  border-bottom: 1px solid #ccc;
+  background-color: rgba(0, 0, 0, 0.51);
+  text-align: center;
+  font-size: 20px;
+  color: #ffffff;
+}
+.newOrder a.close_01 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  display: inline-block;
+  position: absolute;
+  font-size: 2.8rem;
+  color: #ddd;
+  top: -20px;
+  right: -6%;
+  text-align: center;
+}
+.newOrder .modal-backup_01 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.51);
+  z-index: 1000;
+  display: none;
+}
+.newOrder .modal_02 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+.newOrder .fade_02 {
+  opacity: 0;
+  top: -25%;
+  display: block;
+  -webkit-transition: top 0.3s linear;
+  -o-transition: top 0.3s linear;
+  transition: top 0.3s linear;
+}
+.newOrder .fade_02.in_02 {
+  opacity: 1;
+  top: 25%;
+  position: fixed;
+}
+.newOrder .modal-body_02 {
+  width: 50%;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 3px;
+}
+.newOrder .modal-body_02 .modal-title {
+  text-align: center;
+}
+.newOrder .modal-body_02 .modal-content_02 {
+  padding: 10px 5% 50px 5%;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_A,
+.newOrder .modal-body_02 .modal-content_02 .content_B {
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_A div,
+.newOrder .modal-body_02 .modal-content_02 .content_B div {
+  display: inline-block;
+  width: 50%;
+  float: left;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_A div span,
+.newOrder .modal-body_02 .modal-content_02 .content_B div span {
+  display: inline-block;
+  width: 30%;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_A div input,
+.newOrder .modal-body_02 .modal-content_02 .content_B div input {
+  height: 26px;
+  line-height: 26px;
+  text-indent: 5%;
+  width: 60%;
+  border: 0;
+  border: 1px solid #dcdcdc;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_A div select,
+.newOrder .modal-body_02 .modal-content_02 .content_B div select {
+  height: 26px;
+  line-height: 26px;
+  text-indent: 5%;
+  width: 40%;
+  border: 0;
+  border: 1px solid #dcdcdc;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_B div:first-child {
+  width: 40%;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_B div:first-child span {
+  width: 38%;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_B div:first-child select {
+  width: 50%;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_table_02 {
+  display: inline-block;
+  width: 100%;
+  margin-top: 20px;
+  border: 1px solid #dcdcdc;
+  background: #fafafa;
+  padding-bottom: 50px;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_table_02 ul li {
+  width: 25%;
+  float: left;
+  text-align: center;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_table_02 ul:first-child {
+  height: 30px;
+  line-height: 30px;
+  background: #eeeeee;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_table_02 ul:nth-of-type(n+2) {
+  height: 25px;
+  line-height: 25px;
+  font-size: 10px;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_table_02 ul:nth-of-type(n+2) li:nth-of-type(3) {
+  color: #008cd6;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_table_02 ul:nth-of-type(n+2) a {
+  color: #008cd6;
+}
+.newOrder .modal-body_02 .modal-content_02 .content_table_02 .hr {
+  width: 90%;
+  margin: 0 auto;
+  border-bottom: 1px solid #eeeeee;
+}
+.newOrder .modal-title {
+  position: relative;
+  height: 40px;
+  background-color: #eeeeee;
+  line-height: 40px;
+  border-bottom: 1px solid #ccc;
+}
+.newOrder a.close_02 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  display: inline-block;
+  position: absolute;
+  font-size: 2.8rem;
+  color: #ddd;
+  top: -60px;
+  right: -10%;
+  text-align: center;
+}
+.newOrder .modal-backup_02 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.51);
+  z-index: 1000;
+  display: none;
+}
+.newOrder .BOX:first-child li:nth-of-type(5) div span:first-child,
+.newOrder .BOX:first-child li:nth-of-type(6) div span:first-child {
+  margin-right: 6%;
+}
+.newOrder .BOX:nth-of-type(3) li:nth-of-type(7) span {
+  color: #3e3a39;
+}
+.newOrder .BOX:nth-of-type(3) li:nth-of-type(7) div span:last-child {
+  float: right;
+  margin-right: 20%;
+}
+.newOrder .BOX:last-child li:nth-of-type(4) div {
+  width: 20%!important;
+  display: inline-block !important;
+}
+.newOrder .BOX:last-child li:nth-of-type(4) div span {
+  color: #3e3a39;
+}
+.logistics {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  color: #3E3A39;
+}
+.logistics div:first-child {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #eeeeee;
+  font-size: 18px;
+}
+.logistics div:last-child {
+  display: inline-block;
+  width: 100%;
+  font-size: 14px;
+}
+.logistics div:last-child ul li {
+  width: 20%;
+  height: 70px;
+  line-height: 70px;
+  float: left;
+}
+.logistics div:last-child ul li span {
+  display: inline-block;
+}
+.logistics div:last-child ul li select,
+.logistics div:last-child ul li input {
+  height: 25px;
+  line-height: 25px;
+  border: 0;
+  border: 1px solid #dcdcdc;
+}
+.logistics div:last-child ul li:nth-of-type(3) {
+  width: 40%;
+}
+.logistics div:last-child ul li:first-child span {
+  width: 30%;
+}
+.logistics div:last-child ul li:first-child select {
+  text-indent: 2%;
+  width: 60%;
+}
+.logistics div:last-child ul li:nth-of-type(2) span {
+  width: 20%;
+}
+.logistics div:last-child ul li:nth-of-type(2) input {
+  text-indent: 5%;
+  width: 60%;
+}
+.logistics div:last-child ul li:nth-of-type(3) span:first-child {
+  width: 22%;
+}
+.logistics div:last-child ul li:nth-of-type(3) input:nth-of-type(1) {
+  width: 12%;
+}
+.logistics div:last-child ul li:nth-of-type(3) span:nth-of-type(n+2) {
+  width: 5%;
+  text-align: center;
+}
+.logistics div:last-child ul li:nth-of-type(3) input:nth-of-type(n+2) {
+  width: 5%;
+}
+.logistics div:last-child ul li:last-child .ensure {
+  display: inline-block;
+  width: 85px;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  color: white;
+  background: #008cd6;
+  border-radius: 5px;
+  float: right;
+  margin-top: 15px;
+}
+.Customers {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 35px;
+}
+.Customers .top {
+  height: 50px;
+}
+.Customers .top ul {
+  width: 100%;
+  display: inline-block;
+  font-size: 12px;
+}
+.Customers .top ul li {
+  width: 20%;
+  height: 26px;
+  line-height: 26px;
+  color: #3e3a39;
+  float: left;
+}
+.Customers .top ul li input {
+  width: 60%;
+  height: 26px;
+  line-height: 26px;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  margin-left: 8px;
+  text-indent: 3px;
+}
+.Customers .top ul li:nth-of-type(n+3) select {
+  width: 45%;
+  height: 26px;
+  line-height: 26px;
+  color: #3e3a39;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  margin-left: 8px;
+  text-indent: 3px;
+}
+.Customers .handle {
+  height: 40px;
+  line-height: 60px;
+  float: right!important;
+  color: #008cd6!important;
+  font-size: 12px;
+}
+.Customers .handle a {
+  color: #008cd6!important;
+}
+.Customers .handle span {
+  cursor: pointer;
+}
+.Customers .handle label {
+  width: 70px;
+  height: 30px;
+  display: inline-block;
+}
+.Customers .handle input {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
+  background: #008cd6;
+  vertical-align: middle;
+}
+.Customers .handle .line {
+  width: 1px;
+  height: 12px;
+  margin: 0 5px;
+  display: inline-block;
+  background: #bfbfbf;
+}
+.Customers .bot {
+  width: 100%;
+  border: 1px solid #dcdcdc;
+  float: left;
+  margin-top: 20px;
+}
+.Customers .bot .table {
+  width: 100%;
+  height: 80%;
+  font-size: 12px;
+  display: inline-block;
+}
+.Customers .bot .table ul {
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  float: left;
+}
+.Customers .bot .table ul li {
+  width: 10%;
+  float: left;
+  text-align: center;
+  border-bottom: 1px solid #dcdcdc;
+}
+.Customers .bot .table .square {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #AAAAAA;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 10px;
+}
+.Customers .bot .table input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #AAAAAA;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 10px;
+}
+.Customers .bot .table ul:first-child li input[type="checkbox"] {
+  margin-left: 24px;
+}
+.Customers .Customer_top {
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+}
+.Customers .Customer_top .blue_wire {
+  background: #008cd6;
+  position: absolute;
+  width: 3%;
+  height: 3px;
+  bottom: 0;
+  left: 3%;
+}
+.Customers .Customer_top .UID {
+  font-size: 20px!important;
+  float: left;
+  letter-spacing: 2px;
+}
+.Customers .message_model {
+  width: 100%;
+  font-size: 12px;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+.Customers .message_model .BOX {
+  width: 25%;
+  float: left;
+}
+.Customers .message_model .BOX .box_01 {
+  width: 95%;
+  float: left;
+  font-size: 0.85em;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  color: #3e3a39;
+  border: 1px solid #eeeeee;
+}
+.Customers .message_model .BOX .box_01 ul:first-child li:last-child {
+  margin-bottom: 60px;
+}
+.Customers .message_model .BOX .box_01 h1 {
+  height: 38px;
+  line-height: 38px;
+  font-size: 14px;
+  background: #eeeeee;
+  padding-left: 5%;
+}
+.Customers .message_model .BOX .box_01 .add {
+  position: absolute;
+  top: 24%;
+  right: 5%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  line-height: 18px;
+  border-radius: 50%;
+  border: 0;
+  border: 1px solid #7f7f7f;
+  color: #7f7f7f;
+  background: #eeeeee;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 20px;
+}
+.Customers .message_model .BOX .box_01 li {
+  position: relative;
+  height: 25px;
+  line-height: 20px;
+  padding-left: 5%;
+}
+.Customers .message_model .BOX .box_01 li span:first-child {
+  width: 35%;
+}
+.Customers .message_model .BOX .box_01 li div {
+  display: inline-block;
+  width: 65%;
+  color: #3e3a39;
+}
+.Customers .message_model .BOX .box_01 li div span:first-child {
+  width: auto!important;
+}
+.Customers .message_model .BOX .box_01 li:first-child {
+  height: 38px;
+  line-height: 38px;
+  padding-left: 0%!important;
+}
+.Customers .message_model .BOX .box_01 li:nth-of-type(2) {
+  margin-top: 18px;
+}
+.Customers .message_model .BOX .box_01 span {
+  width: auto;
+}
+.Customers .message_model .BOX .box_01 input {
+  width: 80%;
+  height: 20px;
+  line-height: 20px;
+  float: left;
+  font-size: 12px;
+  border: 0;
+  border: 1px solid #eeeeee;
+  text-indent: 5px;
+}
+.Customers .message_model .BOX .box_01 .affirm {
+  width: 20%;
+  height: 22px;
+  line-height: 22px;
+  background: #008cd6;
+  text-align: center;
+  color: white;
+  float: left;
+  cursor: pointer;
+}
+.Customers .message_model .BOX .box_01 select {
+  width: 38%!important;
+  height: 20px;
+  line-height: 20px;
+  width: 25%;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  font-size: 12px;
+  text-indent: 1px;
+  color: #3e3a39;
+  float: left;
+}
+.Customers .message_model .BOX .box_01 textarea {
+  width: 95%;
+  height: 40px;
+  word-break: break-all;
+  word-wrap: break-word;
+  overflow: hidden;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  color: #3e3a39;
+}
+.Customers .message_model .BOX:nth-of-type(1) li:nth-of-type(2) div span:first-child {
+  margin-right: 5% ;
+}
+.Customers .message_model .BOX:nth-of-type(1) li:nth-of-type(6) input {
+  width: 60%;
+}
+.Customers .message_model .BOX:nth-of-type(2) li:nth-of-type(7) {
+  color: #3e3a39;
+}
+.Customers .message_model .BOX:nth-of-type(2) li:nth-of-type(7) span:last-child {
+  float: right!important;
+  margin-right: 20%;
+}
+.Customers .message_model .BOX:nth-of-type(2) li:nth-of-type(7) span select {
+  width: 75%!important;
+}
+.Customers .message_model .BOX:nth-of-type(2) li:nth-of-type(7) div select:last-child {
+  float: right!important;
+  margin-right: 20%;
+}
+.Customers .message_model .BOX:nth-of-type(2) li:nth-of-type(8) {
+  height: 50px!important;
+  width: 86%;
+  color: #3e3a39;
+}
+.Customers .message_model .BOX:nth-of-type(2) li:nth-of-type(8) span {
+  width: 100%;
+}
+.Customers .message_model .BOX:nth-of-type(2) li:last-child {
+  margin-bottom: 10px!important;
+}
+.Customers .message_model .BOX:nth-of-type(4) .box_01:first-child li:last-child {
+  margin-bottom: 20px;
+}
+.Customers .message_model .BOX:nth-of-type(4) .box_01:last-child li:last-child {
+  margin-bottom: 52px;
+}
+.Customers .message_model .BOX:nth-of-type(4) .box_01:last-child li:last-child span:last-child {
+  word-wrap: break-word;
+  word-break: break-all;
+  width: 60%!important;
+}
+.Customers .message_model .BOX:nth-of-type(n+3) .box_01 {
+  float: right!important;
+}
+.Customers .message_model .BOX:last-child .box_01:last-child .timer {
+  width: 100%;
+  display: inline-block;
+}
+.Customers .message_model .BOX:last-child .box_01:last-child .timer li:first-child input:first-child {
+  width: 30%;
+}
+.Customers .message_model .BOX:last-child .box_01:last-child .timer li {
+  float: left;
+}
+.Customers .message_model .BOX:last-child .box_01:last-child .timer li input {
+  width: 15%;
+}
+.Customers .message_model .BOX:last-child .box_01:last-child .timer li span {
+  height: 20px;
+  line-height: 20px;
+}
+.Customers .message_model .BOX:last-child .box_01:last-child .timer li span:last-child {
+  width: auto!important;
+}
+.Customers .message_model .BOX:last-child .box_01:last-child .timer li:last-child {
+  margin-top: 0px!important;
+  margin-bottom: 0px!important;
+  padding-left: 0px!important;
+}
+.Customers .top dl span {
+  display: inline-block;
+  width: 20%;
+  height: 28px;
+  line-height: 28px;
+  float: left;
+  text-align: center;
+}
+.Customers .top dl dt {
+  float: left;
+  font-size: 12px;
+  width: 30%!important;
+}
+.Customers .top dl dt:first-child {
+  float: left;
+}
+.Customers .top dl dt:first-child .hr {
+  width: 3%;
+  height: 1px;
+  background: #bfbfbf;
+  display: inline-block;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 14px;
+  float: left;
+}
+.Customers .top dl dt:first-child input[type="date"] {
+  width: 35%;
+  height: 26px;
+  line-height: 26px;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  text-indent: 6%;
+  float: left;
+}
+.Customers .top dl dt:nth-of-type(2) {
+  width: 15%!important;
+}
+.Customers .top dl dt:nth-of-type(2) span {
+  width: 40%;
+}
+.Customers .top dl dt:nth-of-type(2) select {
+  width: 50%;
+  height: 26px;
+  line-height: 26px;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  color: #3e3a39;
+  font-size: 12px;
+  text-indent: 3px;
+}
+.Customers .top dl dt:nth-of-type(3),
+.Customers .top dl dt:nth-of-type(4) {
+  width: 20%!important;
+}
+.Customers .top dl dt:nth-of-type(3) span,
+.Customers .top dl dt:nth-of-type(4) span {
+  width: 35%;
+}
+.Customers .top dl input[type="text"] {
+  width: 60%;
+  height: 26px;
+  line-height: 26px;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  text-indent: 6%;
+}
+.Customers .bot .table ul li:last-child a {
+  color: #008cd6!important;
+}
+.Customers .bot .table ul:first-child {
+  background: #dcdcdc;
+}
+.Customers .bot .table ul:nth-of-type(n+2) li:last-child a span {
+  border-right: 1px solid #bfbfbf;
+  padding-right: 5px;
+}
+.Customers .bot .table ul:nth-of-type(n+2) li:last-child a:last-child span {
+  border: none;
+}
+.edit_table ul li:last-child {
+  width: 20%!important;
+}
+.customer_box .dealer_table {
+  width: 100%;
+  display: inline-block;
+  height: auto;
+  border: 1px solid #dcdcdc;
+  font-size: 14px;
+  margin-top: 5px;
+  float: left;
+     margin-bottom: 50px;
+    border-bottom: none;
+}
+.customer_box .dealer_table .square {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  background: white;
+  vertical-align: middle;
+  top: 24%;
+  left: 10%;
+}
+.customer_box .dealer_table input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  background: white;
+  float: left;
+  white-space: nowrap;
+}
+.customer_box .dealer_table h1 {
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 14px!important;
+}
+.customer_box .dealer_table ul {
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  display: -webkit-flex;
+  float: left;
+  font-size: 12px;
+  border-top: 1px solid #dcdcdc;
+}
+.customer_box .dealer_table ul text {
+  text-align: center;
+  width: 80%;
+  float: left;
+}
+.customer_box .dealer_table ul dl {
+  width: 100%;
+}
+.customer_box .dealer_table ul dl dd {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: -webkit-flex;
+  height: 42px;
+}
+.customer_box .dealer_table ul .line {
+  width: 0px;
+  height: 42px;
+  border-right: 1px solid #dcdcdc;
+  float: left;
+}
+.customer_box .dealer_table ul .line02 {
+  width: 0px;
+  height: 42px;
+  border-right: 1px solid #dcdcdc;
+  float: left;
+  margin-left: 20px;
+}
+.customer_box .dealer_table ul .line03 {
+  height: 42px;
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+}
+.customer_box .dealer_table ul li {
+  align-items: center;
+  justify-content: center;
+  display: -webkit-flex;
+  text-align: center;
+  float: left;
+}
+.customer_box .dealer_table ul li:first-child {
+  width: 10%;
+      align-self: baseline;
+}
+.customer_box .dealer_table ul li:first-child dl dd{
+	height: 43px;
+	}
+.customer_box .dealer_table ul li:nth-of-type(2) {
+  width: 20%;
+}
+.customer_box .dealer_table ul li:nth-of-type(2) dd {
+  border-bottom: 1px solid #dcdcdc;
+  word-wrap: break-word;
+  word-break: normal;
+}
+.customer_box .dealer_table ul li:nth-of-type(2) dd:last-child {
+  border-bottom: none!important;
+}
+.customer_box .dealer_table ul li:nth-of-type(3) {
+  width: 40%;
+}
+.customer_box .dealer_table ul li:nth-of-type(3) div {
+  left: 2%!important;
+}
+.customer_box .dealer_table ul li:nth-of-type(3) span {
+  display: inline-block;
+  width: 30%;
+}
+.customer_box .dealer_table ul li:nth-of-type(3) dl dd span {
+  width: 30%!important;
+}
+.customer_box .dealer_table ul li:nth-of-type(3) dl dd span input {
+  width: 30%;
+  text-align: center;
+}
+.customer_box .dealer_table ul li:nth-of-type(3) dl dd:nth-of-type(n+1) {
+  border-bottom: 1px solid #dcdcdc;
+}
+.customer_box .dealer_table ul li:nth-of-type(3) dd:last-child {
+  border-bottom: none!important;
+}
+.customer_box .dealer_table ul li:last-child {
+  width: 28%!important;
+}
+.customer_box .dealer_table ul:nth-of-type(1) {
+  background: #eeeeee;
+}
+.customer_box .dealer_table ul:nth-of-type(2) {
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  display: -webkit-flex;
+  float: left;
+}
+.customer_box .dealer_table ul:nth-of-type(2) li:nth-of-type(n+2) dd:last-child {
+  border-bottom: none!important;
+}
+.customer_box .dealer_table ul:nth-of-type(2) li:last-child {
+  width: 28%!important;
+}
+.customer_box .dealer_table ul:nth-of-type(2) li:last-child dd:nth-of-type(n+1) {
+  border-bottom: 1px solid #dcdcdc;
+}
+.customer_box .dealer_table ul:last-child {
+  border-bottom: 1px solid #dcdcdc;
+}
+.Product {
+  font-size: 12px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 35px;
+}
+.Product .top {
+  height: 50px;
+}
+.Product .top ul {
+  font-size: 12px;
+}
+.Product .top ul li {
+  width: 20%;
+  float: left;
+}
+.Product .top ul li input {
+  height: 28px;
+  width: 50%;
+  margin-left: 2%;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  text-indent: 2%;
+}
+.Product .top ul li select {
+  height: 28px;
+  width: 35%;
+  margin-left: 2%;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  text-indent: 2%;
+}
+.Product .top ul li:last-child div {
+  border: 1px dashed #dcdcdc;
+  background: #f8f8f8;
+  float: right;
+  padding: 1% 5%;
+}
+.Product .top ul li:last-child div span {
+  display: inline-block;
+  transform: scale(0.9);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.Product .handle {
+  height: 50px;
+  line-height: 50px;
+  color: #008cd6;
+}
+.Product .handle a {
+  color: #008cd6;
+}
+.Product .handle .show {
+  width: 80%;
+}
+.Product .handle .show ul li {
+  float: left;
+  padding-right: 1%;
+}
+.Product .handle .show ul li:first-child {
+  color: #000000;
+}
+.Product .handle .show ul li:nth-of-type(n+2) span {
+  border-right: 1px solid #dcdcdc;
+  padding-right: 5px;
+}
+.Product .handle .show ul li:last-child span {
+  border-right: none;
+}
+.Product .handle .save {
+  width: 20%;
+  float: right;
+}
+.Product .handle .save div {
+  float: right;
+}
+.Product .handle .save div span {
+  display: inline-block;
+}
+.Product .handle .save div span:first-child {
+  margin-right: 18px;
+}
+.Product .bot {
+  width: 100%;
+  border: 1px solid #dcdcdc;
+  float: left;
+}
+.Product .bot .product_table {
+  width: 100%;
+  font-size: 12px;
+  display: inline-block;
+}
+.Product .bot .product_table ul {
+  align-items: center;
+  justify-content: center;
+  display: -webkit-flex;
+  width: 100%;
+  height: 40px;
+  float: left;
+}
+.Product .bot .product_table ul li {
+  width: 7%;
+  float: left;
+  text-align: center;
+}
+.Product .bot .product_table ul li:nth-of-type(10),
+.Product .bot .product_table ul li:nth-of-type(12) {
+  width: 8%;
+}
+.Product .bot .product_table ul select {
+  width: 70%;
+  margin-left: 16%;
+  height: 18px;
+  line-height: 18px;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  margin-top: 2px;
+  float: left;
+  font-size: 12px;
+}
+.Product .bot .product_table ul p {
+  width: 100%;
+  height: 18px;
+  line-height: 18px;
+  white-space: nowrap;
+  float: left;
+}
+.Product .bot .product_table ul p span {
+  display: inline-block;
+  transform: scale(0.85);
+}
+.Product .bot .product_table ul p span:first-child {
+  margin-right: 10px;
+}
+.Product .bot .product_table ul img {
+  vertical-align: middle;
+}
+.Product .bot .product_table ul input[type="text"] {
+  width: 60%;
+  height: 20px;
+  line-height: 20px;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  text-align: center;
+}
+.Product .bot .product_table ul:first-child {
+  background: #eeeeee;
+}
+.Product .bot .product_table ul:nth-of-type(n+2) {
+  border-bottom: 1px solid #dcdcdc;
+}
+.Product .bot .product_table ul:nth-of-type(n+2) li:nth-of-type(10) p,
+.Product .bot .product_table ul:nth-of-type(n+2) li:nth-of-type(12) p {
+  height: 40px;
+  line-height: 40px;
+}
+.Product .bot .product_table ul:nth-of-type(n+2) li:last-child {
+  color: #008cd6;
+}
+.Product .bot .product_table ul:nth-of-type(n+2) li:last-child a {
+  color: #008cd6;
+}
+.Product .bot .product_table ul:nth-last-of-type(2) {
+  border-bottom: none;
+}
+.product_details {
+  height: 250px;
+}
+.product_details .P_details_left {
+  width: 50%;
+  float: left;
+}
+.product_details .P_details_left .P_details_box {
+  width: 40%;
+  height: 246px;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  float: left;
+  margin-right: 5%;
+  color: #3e3a39;
+}
+.product_details .P_details_left .P_details_box h1 {
+  height: 38px;
+  line-height: 38px;
+  font-size: 14px;
+  background: #eeeeee;
+  text-indent: 5%;
+}
+.product_details .P_details_left .P_details_box p {
+  height: 38px;
+  line-height: 38px;
+  font-size: 12px;
+  text-indent: 5%;
+}
+.product_details .P_details_left .P_details_box img {
+  margin-left: 5%;
+  margin-bottom: 10px;
+}
+.product_details .P_details_left .P_details_box .button {
+  width: 20%;
+  height: 25px;
+  line-height: 25px;
+  background: #008cd6;
+  color: white;
+  margin-left: 5%;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 12px;
+}
+.product_details .P_details_left .P_details_box h6 {
+  height: 38px;
+  line-height: 38px;
+  text-indent: 5%;
+  font-weight: normal;
+}
+.product_details .P_details_left .P_details_box input {
+  width: 90%;
+  margin-left: 5%;
+  height: 55px;
+  border: 0;
+  border: 1px solid #dcdcdc;
+}
+.product_details .P_details_right {
+  width: 50%;
+  float: left;
+}
+.product_details .P_details_right div {
+  font-size: 14px;
+  width: 70%;
+  float: right;
+}
+.product_details .P_details_right div input {
+  height: 36px;
+  line-height: 36px;
+  width: 75%;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  text-indent: 5%;
+  float: left;
+  letter-spacing: 1px;
+}
+.product_details .P_details_right div span {
+  display: inline-block;
+  width: 20%;
+  height: 38px;
+  line-height: 38px;
+  background: #008cd6;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  float: right;
+  font-size: 14px;
+}
+.product_bot .edit {
+  height: 45px;
+  line-height: 45px;
+}
+.product_bot .edit span {
+  color: #008cd6;
+  float: right;
+}
+.product_bot .edit span a {
+  color: #008cd6;
+}
+.product_bot .table {
+  width: 100%;
+  display: inline-block;
+  font-size: 12px;
+  border: 1px solid #dcdcdc;
+  margin-bottom: 100px;
+}
+.product_bot .table ul {
+  width: 100%;
+  display: inline-block;
+}
+.product_bot .table ul a {
+  color: red;
+}
+.product_bot .table ul li {
+  height: 40px;
+  line-height: 40px;
+  width: 5%;
+  float: left;
+  text-align: center;
+}
+.product_bot .table ul li .square {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #AAAAAA;
+  vertical-align: middle;
+  display: inline-block;
+}
+.product_bot .table ul li input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #AAAAAA;
+  vertical-align: middle;
+  display: inline-block;
+}
+.product_bot .table ul li input {
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  font-size: 10px;
+}
+.product_bot .table ul li select {
+  height: 18px;
+  line-height: 18px;
+  font-size: 12px;
+}
+.product_bot .table ul li span,
+.product_bot .table ul li div {
+  height: 16px;
+  line-height: 16px;
+}
+.product_bot .table ul li:nth-of-type(3),
+.product_bot .table ul li:nth-of-type(12),
+.product_bot .table ul li:nth-of-type(15) {
+  width: 10%;
+}
+.product_bot .table ul:first-child {
+  background: #eeeeee;
+}
+.product_bot .table ul:first-child li:nth-of-type(4) span,
+.product_bot .table ul:first-child li:nth-of-type(5) span,
+.product_bot .table ul:first-child li:nth-of-type(6) span,
+.product_bot .table ul:first-child li:nth-of-type(7) span,
+.product_bot .table ul:first-child li:nth-of-type(8) span,
+.product_bot .table ul:first-child li:nth-of-type(9) span,
+.product_bot .table ul:first-child li:nth-of-type(10) span {
+  display: inline-block;
+  width: 100%;
+  float: left;
+}
+.product_bot .table ul:first-child li:nth-of-type(4) span:first-child,
+.product_bot .table ul:first-child li:nth-of-type(5) span:first-child,
+.product_bot .table ul:first-child li:nth-of-type(6) span:first-child,
+.product_bot .table ul:first-child li:nth-of-type(7) span:first-child,
+.product_bot .table ul:first-child li:nth-of-type(8) span:first-child,
+.product_bot .table ul:first-child li:nth-of-type(9) span:first-child,
+.product_bot .table ul:first-child li:nth-of-type(10) span:first-child {
+  margin-top: 4px;
+}
+.product_bot .table ul:first-child li:nth-of-type(11) span,
+.product_bot .table ul:first-child li:nth-of-type(14) span {
+  display: inline-block;
+  width: 100%;
+  float: left;
+}
+.product_bot .table ul:first-child li:nth-of-type(11) span:first-child,
+.product_bot .table ul:first-child li:nth-of-type(14) span:first-child {
+  margin-top: 4px;
+}
+.product_bot .table ul:first-child li:nth-of-type(12) select,
+.product_bot .table ul:first-child li:nth-of-type(15) select {
+  width: 70%;
+  float: left;
+  margin-top: 4px;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  margin-left: 13.5%;
+}
+.product_bot .table ul:first-child li:nth-of-type(12) div,
+.product_bot .table ul:first-child li:nth-of-type(15) div {
+  width: 100%;
+  float: left;
+  white-space: nowrap;
+}
+.product_bot .table ul:first-child li:nth-of-type(12) div span,
+.product_bot .table ul:first-child li:nth-of-type(15) div span {
+  width: 40%;
+  display: inline-block;
+  transform: scale(0.85);
+  text-align: center;
+}
+.product_bot .table ul:nth-of-type(n+2) {
+  border-bottom: 1px solid #dcdcdc;
+}
+.product_bot .table ul:nth-of-type(n+2) li option[value="上架"] {
+  color: green;
+}
+.product_bot .table ul:nth-of-type(n+2) li option[value="下架"] {
+  color: red;
+}
+.product_bot .table ul:nth-of-type(n+2) li select[option="上架"] {
+  color: green;
+}
+.product_bot .table ul:nth-of-type(n+2) li select[option="下架"] {
+  color: red;
+}
+.product_bot .table ul:nth-of-type(n+2) li:first-child select,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(2) select {
+  width: 80%;
+  border: 0;
+  border: 1px solid #dcdcdc;
+}
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(3) input {
+  width: 80%;
+  border: 0;
+  border: 1px solid #dcdcdc;
+}
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(4) input,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(5) input,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(6) input,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(7) input,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(8) input,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(9) input,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(10) input,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(11) input,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(4) select,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(5) select,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(6) select,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(7) select,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(8) select,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(9) select,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(10) select,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(11) select {
+  width: 80%;
+  border: 0;
+  border: 1px solid #dcdcdc;
+}
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(12) input,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(15) input {
+  width: 40%;
+  border: 0;
+  border: 1px solid #dcdcdc;
+}
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(12) input:first-child,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(15) input:first-child {
+  margin-right: 5%;
+}
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(13) select,
+.product_bot .table ul:nth-of-type(n+2) li:nth-of-type(16) select {
+  width: 80%;
+  border: 0;
+  border: 1px solid #dcdcdc;
+}
+.product_bot .table ul:last-child {
+  height: 80px;
+  border-bottom: none;
+}
+.product_bot .table ul:last-child a {
+  color: #008cd6;
+}
+.product_permission .search {
+  height: 40px;
+}
+.product_permission .search .P_details_right div {
+  float: left;
+}
+.product_permission .product_bot .state {
+  font-size: 12px;
+  float: right;
+}
+.product_permission .product_bot .state .wire {
+  width: 1px;
+  height: 12px;
+  margin: 0 5px;
+  display: inline-block;
+  background: #bfbfbf;
+  float: left;
+  margin-top: 16px;
+}
+.product_permission .product_bot .state a {
+  float: left;
+}
+.product_permission .product_bot .state a:first-child {
+  color: green;
+}
+.product_permission .product_bot .state a:last-child {
+  color: red;
+}
+.product_permission .product_bot .permission_table {
+  width: 100%;
+  display: inline-block;
+  font-size: 12px;
+  border: 1px solid #dcdcdc;
+  margin-bottom: 100px;
+}
+.product_permission .product_bot .permission_table ul {
+  width: 100%;
+  display: inline-block;
+  float: left;
+}
+.product_permission .product_bot .permission_table ul li {
+  height: 35px;
+  line-height: 35px;
+  width: 15%;
+  float: left;
+  text-align: center;
+  border-right: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+}
+.product_permission .product_bot .permission_table ul li div {
+  display: inline-block;
+  width: 20%;
+}
+.product_permission .product_bot .permission_table ul li span {
+  width: 80%;
+}
+.product_permission .product_bot .permission_table ul option[value="上架"] {
+  color: green;
+}
+.product_permission .product_bot .permission_table ul option[value="下架"] {
+  color: red;
+}
+.product_permission .product_bot .permission_table ul select[option="上架"] {
+  color: green;
+}
+.product_permission .product_bot .permission_table ul select[option="下架"] {
+  color: red;
+}
+.product_permission .product_bot .permission_table ul li:first-child {
+  width: 24%;
+}
+.product_permission .product_bot .permission_table ul li:last-child {
+  border-right: none;
+}
+.product_permission .product_bot .permission_table ul .square {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #AAAAAA;
+  display: inline-block;
+  background: white;
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.product_permission .product_bot .permission_table ul input[type="checkbox"] {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #AAAAAA;
+  display: inline-block;
+  background: white;
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.product_permission .product_bot .permission_table ul:first-child {
+  font-size: 14px;
+}
+.product_permission .product_bot .permission_table ul:nth-of-type(n+2) li:first-child {
+  border-bottom: none;
+}
+.product_permission .product_bot .permission_table ul:nth-of-type(n+2) li:first-child dl {
+  height: 35px;
+  border-bottom: 1px solid #dcdcdc;
+}
+.product_permission .product_bot .permission_table ul:nth-of-type(n+2) li:first-child dl dt {
+  width: 35%;
+  float: left;
+  border-right: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.product_permission .product_bot .permission_table ul:nth-of-type(n+2) li:first-child dl dt span {
+  display: inline-block;
+  width: 80%;
+  font-size: 0.8em;
+}
+.product_permission .product_bot .permission_table ul:nth-of-type(n+2) li:first-child dl dt:first-child {
+  width: 28%;
+}
+.product_permission .product_bot .permission_table ul:nth-of-type(n+2) li:first-child dl dt:last-child {
+  border-right: none;
+}
+.product_permission .product_bot .permission_table ul:nth-of-type(n+2) li:nth-of-type(n+2) span {
+  display: inline-block;
+  width: 25%;
+}
+.product_permission .product_bot .permission_table ul:nth-of-type(n+2) li:nth-of-type(n+2) input[type="text"],
+.product_permission .product_bot .permission_table ul:nth-of-type(n+2) li:nth-of-type(n+2) input[type="select"] {
+  width: 22%;
+  height: 18px;
+  text-align: center;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  font-size: 1em;
+}
+.product_permission .product_bot .permission_table ul:nth-of-type(n+2) li:nth-of-type(n+2) select {
+  width: 22%;
+  height: 18px;
+  text-align: center;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  font-size: 0.8em;
+}
+.product_permission .product_bot .permission_table ul:nth-of-type(2) {
+  font-size: 12px;
+  background: #eeeeee;
+}
+.product_permission .product_bot .permission_table ul:nth-of-type(2) dl dt {
+  border-bottom: none!important;
+}
+.product_permission .product_bot .permission_table ul:nth-of-type(2) li:nth-of-type(n+2) input[type="checkbox"] {
+  margin-left: 4px;
+}
+.product_permission .product_bot .permission_table ul:nth-of-type(n+3) {
+  font-size: 10px;
+}
+.product_permission .product_bot .permission_table ul:last-child {
+  margin-bottom: 150px;
+}
+.product_permission .product_bot .newpermission_table {
+  width: 100%;
+  display: inline-block;
+  font-size: 12px;
+  margin-bottom: 100px;
+}
+.product_permission .product_bot .newpermission_table .box {
+  width: 100%;
+  display: inline-block;
+  padding-bottom: 150px;
+}
+.product_permission .product_bot .newpermission_table .model_1 {
+  display: inline-block;
+  width: 24%;
+  float: left;
+  margin-right: 2px;
+}
+.product_permission .product_bot .newpermission_table .model_1 ul {
+  border: 1px solid #dcdcdc;
+  width: 100%;
+  display: inline-block;
+}
+.product_permission .product_bot .newpermission_table .model_1 ul li {
+  text-align: center;
+  height: 35px;
+  line-height: 35px;
+  border-bottom: 1px solid #dcdcdc;
+}
+.product_permission .product_bot .newpermission_table .model_1 ul li dl dt {
+  border-right: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+  float: left;
+}
+.product_permission .product_bot .newpermission_table .model_1 ul li dl dt div {
+  float: left;
+  display: inline-block;
+  width: 20%;
+}
+.product_permission .product_bot .newpermission_table .model_1 ul li dl dt input[type="checkbox"] {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #AAAAAA;
+  display: inline-block;
+  background: white;
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.product_permission .product_bot .newpermission_table .model_1 ul li dl dt:first-child {
+  width: 45%;
+}
+.product_permission .product_bot .newpermission_table .model_1 ul li dl dt:nth-of-type(n+2) {
+  width: 54%;
+}
+.product_permission .product_bot .newpermission_table .model_1 ul li dl dt:nth-last-of-type(1) {
+  border-right: none;
+}
+.product_permission .product_bot .newpermission_table .model_1 ul li:nth-of-type(2) {
+  background: #eeeeee;
+}
+.product_permission .product_bot .newpermission_table .model_1 ul li:nth-of-type(3),
+.product_permission .product_bot .newpermission_table .model_1 ul li:nth-of-type(4),
+.product_permission .product_bot .newpermission_table .model_1 ul li:nth-of-type(5) {
+  border-bottom: none;
+}
+.product_permission .product_bot .newpermission_table .model_1 ul li:nth-of-type(4) dl dt:nth-of-type(1),
+.product_permission .product_bot .newpermission_table .model_1 ul li:nth-of-type(6) dl dt:nth-of-type(1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.product_permission .product_bot .newpermission_table .model_1 ul li:nth-last-of-type(1) {
+  border-bottom: none;
+}
+.product_permission .product_bot .newpermission_table .model_1 ul li:nth-last-of-type(1) dl dt {
+  border-bottom: none;
+}
+.product_permission .product_bot .newpermission_table .model_2 {
+  border: 1px solid #dcdcdc;
+  border-left: none;
+  display: inline-block;
+  width: 15%;
+  float: left;
+}
+.product_permission .product_bot .newpermission_table .model_2 ul {
+  width: 100%;
+  display: inline-block;
+}
+.product_permission .product_bot .newpermission_table .model_2 ul li {
+  text-align: center;
+  height: 35px;
+  line-height: 35px;
+  border-bottom: 1px solid #dcdcdc;
+}
+.product_permission .product_bot .newpermission_table .model_2 ul li div {
+  float: left;
+  display: inline-block;
+  width: 20%;
+}
+.product_permission .product_bot .newpermission_table .model_2 ul li input[type="checkbox"] {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #AAAAAA;
+  display: inline-block;
+  background: white;
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.product_permission .product_bot .newpermission_table .model_2 ul li span {
+  display: inline-block;
+  width: 25%;
+}
+.product_permission .product_bot .newpermission_table .model_2 ul li:nth-of-type(2) {
+  background: #eeeeee;
+}
+.product_permission .product_bot .newpermission_table .model_2 ul li:nth-of-type(n+3) input[type="text"],
+.product_permission .product_bot .newpermission_table .model_2 ul li:nth-of-type(n+3) input[type="select"] {
+  width: 22%;
+  height: 18px;
+  text-align: center;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  font-size: 1em;
+}
+.product_permission .product_bot .newpermission_table .model_2 ul li:nth-of-type(n+3) select {
+  width: 22%;
+  height: 21px;
+  text-align: center;
+  border: 0;
+  border: 1px solid #dcdcdc;
+  font-size: 0.8em;
+}
+.product_permission .product_bot .newpermission_table .model_2 ul li:nth-last-of-type(1) {
+  border-bottom: none;
+}
+.product_permission .product_bot .newpermission_table .model_2:nth-of-type(n+2) {
+  margin-left: 0px;
+}
+/*顺丰速运页面样式*/
+.SF .Customer_top {
+  height: 80px;
+  line-height: normal!important;
+  border-bottom: none!important;
+  margin-bottom: 10px!important;
+}
+.SF .Customer_top .UID {
+  font-size: 18px!important;
+}
+.SF .Customer_top div:first-child {
+  color: #008cd6!important;
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 20px;
+}
+.SF .Customer_top div:first-child span {
+  width: 4px;
+  height: 18px;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  background: #008cd6;
+}
+.SF .Customer_top span a {
+  color: #008cd6!important;
+}
+.SF .Customer_top .handle span:nth-of-type(2) {
+  border-left: 1.5px solid #e5e5e5;
+  border-right: 1.5px solid #e5e5e5;
+  padding: 0 6px;
+  margin: 0 6px;
+}
+.SF .Customer_top .handle {
+  display: inline-block;
+  float: right!important;
+}
+.SF .Customer_top .handle span {
+  float: left;
+}
+.SF .SF_table {
+  border: 1px solid #e5e5e5;
+  font-size: 12px;
+  width: 100%;
+  float: left;
+}
+.SF .SF_table ul:nth-of-type(1) {
+  background: #e5e5e5;
+}
+.SF .SF_table ul:nth-of-type(1) li:nth-of-type(2),
+.SF .SF_table ul:nth-of-type(1) li:nth-of-type(3),
+.SF .SF_table ul:nth-of-type(1) li:nth-of-type(4),
+.SF .SF_table ul:nth-of-type(1) li:nth-of-type(5) {
+  height: 16px!important;
+  line-height: 16px!important;
+  padding: 4px 0;
+}
+.SF .SF_table ul:nth-last-child(1) {
+  border-bottom: none!important;
+}
+.SF .SF_table ul:nth-of-type(n+2) li:first-child {
+  text-align: left;
+  text-indent: 2%;
+}
+.SF .SF_table ul {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.SF .SF_table ul li {
+  float: left;
+}
+.SF .SF_table ul li:nth-of-type(1) {
+  width: 25%;
+}
+.SF .SF_table ul li:nth-of-type(2),
+.SF .SF_table ul li:nth-of-type(3),
+.SF .SF_table ul li:nth-of-type(4),
+.SF .SF_table ul li:nth-of-type(5) {
+  width: 8%;
+}
+.SF .SF_table ul li:nth-of-type(6),
+.SF .SF_table ul li:nth-of-type(7) {
+  width: 15%;
+}
+.SF .SF_table:last-child {
+  margin-bottom: 100px;
+}
+/*新增修改模板页面样式*/
+.wuliu_template {
+  font-size: 12px;
+}
+.wuliu_template .Customer_top {
+  height: 30px!important;
+}
+.wuliu_template .Customer_top:first-child {
+  border-bottom: 1px solid #e5e5e5!important;
+}
+.wuliu_template .Customer_top:first-child .UID {
+  font-size: 20px!important;
+}
+.wuliu_template .add_template {
+  width: 100%;
+  display: inline-block;
+  margin-top: 10px;
+}
+.wuliu_template .add_template .template_left {
+  width: 40%;
+  float: left;
+}
+.wuliu_template .add_template .template_left ul li {
+  height: 40px;
+  line-height: 40px;
+}
+.wuliu_template .add_template .template_left ul li span:first-child {
+  display: inline-block;
+  width: 20%;
+  float: left;
+}
+.wuliu_template .add_template .template_left ul li div {
+  display: inline-block;
+  width: 80%;
+  float: left;
+}
+.wuliu_template .add_template .template_left ul li:nth-of-type(1) input,
+.wuliu_template .add_template .template_left ul li:nth-of-type(2) input {
+  border: 0;
+  border: 1px solid #dcdcdc;
+  width: 45%;
+  height: 24px;
+  line-height: 24px;
+}
+.wuliu_template .add_template .template_left ul li:nth-of-type(2) a {
+  color: #008cd6!important;
+  margin-left: 5px;
+}
+.wuliu_template .add_template .template_left ul li:nth-of-type(3) label,
+.wuliu_template .add_template .template_left ul li:nth-of-type(4) label {
+  width: 25%;
+  display: inline-block;
+}
+.wuliu_template .add_template .template_left ul li:nth-of-type(3) label:nth-of-type(2),
+.wuliu_template .add_template .template_left ul li:nth-of-type(4) label:nth-of-type(2) {
+  width: 35%;
+}
+.wuliu_template .add_template .template_left ul li:nth-last-of-type(2) input,
+.wuliu_template .add_template .template_left ul li:nth-last-of-type(3) input {
+  width: 25%;
+  margin-right: 5%;
+}
+.wuliu_template .add_template .template_left ul li:nth-last-of-type(2) input:nth-of-type(2),
+.wuliu_template .add_template .template_left ul li:nth-last-of-type(3) input:nth-of-type(2) {
+  margin-left: 2%;
+}
+.wuliu_template .add_template .template_left ul li:last-child {
+  margin-top: 25px;
+}
+.wuliu_template .add_template .template_left ul input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.wuliu_template .add_template .template_left ul input[type="button"] {
+  border: 0;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #e5e5e5;
+  width: 25%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #008cd6;
+  color: white;
+  cursor: pointer;
+}
+.wuliu_template .add_template .template_right {
+  width: 52%;
+  height: 300px;
+  overflow-y: auto;
+  float: left;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+}
+.wuliu_template .add_template .template_right nav {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  background: #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+.wuliu_template .add_template .template_right nav p {
+  width: 90%;
+  text-align: center;
+  float: left;
+}
+.wuliu_template .add_template .template_right nav span {
+  width: 10%;
+  float: left;
+  color: #008cd6!important;
+  text-align: center;
+}
+.wuliu_template .add_template .template_right .diqu {
+  width: 96%;
+  margin: 0 auto;
+}
+.wuliu_template .add_template .template_right .diqu li:first-child .square {
+  background: #008cd6;
+}
+.wuliu_template .add_template .template_right .diqu li {
+  height: 30px;
+  line-height: 30px;
+}
+.wuliu_template .add_template .template_right .diqu li .square {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #AAAAAA;
+  display: inline-block;
+  background: white;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.wuliu_template .add_template .template_right .diqu li input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #AAAAAA;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.wuliu_template .add_template .template_right .diqu li input:checked {
+  background: #008cd6;
+}
+.wuliu_template .add_template .template_right .diqu ul {
+  display: inline-block;
+  padding-left: 5%;
+  width: 95%;
+}
+.wuliu_template .add_template .template_right .diqu ul li {
+  float: left;
+  margin-right: 10px;
+}
+/*===站内信息页面样式===*/
+.customer_box .SendMessage {
+  border: 1px solid #e5e5e5;
+  height: 600px;
+  margin-bottom: 50px;
+}
+.customer_box .SendMessage li:first-child {
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+  background: #e5e5e5;
+}
+.customer_box .SendMessage li:first-child .Message_left {
+  float: left;
+  width: 30%;
+  margin-left: 2%;
+}
+.customer_box .SendMessage li:first-child .Message_left button {
+  color: #008cd6!important;
+  background: white;
+  border: 0;
+  border-radius: 5px;
+  text-align: center;
+  padding: 4px 8px;
+  margin-right: 1%;
+}
+.customer_box .SendMessage li:first-child .Message_left button a {
+  color: #008cd6!important;
+}
+.customer_box .SendMessage li:first-child .Message_right {
+  color: #008cd6!important;
+  float: right!important;
+  margin-right: 2%;
+}
+.customer_box .SendMessage li:nth-of-type(2),
+.customer_box .SendMessage li:nth-of-type(3) {
+  width: 96%;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 auto;
+  border-bottom: 1px solid #e5e5e5;
+}
+.customer_box .SendMessage li:nth-of-type(2) {
+  margin-top: 10px;
+}
+.customer_box .SendMessage li:nth-of-type(2) input {
+  width: 6%;
+  height: 34px;
+  line-height: 33px;
+  border: 0;
+}
+.customer_box .SendMessage li:nth-of-type(2) .add {
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  border-radius: 50%;
+  border: 1px solid black;
+  text-align: center;
+  line-height: 15px!important;
+  vertical-align: middle;
+  display: inline-block;
+  margin-left: 1%;
+}
+.customer_box .SendMessage li:nth-of-type(3) input {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.customer_box .SendMessage li:nth-of-type(4) {
+  width: 96%;
+  margin: 0 auto;
+  border: 1px solid #e5e5e5;
+  margin-top: 28px;
+  height: 388px;
+}
+.customer_box .SendMessage li:nth-of-type(4) textarea {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/*===内文管理页面===*/
+.customer_box h2 {
+  font-size: 16px;
+  font-weight: normal;
+}
+.customer_box .template {
+  border: 1px solid #e5e5e5;
+  width: 98%;
+  padding: 2% 0% 2% 2%;
+  height: auto;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+.customer_box .template ul {
+  width: 100%;
+  display: inline-block;
+}
+.customer_box .template ul li {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+}
+.customer_box .template ul li li {
+  width: 30%;
+}
+.customer_box .template ul li li input {
+  width: 66%;
+  text-indent: 2%;
+  margin-left: 3%;
+  height: 20px;
+}
+.customer_box .template ul li li span {
+  width: 25%;
+  font-size: 14px;
+  text-align: right;
+}
+.customer_box .template ul li li:nth-of-type(2) {
+  width: 5%;
+  height: 40px;
+  padding-top: 20px;
+}
+.customer_box .template ul li li:nth-of-type(2) .button {
+  width: 66%;
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+  text-align: center;
+  color: white;
+  background: #008cd6;
+  float: right!important;
+}
+.customer_box .template ul li li:nth-of-type(2) a {
+  color: white;
+}
+.customer_box .template span,
+.customer_box .template div,
+.customer_box .template li {
+  float: left;
+}
+.customer_box .template:nth-of-type(3) {
+  height: auto;
+}
+#color_template {
+  height: 200px;
+}

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>订单查看</title>
+    <link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/common.css" />
+    <link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/style.css" />
+    <link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/less/style.css" />
+    <link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/font/iconfont.css" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+</head>
+
+<body>
+    <div class="wrap">
+        <include file="Public/left" />
+        <!--侧边栏代码结束-->
+        <div class="right">
+            <include file="Public/top" />
+            <div class="right_bot float_left">
+                <!--页面主体内容开始-->
+                <div class="customer_box Customers newOrder">
+                    <div class="Customer_top">
+                        <div class="UID">订单查看</div>
+                        <div class="handle font-size-14 gray_01">
+                            <a id="cancelBtn" data-url="{:U('Order/cancel')}" href="javascript:;" data-id="{$order_info['order_id']}"><span>取消</span></a>
+                            <div class="line"></div>
+                            <a target="_blank" href="{:U('Order/downloadOrder',array('id'=>$order_info['order_id']))}"><span>下载</span></a>
+                            <div class="line"></div>
+                            <a href="{:U('Order/ERPOrder',array('id'=>$order_info['order_id']))}"><span>ERP</span></a>
+                            <div class="line"></div>
+                            <a href="javascript:history.go(-1);"><span>返回</span></a>
+                        </div>
+                        <div class="blue_wire"></div>
+                    </div>
+                    <div class="message_model">
+                        <div class="BOX">
+                            <div class="box_01">
+                                <ul>
+                                    <li>
+                                        <h1>订单信息</h1>
+                                    </li>
+                                    <li><span>PO号码</span>
+                                        <div><span>{$order_info.order_ponumber}</span></div>
+                                    </li>
+                                    <li><span>流水单号</span>
+                                        <div><span>{$order_info.order_serial_number}</span></div>
+                                    </li>
+                                    <li><span>下单时间</span>
+                                        <div><span>{$order_info.order_time|date="Y-m-d H:i:s",###}</span></div>
+                                    </li>
+                                    <li><span>确认时间</span>
+                                        <div><span>{$order_info.order_sure_time|date="Y-m-d H:i:s",###}</span></div>
+                                    </li>
+                                    <li><span>完成时间</span>
+                                        <div><span>/</span></div>
+                                    </li>
+                                    <li><span>币种</span>
+                                        <div><span>{$order_info.order_currency}</span></div>
+                                    </li>
+                                    <li><span>业务员</span>
+                                        <div><span>{$order_info.admin_name}</span></div>
+                                    </li>
+                                    <li><span>销售条款</span>
+                                        <div><span>
+                                                <empty name="order_info.sales_terms">/
+                                                    <else />{$order_info.sales_terms}</empty>
+                                            </span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="BOX">
+                            <div class="box_01">
+                                <ul>
+                                    <li>
+                                        <h1>物流信息</h1>
+                                    </li>
+                                    <li><span>公司名称</span>
+                                        <div><span>{$logistics_info.logistics_company_name}</span></div>
+                                    </li>
+                                    <li><span>收件人</span>
+                                        <div><span>{$logistics_info.logistics_receiver}</span></div>
+                                    </li>
+                                    <li><span>收件人电话</span>
+                                        <div><span>{$logistics_info.logistics_receiver_phone}</span></div>
+                                    </li>
+                                    <li><span>收件人邮箱</span>
+                                        <div><span>{$logistics_info.logistics_receiver_email}</span></div>
+                                    </li>
+                                    <li><span>收货地址</span></li>
+                                    <li><span>{$logistics_info.logistics_country}</span>
+                                        <div><span>{$logistics_info.logistics_city}</span><span>{$logistics_info.logistics_dist}</span></div>
+                                    </li>
+                                    <li>
+                                        <p>{$logistics_info.logistics_address}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="BOX">
+                            <div class="box_01">
+                                <ul>
+                                    <li>
+                                        <h1>Forworder In.</h1>
+                                    </li>
+                                    <li><span>公司名称</span>
+                                        <div><span>{$forworder_info.for_company_name}</span></div>
+                                    </li>
+                                    <li><span>收件人</span>
+                                        <div><span>{$forworder_info.for_receiver}</span></div>
+                                    </li>
+                                    <li><span>收件人电话</span>
+                                        <div><span>{$forworder_info.for_receiver_phone}</span></div>
+                                    </li>
+                                    <li><span>收件人邮箱</span>
+                                        <div><span>{$forworder_info.for_receiver_email}</span></div>
+                                    </li>
+                                    <li><span>收货地址</span></li>
+                                    <li><span>{$forworder_info.for_country}</span>
+                                        <div><span>{$forworder_info.for_city}</span><span>{$forworder_info.for_dist}</span></div>
+                                    </li>
+                                    <li>
+                                        <p>{$forworder_info.for_address}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="BOX">
+                            <div class="box_01">
+                                <ul>
+                                    <li>
+                                        <h1>开票信息</h1>
+                                    </li>
+                                    <li><span>开票类型</span>
+                                        <div><span>{$invoice_info.invoice_type}</span></div>
+                                    </li>
+                                    <li><span>开票名称</span>
+                                        <div><span>{$invoice_info.invoice_name|default="/"}</span></div>
+                                    </li>
+                                    <li><span>统一社会信用代码</span>
+                                        <div><span>{$invoice_info.invoice_credit|default="/"}</span></div>
+                                    </li>
+                                    <li><span>开票内容</span>
+                                        <div><span>{$invoice_info.invoice_content}</span></div>
+                                    </li>
+                                    <empty name="invoice_info.addon">
+                                        <li><span>开票资料</span>
+                                            <div><a href="javascript:;">/</a></div>
+                                        </li>
+                                        <li><span>&nbsp;</span>
+                                            <div><a href="javascript:;"></a></div>
+                                        </li>
+                                        <li><span>&nbsp;</span>
+                                            <div><a href="javascript:;"></a></div>
+                                        </li>
+                                        <else />
+                                        <li><span>开票资料</span>
+                                            <div><a target="_blank" href="__PUBLIC__/{$invoice_info['addon']['license']}">营业执照.pdf</a></div>
+                                        </li>
+                                        <li><span>&nbsp;</span>
+                                            <div><a target="_blank" href="__PUBLIC__/{$invoice_info['addon']['invoice']}">开票资料.pdf</a></div>
+                                        </li>
+                                        <li><span>&nbsp;</span>
+                                            <div><a target="_blank" href="__PUBLIC__/{$invoice_info['addon']['taxes']}">一般纳税人.pdf</a></div>
+                                        </li>
+                                    </empty>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="newOrder_bot">
+                        <div class="table margin_bot_100">
+                            <ul>
+                                <li>产品图片</li>
+                                <li>型号</li>
+                                <li>规格</li>
+                                <li>长度</li>
+                                <li>颜色</li>
+                                <li>整箱数量</li>
+                                <li>订单总数量</li>
+                                <li>产品单价</li>
+                                <li>小计</li>
+                            </ul>
+                            <foreach name="order_detail_info" item="odi">
+                                <ul class="productsItem">
+                                    <li><img src="__PUBLIC__/{$odi.products_img}" /></li>
+                                    <li>{$odi.model_name}</li>
+                                    <li>{$odi.products_chinese_name|mb_substr=###,0,6,'utf-8'}</li>
+                                    <li>{$odi.length}m</li>
+                                    <li>{$odi.color_name}</li>
+                                    <li>{$odi.loading}</li>
+                                    <li>{$odi.total_number|number_format=###,3}</li>
+                                    <li>{$odi.price|number_format=###,3}</li>
+                                    <li class="amount">{$odi.amount|number_format=###,3}</li>
+                                </ul>
+                            </foreach>
+                            <dl>
+                                <div>
+                                    <eq name="order_info.order_currency" value="USD">
+                                        <dt>报关手续费(USD)</dt>
+                                        <else />
+                                        <dt>物流费用(RMB)</dt>
+                                    </eq>
+                                    <dd>{$order_info.service_fee|number_format=###,2}</dd>
+                                </div>
+                            </dl>
+                            <dl>
+                                <div>
+                                    <eq name="order_info.order_currency" value="USD">
+                                        <dt>USD Total Amoount</dt>
+                                        <else />
+                                        <dt>RMB总计</dt>
+                                    </eq>
+                                    <dd>{$order_info['service_fee']+$order_info['order_total_price']|number_format=###,2}</dd>
+                                </div>
+                            </dl>
+                        </div>
+                        <div class="logistics">
+                            <div><span>物流信息</span></div>
+                            <div>
+                                <ul>
+                                    <li><span>物流公司</span><select autocomplete="off" id="logisticsCompany">
+                                            <foreach name="logisyics_company" item="lc">
+                                                <option value="{$lc.logistics_company_name}" <eq name="lc.logistics_company_name" value="$order_info['logistics_company']">selected</eq>>{$lc.logistics_company_name}</option>
+                                            </foreach>
+                                        </select></li>
+                                    <li><span>单号</span><input id="logisticsNo" type="text" value="{$order_info['logistics_no']}"></li>
+                                    <li><span>派送时间</span>
+                                        <empty name="order_info.logistics_time"><input id="year" type="text" value="" />
+                                            <else /><input id="year" type="text" value="{$order_info['logistics_time']|date='Y',###}" /></empty>
+                                        <span>年</span>
+                                        <empty name="order_info.logistics_time"><input id="month" type="text" />
+                                            <else /><input id="month" type="text" value="{$order_info['logistics_time']|date='m',###}" /></empty>
+                                        <span>月</span>
+                                        <empty name="order_info.logistics_time"><input id="day" type="text" />
+                                            <else /><input id="day" type="text" value="{$order_info['logistics_time']|date='d',###}" /></empty>
+                                        <span>日</span>
+                                    </li>
+                                    <li><a class="ensure" id="saveBtn" href="javascript:;" data-url="{:U('Order/confirmGoods')}" data-id="{$order_info['order_id']}">保存</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--页面主体内容结束-->
+                </div>
+            </div>
+        </div>
+        <script src="{$Think.const.ADMIN_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+        <script src="{$Think.const.ADMIN_RESOURCE}/js/common.js"></script>
+        <script src="__PUBLIC__/plugins/layui/layui.js"></script>
+        <script src="{$Think.const.ADMIN_RESOURCE}/js/orderView.js"></script>
+        <script>
+            $(window).resize(function() {
+                var whole = $(document).height();
+                var h1 = $(".wrap .left .left_top").height();
+                var h2 = $(".wrap .left .left_bot").height();
+                $(".wrap .left .left_bot").css("margin-bottom", whole - h1 - h2 + "px");
+                console.log("whole" + whole);
+                var h3 = $(".wrap .right .right_top").height();
+                var h4 = $(".customer_box .Customer_top").height();
+                $(".customer_box .Customer_bot").css("height", (whole - h3 - h4) / 1.3 + "px");
+            });
+        </script>
+</body>
+
+</html>

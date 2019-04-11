@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>查看订单</title>
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/common.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/less/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/font/iconfont.css" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<script type="text/javascript">
+		var url="{:U('Order/index')}";
+		var delUrl="{:U('Order/delOrder')}";
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<include file="Public/left"/>
+			<!--侧边栏代码结束-->
+			<div class="right">
+				<include file="Public/top"/>
+				<div class="right_bot float_left">
+					<!--页面主体内容开始-->
+						<div class="customer_box Customers Order">
+							<div class="top">
+								<dl>
+									<dt>
+										<span>起始日期</span><input autocomplete="off" id="start"/><div class="hr"></div><input autocomplete="off" id="end"/>
+									</dt>
+									<dt>
+										<span>订单状态</span>
+										<select id="orderStatus" autocomplete="off">
+											<option value="0">全部</option>
+											<option value="1">待处理</option>
+											<option value="6">待确认</option>
+											<option value="2">已确认</option>
+											<option value="5">已配送</option>
+											<option value="4">已取消</option>
+										</select>
+									</dt>
+									<dt><span>PO单号</span><input id="PONumber" type="text"/></dt>
+									<dt><span>流水单号</span><input id="serialNumber" type="text" /></dt>
+									<dt>
+										<span>业务员查询</span>
+										<select id="adminId">
+											<option value="0">全部</option>
+											<foreach name="admin_info" item="ai">
+											<option value="{$ai.admin_id}">{$ai.admin_name}</option>
+											</foreach>
+										</select>
+									</dt>
+								</dl>
+							</div>
+							<div class="order_add">
+								<dl>
+									<dt><span>UID查询</span><input id="UID" type="text"/></dt>
+									<dt><span>公司名查询</span><input id="companyName" type="text"/></dt>
+									<dt><span>天心</span><input id="tianxinCode" type="text"/></dt>
+									<dt><span>客户名称查询</span><input id="customerName" type="text" /></dt>
+								</dl>	
+							</div>
+						<div class="bot">
+							<div class="table edit_table orderList">
+								<ul>
+									<li style="width:6%;">状态</li>
+									<li>PO单号</li>
+									<li style="width:15%;">流水单号</li>
+									<li>下单日期</li>
+									<li>公司名称</li>
+									<li style="width:6%;">币种</li>
+									<li style="width:6%;">UID</li>
+									<li style="width:6%;">业务员</li>
+									<li style="width:8%;">天心</li>
+									<li>操作</li>
+								</ul>
+								<foreach name="order_info" item="oi">
+								<ul class="orderItem">
+									<li style="width:6%;">
+										<switch name="oi.order_status">
+											<case value="1">待处理</case>
+											<case value="6">待确认</case>
+											<case value="2">已确认</case>
+											<case value="3">已完成</case>
+											<case value="4">已取消</case>
+											<case value="5">已配送</case>
+											<default/>--
+										</switch>
+									</li>
+									<li>{$oi.order_ponumber}</li>
+									<li class="shenglue" style="width:15%;">{$oi.order_serial_number}</li>
+									<li>{$oi.order_time|date="Y-m-d",###}</li>
+									<li>{$oi.company_name}</li>
+									<li style="width:6%;">{$oi.order_currency}</li>
+									<li style="width:6%;">{$oi.user_uid}</li>
+									<li style="width:6%;">{$oi.admin_name|default='--'}</li>
+									<li style="width:8%;">{$oi.tianxin_code|default='--'}</li>
+									<li>
+										<a href="{:U('Order/view',array('id'=>$oi['order_id']))}"><span>查看</span></a>
+										<a target="_blank" href="{:U('Print/orderPrint',array('id'=>$oi['order_id']))}"><span>打印</span></a>
+										<a target="_blank" href="{:U('Order/downloadOrder',array('id'=>$oi['order_id']))}"><span>下载</span></a>
+										<a href="{:U('Order/ERPOrder',array('id'=>$oi['order_id']))}"><span>ERP</span></a>
+										<a href="javascript:;"><span class="del" data-id="{$oi['order_id']}">删除</span></a>
+									</li>
+								</ul>
+								</foreach>
+							</div>
+							<div class="slider">
+								<ul class="page" data-cur-page=''  id="page">
+								{$page}
+								</ul>
+							</div>
+						</div>
+						</div>
+					<!--页面主体内容结束-->
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/common.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/orderList.js"></script>
+		<script src="__PUBLIC__/plugins/laydate/laydate.js"></script>
+		<script type="text/javascript">
+		laydate.skin('default');
+		var start = {
+		  elem: '#start',
+		  format: 'YYYY-MM-DD hh:mm:ss',
+		  min: '1970-08-00 00:00:00',
+		  max: '2036-06-16 23:59:59', //最大日期
+		  istime: true,
+		  istoday: false,
+		  choose: function(datas){
+			 end.min = datas;
+			 end.start = datas,
+			 where=wrapCondition();
+			 dataDeal(url,where);
+		  },
+		  order:function(){
+			 where=wrapCondition();
+			 dataDeal(url,where);
+		  }
+		};
+		var end = {
+		  elem: '#end',
+		  format: 'YYYY-MM-DD hh:mm:ss',
+		  min: '1970-08-00 00:00:00',
+		  max: '2036-06-16 23:59:59',
+		  istime: true,
+		  istoday: false,
+		  choose: function(datas){
+			start.max = datas;
+			where=wrapCondition();
+			dataDeal(url,where);
+		  },
+		  order:function(){
+			 where=wrapCondition();
+			 dataDeal(url,where);
+		  }
+		};
+		laydate(start);
+		laydate(end);
+		</script>
+	</body>
+</html>

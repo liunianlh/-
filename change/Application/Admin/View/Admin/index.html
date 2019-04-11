@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>操作员列表</title>
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/common.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/less/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/font/iconfont.css" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+	</head>
+	<body>
+		<div class="wrap">
+			<include file="Public/left"/>
+			<!--侧边栏代码结束-->
+			<div class="right">
+				<include file="Public/top"/>
+				<div class="right_bot float_left">
+					<!--页面主体内容开始-->
+					<div class="customer_box Customers">
+						<div class="customer_box">
+							<div class="Customer_top">
+								<div class="UID">操作员列表</div>
+								<div class="handle">
+									<span><a href="{:U('Admin/add')}">添加</a></span>
+								</div>
+								<div class="blue_wire"></div>
+							</div>
+						</div>
+						<div class="bot">
+							<div class="table">
+								<ul>
+									<li style="width:10%;">编号</li>
+									<li style="width:20%;">用户名</li>
+									<li style="width:35%;">邮箱</li>
+									<li style="width:10%;">角色</li>
+									<li style="width:15%;">创建时间</li>
+									<li style="width:10%;">操作</li>
+								</ul>
+								<foreach name="admin_info" item="ri" key="k">
+								<ul>
+									<li style="width:10%;">{$k+1}</li>
+									<li style="width:20%;">{$ri.admin_name}</li>
+									<li style="width:35%;">{$ri.admin_email}</li>
+									<li style="width:10%;">{$ri.role}</li>
+									<li style="width:15%;">{$ri.admin_time|date="Y-m-d H:i:s",###}</li>
+									<li style="width:10%;"><a class="border_right" href="{:U('Admin/edit',array('id'=>$ri['admin_id']))}">修改</a>&nbsp;&nbsp;<a data-url="{:U('Admin/del',array('id'=>$ri['admin_id']))}" class="delAdminBtn" data-key="{:md5($ri['admin_id'])}" href="javascript:;">删除</a></li></a>
+								</ul>
+								</foreach>
+							</div>
+						</div>
+					</div>
+					<!--页面主体内容结束-->
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/common.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/admin.js"></script>
+	</body>
+</html>

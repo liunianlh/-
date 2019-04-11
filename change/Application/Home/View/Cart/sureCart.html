@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang._PUBLIC_ORDER_CONFIRMED_}</title>
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+		<link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+	</head>
+	<body class="shopping_confirm">
+		<include file="Public/header"/>
+		<include file="Public/first"/>
+		<!--主体第二层-->
+		<div class="content_Bf">
+			<div class="shopping_top">
+				<ul>
+					<li><a href="/">{$Think.lang._INDEX_}</a></li><span>-</span>
+					<li><a href="">{$Think.lang._PUBLIC_ORDER_DETAIL_}</a></li>
+				</ul>
+			</div>
+			<div class="shopping_list">
+				<!--1购物车信息-->
+				<div class="shopping_A02"><span>{$Think.lang._PUBLIC_ORDER_PROGRESS_}</span><p>GMT+8</p></div>
+				<div class="shoppingbox_A02">
+					<ul>
+						<li>
+							<dl>
+								<dd><div class="circle"></div></dd>
+								<dd>{$Think.lang._PUBLIC_WAIT_}</dd>
+								<dd>--</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dd><div class="circle"></div></dd>
+								<dd>{$Think.lang._PUBLIC_ORDER_CONFIRM_}</dd>
+								<dd>--</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dd><div class="circle"></div></dd>
+								<dd>{$Think.lang._PUBLIC_ORDER_TRANSIT_}</dd>
+								<dd>--</dd>
+							</dl>
+						</li>
+						<!--<li>
+							<dl>
+								<dd><div class="circle"></div></dd>
+								<dd>{$Think.lang._PUBLIC_COMPLETE_}</dd>
+								<dd>--</dd>
+							</dl>
+						</li>-->
+						<div class="line">
+							<div class="active"></div>
+						</div>
+					</ul>
+				</div>
+				<!--2产品信息-->
+				<div class="shopping_B">
+					<ul>
+						<li>{$Think.lang._PUBLIC_PONUMBER_} {$data['productsData']['orderInfo']['PONumber']}</li>
+						<li>{$Think.lang._PUBLIC_SERIAL_NUMBER_} {$data['orderSerialNumber']}</li>
+					</ul>
+				</div>
+				<div class="shoppingbox_B">
+					<ul>
+						<li>{$Think.lang._PUBLIC_PRODUCT_IMG_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_MODEL_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_SPECIFICATION_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_LENGTH_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_COLOR_}</li>
+						<!--<li>{$Think.lang._PUBLIC_PRODUCT_PACKAGE_}</li>-->
+						<li>{$Think.lang._PUBLIC_PRODUCT_LOADING_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_BOX_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_TOTAL_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_SINGLE_PRICE_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_AMOUNT_}</li>
+					</ul>
+					
+					<eq name="data.productsData.logisticsInfo.country" value="1">
+						<foreach name="data.cartDetail" item="dc">
+						<ul>
+							<li><img src="__PUBLIC__/{$dc.pic}"/></li>
+							<li>{$dc.modelName}</li>
+							<li>
+							<eq name="langFlag" value="1">
+							{$dc.specification}
+							<else/>
+							{$dc.specification2}
+							</eq>
+							</li>
+							<li>{$dc.length}m</li>
+							<li>
+							<eq name="langFlag" value="1">
+							{$dc.colorName}
+							<else/>
+							{$dc.colorName2}
+							</eq>
+							</li>
+							<!--<li>{$Think.lang._PUBLIC_CARTON_}</li>-->
+							<li>{$dc.loading}</li>
+							<li>{$dc.buyNum}</li>
+							<li>{$dc['loading']*$dc['buyNum']|number_format=###}</li>
+							<li>{$dc.rmb}</li>
+							<li>{$dc['subtotal']|number_format=###}</li>
+						</ul>
+						<!--<div class="line"></div>-->
+						</foreach>
+						<dl <if condition="$data['totalPrice'] gt $data['fobmoney']">style="display:none;"</if> class="extraLogisticsFee">
+							<dd>{$Think.lang._PUBLIC_LOGISTICS_EX_}</dd>
+						</dl>
+						<dl>
+							<span>{$Think.lang._PUBLIC_REMARK_}：{$data['productsData']['orderInfo']['remark']}</span>
+							<if condition="$data['totalPrice'] gt $data['fobmoney']">
+							<div>
+								<dt>{$Think.lang._PUBLIC_RMB_TOTAL_}</dt>
+								<dd>{$data['totalPrice']|number_format=###,2}</dd>
+							</div>
+							<else/>
+							<div>
+								<dt>{$Think.lang._PUBLIC_RMB_TAX_}</dt>
+								<dd>{$data['totalPrice']|number_format=###,2}</dd>
+							</div>
+							</if>
+						</dl>
+					<else/>
+						<foreach name="data.cartDetail" item="dc">
+						<ul>
+							<li><img src="__PUBLIC__/{$dc.pic}"/></li>
+							<li>{$dc.modelName}</li>
+							<li>
+							<eq name="langFlag" value="1">
+							{$dc.specification}
+							<else/>
+							{$dc.specification2}
+							</eq>
+							</li>
+							<li>{$dc.length}m</li>
+							<li>
+							<eq name="langFlag" value="1">
+							{$dc.colorName}
+							<else/>
+							{$dc.colorName2}
+							</eq>
+							</li>
+							<!-- <li>{$Think.lang._PUBLIC_CARTON_}</li> -->
+							<li>{$dc.loading}</li>
+							<li>{$dc.buyNum}</li>
+							<li>{$dc['loading']*$dc['buyNum']}</li>
+							<li>{$dc.rmb|RMB2USD|number_format=###,2}</li>
+							<li>{$dc['subtotal']|number_format=###,2}</li>
+						</ul>
+						<!--<div class="line"></div>-->
+						</foreach>
+						<dl <if condition="$data['totalPrice'] gt $data['fobmoney']">style="display:none;"</if> class="extraLogisticsFee">
+							<dd>{$Think.lang._PUBLIC_SERVICE_FEE_}:250USD</dd>
+						</dl>
+						<dl>
+							<span>{$Think.lang._PUBLIC_REMARK_}：{$data['productsData']['orderInfo']['remark']}</span>
+							<if condition="$data['totalPrice'] gt $data['fobmoney']">
+							<div>
+								<dt>{$Think.lang._PUBLIC_USD_TOTAL_}</dt>
+								<dd>{:number_format($data['totalPrice'],2)}</dd>
+							</div>
+							<else/>
+							<div>
+								<dt>{$Think.lang._PUBLIC_USD_TAX_}</dt>
+								<dd>{:number_format($data['totalPrice']+250,2)}</dd>
+							</div>
+							</if>
+						</dl>
+					</eq>
+					
+					
+				</div>
+				<eq name="data.productsData.logisticsInfo.country" value="1">
+				<notempty name="data.productsData.invoiceInfo">
+				<div class="shopping_D">
+					<p>{$Think.lang._PUBLIC_INVOICE_INFO_}</p>
+				</div>
+				<div class="shoppingbox_D">
+					<div class="box01">
+						<eq name="data.productsData.invoiceInfo.invoiceType" value="1">
+						<ol>
+							<li><span>{$Think.lang._PUBLIC_INVOICE_TYPE_}</span><label><input type="radio" checked=""/>{$Think.lang._PUBLIC_PERSONAL_}</label></li>
+							<li><span>{$Think.lang._PUBLIC_INVOICE_NAME_}</span><label style="width:60%;">{$data['productsData']['invoiceInfo']['invoiceName']}</label></li>
+							<li><span>{$Think.lang._PUBLIC_INVOICE_CONTENT_}</span><eq name="data.productsData.invoiceInfo.invoiceContent" value="1"><label><input type="radio" checked="checked" name="invoice_name"/>{$Think.lang._PUBLIC_BIG_CLASS_}</label></eq><eq name="data.productsData.invoiceInfo.invoiceContent" value="2"><label><input type="radio" checked="checked" name="invoice_name"/>{$Think.lang._PUBLIC_DETAIL_}</label></li></eq>
+						</ol>
+						</eq>
+						<eq name="data.productsData.invoiceInfo.invoiceType" value="2">
+						<ol>
+							<li><span><font color="red">&nbsp;</font>{$Think.lang._PUBLIC_INVOICE_TYPE_}</span><label><input type="radio" checked=""/>{$Think.lang._PUBLIC_UNIT_SPEC_INVOICE_}</label></li>
+							<li><span><font color="red">*</font>{$Think.lang._PUBLIC_CREDIT_CODE_}</span><label style="width:60%;">{$data['productsData']['invoiceInfo']['invoiceName']}</label></li>
+							<li><span><font color="red">&nbsp;</font>{$Think.lang._PUBLIC_INVOICE_CONTENT_}</span><eq name="data.productsData.invoiceInfo.invoiceContent" value="1"><label><input type="radio" checked="checked" name="invoice_name"/>{$Think.lang._PUBLIC_BIG_CLASS_}</label></eq><eq name="data.productsData.invoiceInfo.invoiceContent" value="2"><label><input type="radio" checked="checked" name="invoice_name"/>{$Think.lang._PUBLIC_DETAIL_}</label></li></eq>
+							<li><span><font color="red">*</font>{$Think.lang._PUBLIC_UPLOAD_INVOICE_INFO_}</span><label style="width:60%;"><a target="_blank" href="__PUBLIC__/{$data['productsData']['invoiceInfo']['invoiceAddon']['taxes']}">{$data['productsData']['invoiceInfo']['invoiceAddon']['taxesN']}</a></label></li>
+							<li><span><font color="red"></font></span><label style="width:60%;"><a target="_blank" href="__PUBLIC__/{$data['productsData']['invoiceInfo']['invoiceAddon']['license']}">{$data['productsData']['invoiceInfo']['invoiceAddon']['licenseN']}</a></label></li>
+							<li><span><font color="red"></font></span><label style="width:60%;"><a target="_blank" href="__PUBLIC__/{$data['productsData']['invoiceInfo']['invoiceAddon']['invoice']}">{$data['productsData']['invoiceInfo']['invoiceAddon']['invoiceN']}</a></label></li>
+						</ol>
+						</eq>
+					</div>
+				</div>
+				</notempty>
+				<else/>
+				<!--4Forworder Information-->
+				<div class="shopping_C">
+					<p>{$Think.lang._PUBLIC_FORWORDER_INFO_}</p>
+				</div>
+				<div class="shoppingbox_C">
+					<ul>
+						<li>
+							<div><span>{$Think.lang._PUBLIC_COMPANY_NAME_}</span><a>{$data['productsData']['forworderInfo']['fwdCompanyName']}</a></div>
+							<div><span>{$Think.lang._PUBLIC_RECEIVER_}</span><a>{$data['productsData']['forworderInfo']['fwdReceiver']}</a></div>
+						</li>
+						<li>
+							<div><span>{$Think.lang._PUBLIC_RECEIVER_PHONE_}</span><a>{$data['productsData']['forworderInfo']['fwdReceiverPhone']}</a></div>
+							<div><span>{$Think.lang._PUBLIC_RECEIVER_EMAIL_}</span><a>{$data['productsData']['forworderInfo']['fwdReceiverEmail']}</a></div>
+						</li>
+						<li>
+							<span>{$Think.lang._PUBLIC_RECEIVER_ADDRESS_}</span>
+							
+							<eq name="data.productsData.forworderInfo.fwdCountry" value="1">
+								<eq name="language" value="2">
+								<a>{$data['productsData']['forworderInfo']['fwdCountry2']['country_name2']}</a>
+								<a>{$data['productsData']['forworderInfo']['fwdProv2']['area_name2']}</a>
+								<a>{$data['productsData']['forworderInfo']['fwdCity2']['area_name2']}</a>
+								<else/>
+								<a>{$data['productsData']['forworderInfo']['fwdCountry2']['country_name']}</a>
+								<a>{$data['productsData']['forworderInfo']['fwdProv2']['area_name']}</a>
+								<a>{$data['productsData']['forworderInfo']['fwdCity2']['area_name']}</a>
+								</eq>
+							<else/>
+								<eq name="language" value="2">
+								<a>{$data['productsData']['forworderInfo']['fwdCountry2']['country_name2']}</a>
+								<else/>
+								<a>{$data['productsData']['forworderInfo']['fwdCountry2']['country_name']}</a>
+								</eq>
+								<a>{$data['productsData']['forworderInfo']['fwdProv']}</a>
+								<a>{$data['productsData']['forworderInfo']['fwdCity']}</a>
+							</eq>
+							<a>{$data['productsData']['forworderInfo']['fwdAddress']}</a>
+						</li>
+					</ul>
+				</div>
+				</eq>
+				<!--3物流信息-->
+				<div class="shopping_C">
+					<p>{$Think.lang._PUBLIC_LOGISTICS_INFO_}</p>
+				</div>
+				<div class="shoppingbox_C">
+					<ul>
+						<li>
+							<div><span>{$Think.lang._PUBLIC_COMPANY_NAME_}</span><a>{$data['productsData']['logisticsInfo']['companyName']}</a></div>
+							<div><span>{$Think.lang._PUBLIC_RECEIVER_}</span><a>{$data['productsData']['logisticsInfo']['receiver']}</a></div>
+						</li>
+						<li>
+							<div><span>{$Think.lang._PUBLIC_RECEIVER_PHONE_}</span><a>{$data['productsData']['logisticsInfo']['receiverPhone']}</a></div>
+							<div><span>{$Think.lang._PUBLIC_RECEIVER_EMAIL_}</span><a>{$data['productsData']['logisticsInfo']['receiverEmail']}</a></div>
+						</li>
+						<li>
+							<span>{$Think.lang._PUBLIC_RECEIVER_ADDRESS_}</span>
+							
+							<eq name="data.productsData.logisticsInfo.country" value="1">
+								<eq name="language" value="2">
+								<a>{$data['productsData']['logisticsInfo']['country2']['country_name2']}</a>
+								<a>{$data['productsData']['logisticsInfo']['prov2']['area_name2']}</a>
+								<a>{$data['productsData']['logisticsInfo']['city2']['area_name2']}</a>
+								<else/>
+								<a>{$data['productsData']['logisticsInfo']['country2']['country_name']}</a>
+								<a>{$data['productsData']['logisticsInfo']['prov2']['area_name']}</a>
+								<a>{$data['productsData']['logisticsInfo']['city2']['area_name']}</a>
+								</eq>
+							<else/>
+								<eq name="language" value="2">
+								<a>{$data['productsData']['logisticsInfo']['country2']['country_name2']}</a>
+								<else/>
+								<a>{$data['productsData']['logisticsInfo']['country2']['country_name']}</a>
+								</eq>
+								<a>{$data['productsData']['logisticsInfo']['prov']}</a>
+								<a>{$data['productsData']['logisticsInfo']['city']}</a>
+							</eq>
+							
+							<a>{$data['productsData']['logisticsInfo']['address']}</a>
+						</li>
+					</ul>
+				</div>
+				<div class="shopping_F">
+					<a class="saveBtn" href="javascript:;" data-url="{:U('Cart/sureCart')}">{$Think.lang._PUBLIC_CONFIRM_SUBMIT_}</a>
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/sureCart.js"></script>
+		<include file="Public/footer"/>
+	</body>
+</html>

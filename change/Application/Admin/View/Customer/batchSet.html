@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>批量设置权限（个人）</title>
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/common.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/less/style3.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/font/iconfont.css" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<script type="text/javascript">
+			var rateRMB={$Think.session.rate_rmb};
+            function changes(obj){
+                var money=$(obj).val();
+
+                $(obj).parent().next().children(":input").val(RMB2USD(money))
+                //layer.msg(money);
+                //obj.val(999);
+            }
+            function change_start(obj){
+                var money=$(obj).val();
+                $(obj).parent().prev().children(":input").val(USD2RMB(money))
+                //layer.msg(money);
+                //obj.val(999);
+            }
+            function USD2RMB(usd){
+                if(((rateRMB-0)==0)||((usd-0)==0)){
+                    return 0.00;
+                }
+                rmb=usd*1.17*rateRMB;
+                return rmb.toFixed(2);
+            }
+            function RMB2USD(rmb){
+                if(((rateRMB-0)==0)||((rmb-0)==0)){
+                    return 0.00;
+                }
+                usd=rmb/1.17/rateRMB;
+                return usd.toFixed(2);
+            }
+            function toFixed(rmb){
+                rmb=rmb-0;
+                return rmb.toFixed(2);
+            }
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<include file="Public/left"/>
+			<!--侧边栏代码结束-->
+			<div class="right">
+				<include file="Public/top"/>
+				<div class="right_bot float_left">
+					<!--页面主体内容开始-->
+					<div class="customer_box Customers common">
+						<div class="Customer_top">
+							<div class="UID">批量设置权限（个人）</div>
+							<div class="handle">
+								<span><a id="saveBtn" data-url="{:U('Customer/batchSetSave')}" href="javascript:;">保存</a></span>
+							</div>
+							<div class="blue_wire"></div>
+						</div>
+						<div class="product_search">
+							<input type="text" autocomplete="off" id="searchModel" placeholder="请输入相关型号"><div class="xinghao_search"><a href="javascript:;" data-url="{:U('Customer/batchSet')}" id="searchBtn">型号搜索</a></div>
+						</div>
+						<div class="sel">
+							<a href="javascript:;" class="editStatus" data-status-value="2"><span class="red">下架</span></a>
+							<div class="line"></div>
+							<a href="javascript:;" class="editStatus" data-status-value="1"><span class="green">上架</span></a>
+						</div>
+						<div class="dealer_table personalBatchSetList">
+							<h1>UID:{$user_info.user_uid}</h1>
+							<ul>
+								<li><input type="checkbox" class="serialCBX" data-serial="serial"/><text>系列</text><div class="line"></div></li>
+								<li><input type="checkbox" class="modelCBX" data-model="model"/><text>型号</text><div class="line"></div></li>
+								<li>
+									<input type="checkbox" class="rmbCBX" data-rmb="rmb"/>
+									<span>RMB</span>
+									<span>USD</span>
+									<span>状态</span>
+									<div class="line"></div>
+								</li>
+								<li>&nbsp;</li>
+							</ul>
+							<foreach name="spec_info" item="si">
+							<ul class="personalBatchSetItem">
+								<li>
+									<dl>
+										<foreach name="si" item="si_item" key="k">
+										<eq name="k" value="0">
+										<dd><input class="serialIdCBX" type="checkbox" data-serial="serial" data-serial-id="serial{$si_item.serial_id}"/><text>{$si_item.serial_name}</text><div class="line"></div></dd>
+										<else/>
+										<dd><text>&emsp;</text><div class="line02"></div></dd>
+										</eq>
+										</foreach>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<foreach name="si" item="si_item2">
+										<dd><input class="modelIdCBX" type="checkbox" data-serial="serial" data-model="model" data-serial-id="serial{$si_item2.serial_id}" data-model-id="model{:md5($si_item2['model_name'])}"/><text>{$si_item2.model_name}</text><div class="line"></div></dd>
+										</foreach>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<foreach name="si" item="si_item3">
+										<dd class="rmbItem" data-hash="{$si_item3._hashKey}">
+											<input type="checkbox" class="rusCBX" data-serial="serial" data-model="model" data-rmb="rmb" data-serial-id="serial{$si_item3.serial_id}" data-model-id="model{:md5($si_item3['model_name'])}"/>
+											<span><input class="rmb" oninput="changes(this)"  type="text" value="{$si_item3.rmb|default=0.00|sprintf='%.2f',###}"/></span>
+											<span><input type="text" oninput="change_start(this)" value="{:RMB2USD($si_item3['rmb'])}"/></span>
+											<span>
+												<select class="status" autocomplete="off">
+													<option value="1" class="green" <eq name="si_item3.status" value="1">selected</eq>>上架</option>
+													<option value="2" class="red" <eq name="si_item3.status" value="2">selected</eq>>下架</option>
+												</select>
+											</span>
+											<div class="line"></div>
+										</dd>
+										</foreach>
+									</dl>
+								</li>
+								<li class="width_100">
+									<dl>
+									<foreach name="si" item="si_item4">
+										<dd >&emsp;</dd>
+									</foreach>	
+									</dl>
+								</li>
+								
+							</ul>
+							</foreach>
+						</div>
+					</div>
+					<!--页面主体内容结束-->
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/common.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/personalBatchSet.js"></script>
+		<script>
+		 $(window).resize(function(){
+		var whole=$(document).height();
+		var h1=$(".wrap .left .left_top").height();
+		var h2=$(".wrap .left .left_bot").height();
+		$(".wrap .left .left_bot").css("margin-bottom",whole-h1-h2+"px");
+		console.log("whole"+whole);
+		var h3=$(".wrap .right .right_top").height();
+		var h4=$(".customer_box .Customer_top").height();
+		$(".customer_box .Customer_bot").css("height",(whole-h3-h4)/1.3+"px");
+	});
+	</body>
+</html>

@@ -1,0 +1,97 @@
+<!--首页头部开始-->
+<div class="header">
+    <div class="head">
+        <div class="logo">
+            <a href="{$Think.const.WEB_ROOT}" style="font-family:<?php echo $logo["typeface"];?>; font-size:<?php echo $logo["fontsize"];?>px;color:#fff"><strong>{$logo.config_value}</strong></a>
+        </div>
+        <div class="search">
+            <form method="GET" action="{:U('Product/product_list')}">
+                <input id="import" type="search" name="keyword" value="{$keyword}" placeholder="{$Think.lang._PUBLIC_SEARCH_}" />
+                <input id="submit" type="submit" value="{$Think.lang._PUBLIC_SEARCH_BTN_}" />
+            </form>
+            <notempty name="keyword">
+                <!--搜索提示框开始-->
+                <div class="search_tip">
+                    <p>{$Think.lang._PUBLIC_SEARCH_RESULT_}<a>{$count}</a>{$Think.lang._PUBLIC_ITEM_}{$Think.lang._PUBLIC_NO_SATISFIED_}，{$Think.lang._PUBLIC_CAN_TRY_}<a href="{:U('Quick/index')}">{$Think.lang._PUBLIC_QUICK_BUY_}</a>{$Think.lang._PUBLIC_MODE_}</p>
+                </div>
+                <!--搜索提示框结束-->
+            </notempty>
+        </div>
+        <div class="account">
+            <!--<div class="account_A">-->
+                <!--<div class="ico_01"></div>-->
+            <!--</div>-->
+            <div class="account_B" style="width:80px">
+                <div class="top">
+                    <div>
+                        <span>{$Think.lang._PUBLIC_HELLO_}，</span>
+
+                        <!--<span>{$user_info_top.company_contacts}</span>-->
+
+                        <span style='width:110px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;' title='{$user_info_top.company_contacts}'>{$user_info_top.company_contacts}</span>
+
+
+                    </div>
+                </div>
+                <div class="bot">
+                    <span>{$Think.lang._PUBLIC_ACCOUNT_}</span>
+                    <div id="triangle-down"></div>
+                </div>
+            </div>
+            <div class="header_sc" style=" float: left;margin-left:134px;margin-right:10px;margin-top: 9px;font-size: 25px;z-index:100">
+                 <a  href="{:U('Collor/index')}" style="color:#fff">
+                     <div class="ico_001"></div>
+                    <div class="num shoucang">{$shoucang}</div>
+                 </a>
+                
+            </div>
+            <div class="account_C" id="userCart" data-public="__PUBLIC__" data-url="{:U('Cart/getProductsInfoFromCart')}">
+                <div class="ico_02"></div>
+                <div class="num cartNum">{$cartNum}</div>
+            </div>
+            <div class="account_D">Authorized dealer</div>
+            <!--1提示框-->
+            <div class="ID_tip hide">
+                <ul>
+                    <li><a href="{:U('Account/index')}">{$Think.lang._PUBLIC_ACCOUNT_INFO_}</a></li>
+                    <li><a href="{:U('Order/index')}">{$Think.lang._PUBLIC_ALL_ORDERS_}</a></li>
+                    <li><a href="{:U('EditPassword/index')}">{$Think.lang._PUBLIC_MODIFY_PWD_}</a></li>
+                    <li><a href="{:U('Kefu/index')}">{$Think.lang._PUBLIC_CUSTOMER_SERVICE_}</a></li>
+                    <li><a style="color: red;" href="{:U('Index/logout')}">{$Think.lang._PUBLIC_LOGOUT_}</a></li>
+                </ul>
+            </div>
+            <!--1提示框-->
+            <!--2提示框-->
+            <div class="Shopping_tip hide">
+                <ul>
+                </ul>
+                <a href="{:U('Cart/index')}" class="GoToShopping_cart">{$Think.lang._PUBLIC_GO_CART_}</a>
+            </div>
+            <!--2提示框-->
+            <neq name="user_info_top.contract_flag" value="1">
+                <!--3提示框-->
+                <div class="Aurhorized_tip hide">
+                    <ul>
+                        <li>{$Think.lang._PUBLIC_SIGNED_} {$user_info_top.contract_time|date='Y',###} {$Think.lang._PUBLIC_CONTRACT_}</li>
+                        <li>{$Think.lang._PUBLIC_VALID_}
+                            <eq name="langFlag" value="2">
+                                {$user_info_top.contract_time|date='Y/m/d/',###}
+                                <else />
+                                {$user_info_top.contract_time|date='Y年m月d日',###}
+                            </eq>
+                        </li>
+                        <li>
+                            <switch name="user_info_top.contract_flag">
+                                <case value="0">{$Think.lang._PUBLIC_EFFECTIVE_}</case>
+                                <case value="2">{$Think.lang._PUBLIC_EXPIRING_}</case>
+                                <case value="3">{$Think.lang._PUBLIC_EXPIRED_}</case>
+                            </switch>
+                        </li>
+                    </ul>
+                </div>
+                <!--3提示框-->
+            </neq>
+        </div>
+    </div>
+</div>
+<!--首页头部结束-->

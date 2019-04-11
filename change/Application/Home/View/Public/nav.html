@@ -1,0 +1,11 @@
+<div class="order_nav">
+    <ul>
+        <li <if condition="CONTROLLER_NAME=='Account'">class="active"</if> ><a href="{:U('Account/account')}">{$Think.lang._PUBLIC_ACCOUNT_INFO_}</a></li>
+        <li <if condition="CONTROLLER_NAME=='Invoice'">class="active"</if>><a href="{:U('Invoice/index')}">{$Think.lang._PUBLIC_INVOICE_INFO_}</a></li>
+        <li <if condition="CONTROLLER_NAME=='Logistics'">class="active"</if>><a href="{:U('Logistics/index')}">{$Think.lang._PUBLIC_LOGISTICS_INFO_}</a></li>
+        <li <if condition="CONTROLLER_NAME=='Forworder'">class="active"</if>><a href="{:U('Forworder/index')}">{$Think.lang._PUBLIC_FORWORDER_INFO_}</a></li>
+        <li <if condition="CONTROLLER_NAME=='Order'">class="active"</if>><a href="{:U('Order/index')}">{$Think.lang._PUBLIC_ALL_ORDERS_}</a></li>
+        <li <if condition="CONTROLLER_NAME=='EditPassword'">class="active"</if>><a href="{:U('EditPassword/index')}">{$Think.lang._PUBLIC_MODIFY_PWD_}</a></li>
+        <li <if condition="CONTROLLER_NAME=='Kefu'">class="active"</if>><a href="{:U('Kefu/index')}">{$Think.lang._PUBLIC_CUSTOMER_SERVICE_}</a></li>
+    </ul>
+</div>

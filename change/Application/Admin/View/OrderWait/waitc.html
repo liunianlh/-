@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>待处理</title>
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/common.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/less/style.css" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<script type="text/javascript">
+		var url2="{:U('OrderOther2/deleteProduct')}";
+		var url3="{:U('OrderOther2/getLogistics')}";
+		var url4="{:U('OrderOther2/getForworder')}";
+		var url5="{:U('OrderOther2/getInvoice')}";
+		var publicPath="__PUBLIC__/";
+		var url6="{:U('OrderOther2/calculatePriceByNumber')}";
+		var url7="{:U('OrderOther2/calculatePriceByPrice')}";
+		var url8="{:U('OrderOther2/addSpec')}";
+		var url9="{:U('OrderOther2/loadProductByUID')}";
+		var url10="{:U('OrderOther2/calcServicePrice')}";
+		<assign name="id" value="$Think.get.id"/>
+		var waitc="{:U('OrderWait/waitc',array('id'=>$id))}";
+		var wait="{:U('OrderWait/wait',array('id'=>$id))}";
+		var getPCUrl="{:U('Area/getPC')}";
+		var getCUrl="{:U('Area/getC')}";
+		var getPCUrl2="{:U('Area/getPC2')}";
+		var getCUrl2="{:U('Area/getC2')}";
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<include file="Public/left"/>
+			<!--侧边栏代码结束-->
+			<div class="right">
+				<include file="Public/top"/>
+				<div class="right_bot float_left">
+					<!--页面主体内容开始-->
+					<div class="customer_box Customers newOrder">
+						<div class="Customer_top">
+							<div class="UID">状态:待处理</div>
+							<div class="handle font-size-14 gray_01">
+								<span><a id="saveBtn" data-url="{:U('OrderWait/waitc')}" href="javascript:;">保存</a></span>
+								<div class="line"></div>
+								<span><a id="cancelBtn" data-url="{:U('Order/cancel')}" href="javascript:;">取消</a></span>
+								<div class="line"></div>
+								<span><a href="javascript:history.go(-1);">返回</a></span>
+							</div>
+						</div>
+						<div class="message_model">
+							<div class="BOX">
+								<div class="box_01">
+									<ul>
+										<li id="orderUser" data-oid="{$order_info.order_id}" data-id="{$order_info.user_id}"><h1>订单信息</h1></li>
+										<li><span>PO号码</span><div><span>{$order_info.order_ponumber}</span></div></li>
+										<li><span>流水单号</span><div><span>{$order_info.order_serial_number}</span></div></li>
+										<li><span>下单时间</span><div><span>{$order_info.order_time|date="Y-m-d H:i:s",###}</span></div></li>
+										<li><span>确认时间</span><div><span>/</span></div></li>
+										<li><span>完成时间</span><div><span>/</span></div></li>
+										<li><span>币种</span><div><select id="orderCurrency" autocomplete="off">
+										<option value="RMB">RMB</option>
+										<option value="USD" selected>USD</option>
+										</select></div></li>
+										<li><span>业务员</span><div>
+										<select id="operator">
+										<foreach name="admin_info" item="ai">
+										<option value="{$ai.admin_id}" <eq name="ai.admin_id" value="$order_info['admin_id']">selected</eq>>{$ai.admin_name}</option>
+										</foreach>
+										</select>
+										</div></li>
+										<li><span>销售条款</span><div>
+										<select id="salesItem" autocomplete="off">
+										<option value="1" <eq name="order_info.sales_terms" value="FOB Shen Zhen">selected</eq>>FOB Shen Zhen</option>
+										<option value="2" <eq name="order_info.sales_terms" value="FOB Hong Kong">selected</eq>>FOB Hong Kong</option>
+										</select></div></li>
+									</ul>
+								</div>
+							</div>
+							<div class="BOX">
+								<div class="box_01">
+									<ul id="logisticsBox" data-id="{$logistics_info.order_logistics_id}">
+										<li><h1>物流信息</h1><a class="add wuliu" href="javascript:;">+</a></li>
+										<li><span>公司名称</span><div><input autocomplete="off" id="logCompanyName" type="text" value="{$logistics_info.logistics_company_name}"/></div></li>
+										<li><span>收件人</span><div><input autocomplete="off" id="logReceiver" type="text" value="{$logistics_info.logistics_receiver}"/></div></li>
+										<li><span>收件人电话</span><div><input autocomplete="off" id="logReceiverPhone" type="text" value="{$logistics_info.logistics_receiver_phone}"/></div></li>
+										<li><span>收件人邮箱</span><div><input autocomplete="off" id="logReceiverEmail" type="text" value="{$logistics_info.logistics_receiver_email}"/></div></li>
+										<li><span>收货地址</span></li>
+										<li><span>
+										<select class="companyArea" id="logCountry" autocomplete="off" data-ori-prov="{$logistics_info.logistics_province}"  data-ori-city="{$logistics_info.logistics_city}">
+											<foreach name="country_info" item="coi">
+											<option value="{$coi.country_id}" <eq name="logistics_info.logistics_country" value="$coi['country_name']">selected</eq>>{$coi['country_name']}</option>
+											</foreach>
+										</select>
+										</span>
+										<div id="PCA"></div>
+										</li>
+										<li><textarea id="address">{$logistics_info.logistics_address}</textarea></li>
+									</ul>
+								</div>
+								<!--物流信息模态弹框-->
+								<div class="modal_01 fade_01">
+									<div class="modal-body_01">
+										<div class="modal-header">
+											<div class="modal-title_01">
+												<span>物流信息</span>
+												<a class="close_01" href="#">&times;</a>
+											</div>
+										</div>
+										<div class="modal-content_01">
+											<div class="content_table_01">
+												<ul>
+													<li>公司名称</li>
+													<li>收件人</li>
+													<li>联系电话</li>
+													<li>收货地址</li>
+													<li>操作</li>
+												</ul>
+												<foreach name="all_logistics" item="al">
+												<ul>
+													<li>{$al.logistics_company_name}</li>
+													<li>{$al.logistics_receiver}</li>
+													<li>{$al.logistics_receiver_phone}</li>
+													<li>{$al.logistics_country}{$al.logistics_province}{$al.logistics_city}{$al.logistics_dist}{$al.logistics_address}</li>
+													<li><a class="addLogistics" href="javascript:;" data-id="{$al.logistics_id}">添加</a></li>
+												</ul>
+												<div class="hr_01"></div>
+												</foreach>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-backup_01"></div>
+								<!--模态弹框-->
+							</div>
+							<div class="BOX">
+								<div class="box_01">
+									<ul id="forworderBox" data-id="{$forworder_info.order_forworder_id}">
+										<li><h1>Forworder In.</h1><a class="add forworder" href="javascript:;">+</a></li>
+										<li><span>公司名称</span><div><input id="fwdCompanyName" type="text" value="{$forworder_info.for_company_name}"/></div></li>
+										<li><span>收件人</span><div><input id="fwdReceiver" type="text" value="{$forworder_info.for_receiver}"/></div></li>
+										<li><span>收件人电话</span><div><input id="fwdReceiverPhone" type="text" value="{$forworder_info.for_receiver_phone}"/></div></li>
+										<li><span>收件人邮箱</span><div><input id="fwdReceiverEmail" type="text" value="{$forworder_info.for_receiver_email}"/></div></li>
+										<li><span>收货地址</span></li>
+										<li><span>
+										<select class="fwdCompanyArea" id="fwdCountry" autocomplete="off" data-ori-prov="{$forworder_info.for_province}"  data-ori-city="{$forworder_info.for_city}">
+											<foreach name="country_info" item="coi">
+											<option value="{$coi.country_id}" <eq name="forworder_info.for_country" value="$coi['country_name']">selected</eq>>{$coi['country_name']}</option>
+											</foreach>
+										</select>
+										</span>
+										<div id="fwdPCA"></div>
+										</li>
+										<li><textarea id="fwdAddress">{$forworder_info.for_address}</textarea></li>
+									</ul>
+								</div>
+								<!--货代信息模态弹框-->
+								<div class="modal_01 fade_01">
+									<div class="modal-body_01">
+										<div class="modal-header">
+											<div class="modal-title_01">
+												<span>Forworder Information</span>
+												<a class="close_01" href="#">&times;</a>
+											</div>
+										</div>
+										<div class="modal-content_01">
+											<div class="content_table_01">
+												<ul>
+													<li>公司名称</li>
+													<li>收件人</li>
+													<li>联系电话</li>
+													<li>收货地址</li>
+													<li>操作</li>
+												</ul>
+												<foreach name="all_forworder" item="af">
+												<ul>
+													<li>{$af.for_company_name}</li>
+													<li>{$af.for_receiver}</li>
+													<li>{$af.for_receiver_phone}</li>
+													<li>{$af.for_country}{$af.for_province}{$af.for_city}{$af.for_dist}{$af.for_address}</li>
+													<li><a class="addForworder" href="javascript:;" data-id="{$af.forworder_id}">添加</a></li>
+												</ul>
+												<div class="hr_01"></div>
+												</foreach>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-backup_01"></div>
+								<!--模态弹框-->
+							</div>
+							<div class="BOX">
+								<div class="box_01">
+									<ul id="invoiceBox" data-id="{$invoice_info.order_invoice_id}">
+										<li><h1>开票信息</h1><a class="add invoice" href="javascript:;">+</a></li>
+										<li><span>开票类型</span><div><select autocomplete="off" id="invoiceType">
+										<option value="个人" data-id="1" <eq name="invoice_info.invoice_type" value="个人">selected</eq>>个人</option>
+										<option value="单位专用发票" data-id="2" <eq name="invoice_info.invoice_type" value="单位专用发票">selected</eq>>单位专用发票</option>
+										</select></div></li>
+										<eq name="invoice_info.invoice_type" value="个人">
+										<li class="invoiceName"><span>开票名称</span><div><input id="invoiceName" value="{$invoice_info.invoice_name}" type="text"/></div></li>
+										<else/>
+										<li class="invoiceName" style="display:none;"><span>开票名称</span><div><input id="invoiceName" value="" type="text"/></div></li>
+										</eq>
+										<eq name="invoice_info.invoice_type" value="单位专用发票">
+										<li class="invoiceCredit"><span>统一社会信用代码</span></li>
+										<li class="invoiceCredit"><span>&nbsp;</span><div><input id="invoiceCredit" value="{$invoice_info.invoice_credit}" type="text"/></div></li>
+										<else/>
+										<li class="invoiceCredit" style="display:none;"><span>统一社会信用代码</span></li>
+										<li class="invoiceCredit" style="display:none;"><span>&nbsp;</span><div><input id="invoiceCredit" value="" type="text"/></div></li>
+										</eq>
+										<li><span>开票内容</span>
+										<select width="80%" id="invoiceContent" autocomplete="off">
+										<option value="大类" data-id="1" <eq name="invoice_info.invoice_content" value="大类">selected</eq>>大类</option>
+										<option value="明细" data-id="2" <eq name="invoice_info.invoice_content" value="明细">selected</eq>>明细</option>
+										</select>
+										</li>
+										<eq name="invoice_info.invoice_type" value="单位专用发票">
+										<li class="invoiceAddon"><span>开票资料</span><div><a target="_blank" data-category="taxes" data-path="{$invoice_info['addon']['taxes']}" data-name="{$invoice_info['addon']['taxesN']}" href="__PUBLIC__/{$invoice_info['addon']['taxes']}">{$invoice_info['addon']['taxesN']}</a><a href=""><div class="jian">-</div></a></div></li>
+										<li class="invoiceAddon"><span>&nbsp;</span><div><a target="_blank" data-category="license" data-path="{$invoice_info['addon']['license']}" data-name="{$invoice_info['addon']['licenseN']}" href="__PUBLIC__/{$invoice_info['addon']['license']}">{$invoice_info['addon']['licenseN']}</a><a href=""><div class="jian">-</div></a></div></li>
+										<li class="invoiceAddon"><span>&nbsp;</span><div><a target="_blank" data-category="invoice" data-path="{$invoice_info['addon']['invoice']}" data-name="{$invoice_info['addon']['invoiceN']}" href="__PUBLIC__/{$invoice_info['addon']['invoice']}">{$invoice_info['addon']['invoiceN']}</a><a href=""><div class="jian">-</div></a></div></li>
+										<else/>
+										<li class="invoiceAddon" style="display:none;"><span>开票资料</span><div><a target="_blank" data-category="taxes" href="">一般纳税人证明.pdf</a><a href=""><div class="jian">-</div></a></div></li>
+										<li class="invoiceAddon" style="display:none;"><span>&nbsp;</span><div><a target="_blank" data-category="license" href="">营业执照.pdf</a><a href=""><div class="jian">-</div></a></div></li>
+										<li class="invoiceAddon" style="display:none;"><span>&nbsp;</span><div><a target="_blank" data-category="invoice" href="">开票资料.pdf</a><a href=""><div class="jian">-</div></a></div></li>
+										</eq>
+									</ul>
+								</div>
+								<!--开票信息模态弹框-->
+								<div class="modal_01 fade_01">
+									<div class="modal-body_01">
+										<div class="modal-header">
+											<div class="modal-title_01">
+												<span>开票信息</span>
+												<a class="close_01" href="#">&times;</a>
+											</div>
+										</div>
+										<div class="modal-content_01">
+											<div class="content_table_01">
+												<ul>
+													<li>开票类型</li>
+													<li>开票名称</li>
+													<li>统一社会信用代码</li>
+													<li>开票内容</li>
+													<li>操作</li>
+												</ul>
+												<foreach name="all_invoice" item="ai">
+												<ul>
+													<li><eq name='ai.invoice_type_id' value="1">个人<else/>单位专用发票</eq></li>
+													<li>{$ai.invoice_name|default="--"}</li>
+													<li>{$ai.invoice_credit|default="--"}</li>
+													<li><eq name='ai.invoice_content_id' value="1">大类<else/>明细</eq></li>
+													<li><a class="addInvoice" href="javascript:;" data-id="{$ai.invoice_id}">添加</a></li>
+												</ul>
+												<div class="hr_01"></div>
+												</foreach>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-backup_01"></div>
+								<!--模态弹框-->
+							</div>
+					 	</div>
+
+						<div class="newOrder_bot">
+							<div class="newadd"><div class="add addproduct">+</div><span>新增产品</span></div>
+							<!--添加产品弹出模态框-->
+								<div class="modal_02 fade_02">
+									<div class="modal-body_02">
+										<div class="modal-header">
+											<div class="modal-title">
+												<span>添加产品</span>
+												<a class="close_02" href="#">&times;</a>
+											</div>
+										</div>
+										<div class="modal-content_02">
+											<div class="content_A">
+												<div><span>型号搜索</span><input id="searchModelName" type="text"/></div>
+												<div><span>关键字查询</span><input id="keyword" type="text"/></div>
+											</div>
+											<div class="content_B">
+												<div><span>系列查询</span>
+												<select id="serial" autocomplete="off" data-url="{:U('Com/getAllSmallJointsBy')}">
+												<option value="0">全部</option>
+												<foreach name="category" item="cat">
+												<option value="{$cat.category_id}">{$cat.cat_chinese_name}</option>
+												</foreach>
+												</select>
+												</div>
+												<div><span>接头查询</span>
+												<select id="joint" autocomplete="off">
+												<option value="0">全部</option>
+												<foreach name="joint" item="cat">
+												<option value="{$cat.category_id}">{$cat.cat_chinese_name}</option>
+												</foreach>
+												</select>
+												</div>
+											</div>
+											<div class="content_table_02 specList">
+												<ul>
+													<li>型号</li>
+													<li>长度</li>
+													<li>库存数</li>
+													<li>操作</li>
+												</ul>
+												<ul class="page" data-cur-page=''  id="page">
+													{$res.page}
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							<div class="modal-backup_02"></div>
+							<!--弹出模态框-->
+							<div class="table margin_bot_100 productList">
+								<ul>
+									<li>产品图片</li>
+									<li>型号</li>
+									<li>规格</li>
+									<li>长度</li>
+									<li>颜色</li>
+									<li>整箱数量</li>
+									<li>订单总数量</li>
+									<li>产品单价</li>
+									<li>小计</li>
+								</ul>
+								<foreach name="order_detail_info" item="odi">
+								<ul class="productsItem">
+									<li><a data-id="{$odi.specification_id}" class="delete">-</a><img src="__PUBLIC__/{$odi.products_img}"/></li>
+									<li>{$odi.model_name}</li>
+									<li>{$odi.products_chinese_name}</li>
+									<li>{$odi.length}m</li>
+									<li>{$odi.color_name}</li>
+									<li>{$odi.loading}</li>
+									<li><input type="text" autocomplete="off" class="orderTotalNumber" data-id="{$odi.specification_id}" value="{$odi.total_number|number_format=###,2}"/></li>
+									<li><input type="text" autocomplete="off" class="orderSinglePrice" data-id="{$odi.specification_id}" value="{$odi.price|number_format=###,2}"/></li>
+									<li class="amount">{$odi.amount|number_format=###,2}</li>
+								</ul>
+								</foreach>
+								<dl id="serviceFeeDL">
+									<div>
+										<dt>报关手续费(USD)</dt>
+										<dd><input autocomplete="off" id="serviceFee" data-id="{$order_info.order_id}" data-url="{:U('OrderOther2/calcServicePrice')}" value="{$order_info['service_fee']|default=250}" type="text"></dd>
+									</div>
+								</dl>
+								<dl>
+									<div>
+										<dt>USD Total Amount</dt>
+										<dd id="orderTotalPrice">
+										<empty name="order_info.service_fee">
+										{$order_info['order_total_price']+250|number_format=###,2}
+										<else/>
+										{$order_info['order_total_price']+$order_info['service_fee']|number_format=###,2}
+										</empty>
+										
+										
+										</dd>
+									</div>
+								</dl>
+							</div>
+
+						</div>
+					<!--页面主体内容结束-->
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/common.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/order_waitc.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/order_waitc2.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/order_waitc3.js"></script>
+		<script>
+		$(function(){
+			//物流信息
+	       	$(".wuliu,.forworder,.invoice").on("click",function(){
+				var pBOX=$(this).parents(".BOX");
+				pBOX.find(".modal_01").addClass("in_01");
+				pBOX.find(".modal_01").css('z-index','1001');
+				pBOX.find(".modal-backup_01").css('display','block');
+	       });
+	      	$(".close_01").on("click",function(){
+	       	 $(".modal_01").removeClass('in_01');
+	       	 $(".modal_01").css('z-index','-1');
+	       	 $(".modal-backup_01").css('display','none');
+	       });
+		   
+		   //添加产品
+	      	$(".addproduct").on("click",function(){
+	       	 $(".modal_02").addClass("in_02");
+	       	 $(".modal_02").css('z-index','1001');
+	       	 $(".modal-backup_02").css('display','block');
+	       });
+	      	$(".close_02").on("click",function(){
+	       	 $(".modal_02").removeClass('in_02');
+	       	 $(".modal_02").css('z-index','-1');
+	       	 $(".modal-backup_02").css('display','none');
+	       });
+		});
+		$(window).resize(function(){
+		var whole=$(document).height();
+		var h1=$(".wrap .left .left_top").height();
+		var h2=$(".wrap .left .left_bot").height();
+		$(".wrap .left .left_bot").css("margin-bottom",whole-h1-h2+"px");
+		console.log("whole"+whole);
+		var h3=$(".wrap .right .right_top").height();
+		var h4=$(".customer_box .Customer_top").height();
+		$(".customer_box .Customer_bot").css("height",(whole-h3-h4)/1.3+"px");
+		});
+		
+		</script>
+		<style type="text/css">
+		#page > div {
+			padding-top: 15px;
+			text-align: center;
+		}
+		</style>
+	</body>
+</html>

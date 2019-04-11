@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang._PUBLIC_ORDER_DETAIL_}</title>
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+		<link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+		<script type="text/javascript">
+		var urlKD="{:U('KDN/index')}";
+		</script>
+		<script type="text/javascript" src="__PUBLIC__/plugins/kdniao/kdniao.js"></script>
+	</head>
+	<body class="shopping_confirm order_view">
+		<include file="Public/header"/>
+		<include file="Public/first"/>
+		<!--主体第二层-->
+		<div class="content_Bf">
+			<div class="shopping_top">
+				<ul>
+					<li><a href="/">{$Think.lang._INDEX_}</a></li><span>-</span>
+					<li><a href="">{$Think.lang._PUBLIC_ORDER_DETAIL_}</a></li>
+				</ul>
+			</div>
+			<div class="shopping_list" id="printArea">
+				<!--1购物车信息-->
+				<div class="shopping_A02"><span>{$Think.lang._PUBLIC_ORDER_PROGRESS_}</span><p>GMT+8</p></div>
+				<div class="shoppingbox_A02">
+					<ul>
+						<li>
+							<dl>
+								<dd><div class="circle"></div></dd>
+								<dd>{$Think.lang._PUBLIC_WAIT_}</dd>
+								<eq name="langFlag" value="1">
+								<dd>{$order_info.order_time|date="Y年m月d日H时i分",###}</dd>
+								<else/>
+								<dd>{$order_info.order_time|date="m/d/Y H:i",###}</dd>
+								</eq>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dd><div class="circle"></div></dd>
+								<dd>{$Think.lang._PUBLIC_ORDER_CONFIRM_}</dd>
+								<notempty name="order_info.order_sure_time">
+								<eq name="langFlag" value="1">
+								<dd>{$order_info.order_sure_time|date="Y年m月d日H时i分",###}</dd>
+								<else/>
+								<dd>{$order_info.order_sure_time|date="m/d/Y H:i",###}</dd>
+								</eq>
+								</notempty>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dd><div class="circle"></div></dd>
+								<dd>{$Think.lang._PUBLIC_ORDER_TRANSIT_}</dd>
+								<notempty name="order_info.logistics">
+								<dd>{$Think.lang._PUBLIC_TRACKING_NO_}{$order_info.logistics}</dd>
+								</notempty>
+								<notempty name="order_info.logistics_time">
+								<eq name="langFlag" value="1">
+								<dd>{$order_info.logistics_time|date="Y年m月d日H时i分",###}</dd>
+								<else/>
+								<dd>{$order_info.logistics_time|date="m/d/Y H:i",###}</dd>
+								</eq>
+								</notempty>
+							</dl>
+							<if condition="($order_info['order_status'] eq 3) or ($order_info['order_status'] eq 5)">
+							<!--订单跟踪-->
+							<div class="tracking" id="tracking">
+								<div><img src="{$Think.const.HOME_RESOURCE}/img/tracking.jpg"/><span>{$Think.lang._PUBLIC_TRACKING_}</span></div>
+								
+								<div id="queryContext" style="display:none;">
+									<ul>
+										<li>{$Think.lang._PUBLIC_DEAL_TIME_}</li>
+										<li>{$Think.lang._PUBLIC_DEAL_INFO_}</li>
+									</ul>
+									<div id="sanjiao" class="sanjiao"></div>
+									<a class="gray"></a>
+								</div>
+								
+							</div>
+							<!--订单跟踪-->
+							</if>
+						</li>
+						<!--<li>
+							<dl>
+								<dd><div class="circle"></div></dd>
+								<dd>{$Think.lang._PUBLIC_COMPLETE_}</dd>
+								<notempty name="order_info.order_complete_time">
+								<dd>{$order_info.order_complete_time|date="m月d日H时i分",###}</dd>
+								</notempty>
+							</dl>
+						</li>-->
+						<if condition="($order_info['order_status'] eq 3) or ($order_info['order_status'] eq 5)">
+						<div class="line">
+							<div class="active" style="width:100%!important;"></div>
+						</div>
+						<else/>
+						<if condition="($order_info['order_status'] eq 2)">
+						<div class="line">
+							<div class="active" style="width:50%!important;"></div>
+						</div>
+						<else/>
+						<div class="line">
+							<div class="active"></div>
+						</div>
+						</if>
+						</if>
+						
+					</ul>
+				</div>
+				<!--2产品信息-->
+				<div class="shopping_B">
+					<ul>
+						<li>{$Think.lang._PUBLIC_PONUMBER_}:{$order_info.order_ponumber}</li>
+						<li>{$Think.lang._PUBLIC_SERIAL_NUMBER_}:{$order_info.order_serial_number}</li>
+						<notempty name="order_info['logistics_no']">
+						<eq name="langFlag" value="1">
+						<li>{$order_info['logistics_company']}:{$order_info['logistics_no']}</li>
+						<else/>
+						<li>{$order_info['logistics_company2']}:{$order_info['logistics_no']}</li>
+						</eq>
+						</notempty>
+						<li><a href="{:U('Order/downloadOrder',array('id'=>$order_info['order_id']))}">{$Think.lang._PUBLIC_ORDER_DOWNLOAD2_}</a></li>
+						<!-- <li><a href="javascript:;" id="printBtn">{$Think.lang._PUBLIC_ORDER_PRINT_}</a></li> -->
+						
+					</ul>
+				</div>
+				<div class="shoppingbox_B">
+					<ul>
+						<li>{$Think.lang._PUBLIC_PRODUCT_IMG_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_MODEL_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_SPECIFICATION_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_LENGTH_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_COLOR_}</li>
+						<!--<li>{$Think.lang._PUBLIC_PRODUCT_PACKAGE_}</li>-->
+						<li>{$Think.lang._PUBLIC_PRODUCT_LOADING_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_BOX_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_TOTAL_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_SINGLE_PRICE_}</li>
+						<li>{$Think.lang._PUBLIC_PRODUCT_AMOUNT_}</li>
+					</ul>
+					<assign name="fun" value="count"/>
+					<assign name="count" value="$fun($order_detail_info)"/>
+					<foreach name="order_detail_info" item="odi" key="k">
+					<ul>
+						<li><img src="__PUBLIC__/{$odi.products_img}"/></li>
+						<li>{$odi.model_name}</li>
+						<li>{$odi.products_chinese_name}</li>
+						<li>{$odi.length}m</li>
+						<li>{$odi.color_name}</li>
+						<!--<li>纸箱</li>-->
+						<li>{$odi.loading}</li>
+						<li>{$odi.buy_number}</li>
+						<li>{$odi.total_number}</li>
+						<li>{$odi.price|number_format=###,2}</li>
+						<li>{$odi.amount|number_format=###,2}</li>
+					</ul>
+					<lt name="k" value="$count-1">
+					<div class="line"></div>
+					</lt>
+					</foreach>
+					<neq name="order_info.service_fee" value="0">
+					<dl>
+						<div>
+							<eq name="order_info.order_currency" value="USD">
+							<dt>{$Think.lang._PUBLIC_SERVICE_FEE_}(USD)</dt>
+							<else/>
+							<dt>{$Think.lang._PUBLIC_LOGISTICS_FEE_}(RMB)</dt>
+							</eq>
+							<dd>{$order_info.service_fee}</dd>
+						</div>
+					</dl>
+					</neq>
+					<dl>
+						<span>Remark：{$order_info.order_remark}</span>
+						<div>
+						
+							<eq name="order_info.order_currency" value="USD">
+								<if condition="$order_info['service_fee'] neq 0">
+								<dt>{$Think.lang._PUBLIC_USD_TAX_}</dt>
+								<else/>
+								<dt>{$Think.lang._PUBLIC_USD_TOTAL_}</dt>
+								</if>
+							<else/>
+								<if condition="$order_info['service_fee'] neq 0">
+								<dt>{$Think.lang._PUBLIC_RMB_TAX_}</dt>
+								<else/>
+								<dt>{$Think.lang._PUBLIC_RMB_TOTAL_}</dt>
+								</if>
+							</eq>
+							
+							<dd>{$order_info['service_fee']+$order_info['order_total_price']|number_format=###,2}</dd>
+						</div>
+					</dl>
+				</div>
+				<notempty name="order_logistics_info">
+				<!--收件人信息-->
+				<div class="shopping_C">
+					<p>{$Think.lang._PUBLIC_RECEIVER_INFO_}</p>
+				</div>
+				<div class="shoppingbox_C">
+					<ul>
+						<li>
+							<div><span>{$Think.lang._PUBLIC_COMPANY_NAME_}</span><a>{$order_logistics_info.logistics_company_name}</a></div>
+							<div><span>{$Think.lang._PUBLIC_RECEIVER_}</span><a>{$order_logistics_info.logistics_receiver}</a></div>
+						</li>
+						<li>
+							<div><span>{$Think.lang._PUBLIC_RECEIVER_PHONE_}</span><a>{$order_logistics_info.logistics_receiver_phone}</a></div>
+							<div><span>{$Think.lang._PUBLIC_RECEIVER_EMAIL_}</span><a>{$order_logistics_info.logistics_receiver_email}</a></div>
+						</li>
+						<li>
+							<span>{$Think.lang._PUBLIC_RECEIVER_ADDRESS_}</span>
+							<a>{$order_logistics_info.logistics_country}</a>
+							<a>{$order_logistics_info.logistics_province}</a>
+							<a>{$order_logistics_info.logistics_city}</a>
+							<a>{$order_logistics_info.logistics_address}</a>
+						</li>
+					</ul>
+				</div>
+				</notempty>
+				<notempty name="order_invoice_info">
+				<div class="shopping_D">
+					<p>{$Think.lang._PUBLIC_INVOICE_INFO_}</p>
+				</div>
+				<div class="shoppingbox_D">
+					<div class="box01">
+						<eq name="order_invoice_info.invoice_type" value="个人">
+						<ol>
+							<li><span>{$Think.lang._PUBLIC_INVOICE_TYPE_}</span><label><input type="radio" checked=""/>{$Think.lang._PUBLIC_PERSONAL_}</label></li>
+							<li><span>{$Think.lang._PUBLIC_INVOICE_NAME_}</span><label style="width:60%;">{$order_invoice_info['invoice_name']}</label></li>
+							<li><span>{$Think.lang._PUBLIC_INVOICE_CONTENT_}</span><label><input type="radio" checked="checked" name="invoice_name"/>{$order_invoice_info['invoice_content']}</label></li>
+						</ol>
+						</eq>
+						<eq name="order_invoice_info.invoice_type" value="单位专用发票">
+						<ol>
+							<li><span>{$Think.lang._PUBLIC_INVOICE_TYPE_}</span><label><input type="radio" checked=""/>{$Think.lang._PUBLIC_UNIT_SPEC_INVOICE_}</label></li>
+							<li><span>{$Think.lang._PUBLIC_CREDIT_CODE_}</span><label style="width:60%;">{$order_invoice_info['invoice_credit']}</label></li>
+							<li><span>{$Think.lang._PUBLIC_INVOICE_CONTENT_}</span><label><input type="radio" checked="checked" name="invoice_name"/>{$order_invoice_info['invoice_content']}</label></li>
+							<li><span>{$Think.lang._PUBLIC_UPLOAD_INVOICE_INFO_}</span><label style="width:60%;"><a target="_blank" href="__PUBLIC__/{$order_invoice_info['invoice_addon']['taxes']}">{$order_invoice_info['invoice_addon']['taxesN']}</a></label></li>
+							<li><span></span><label style="width:60%;"><a target="_blank" href="__PUBLIC__/{$order_invoice_info['invoice_addon']['license']}">{$order_invoice_info['invoice_addon']['licenseN']}</a></label></li>
+							<li><span></span><label style="width:60%;"><a target="_blank" href="__PUBLIC__/{$order_invoice_info['invoice_addon']['invoice']}">{$order_invoice_info['invoice_addon']['invoiceN']}</a></label></li>
+						</ol>
+						</eq>
+					</div>
+				</div>
+				</notempty>
+				<notempty name="order_forworder_info">
+				<!--贷代信息-->
+				<div class="shopping_C">
+					<p>{$Think.lang._PUBLIC_FORWORDER_INFO_}</p>
+				</div>
+				<div class="shoppingbox_C">
+					<ul>
+						<li>
+							<div><span>{$Think.lang._PUBLIC_COMPANY_NAME_}</span><a>{$order_forworder_info.for_company_name}</a></div>
+							<div><span>{$Think.lang._PUBLIC_RECEIVER_}</span><a>{$order_forworder_info.for_receiver}</a></div>
+						</li>
+						<li>
+							<div><span>{$Think.lang._PUBLIC_RECEIVER_PHONE_}</span><a>{$order_forworder_info.for_receiver_phone}</a></div>
+							<div><span>{$Think.lang._PUBLIC_RECEIVER_EMAIL_}</span><a>{$order_forworder_info.for_receiver_email}</a></div>
+						</li>
+						<li>
+							<span>{$Think.lang._PUBLIC_RECEIVER_ADDRESS_}</span>
+							<a>{$order_forworder_info.for_city}</a>
+							<a>{$order_forworder_info.for_dist}</a>
+							<a>{$order_forworder_info.for_address}</a>
+						</li>
+						<li>
+							<div><span>{$Think.lang._PUBLIC_SHIP_WAY_}</span><a>{$order_forworder_info.shipment}</a></div>
+						</li>
+					</ul>
+				</div>
+				</notempty>
+				<div class="shopping_F">
+					<a href="javascript:history.go(-1);">{$Think.lang._PUBLIC_BACK_}</a>
+				</div>
+			</div>
+		</div>
+		<include file="Public/footer"/>
+		<script src="__PUBLIC__/plugins/print/jquery.PrintArea.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				<notempty name="order_info['logistics_no']">
+				kdniao.query("{$order_info['logistics_no']}","{$order_info['logistics_company']}");
+				$("#tracking").hover(function(){
+					$("#queryContext").show();
+				},function(){
+					$("#queryContext").hide();
+				});
+				</notempty>
+				
+				$("#printBtn").click(function(){
+					$("#printArea").printArea();
+				});
+			});
+		</script>
+	</body>
+</html>

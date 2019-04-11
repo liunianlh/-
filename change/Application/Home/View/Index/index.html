@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang._INDEX_}</title>
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+		<link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+		<script type="text/javascript">
+		var url="{:U('Index/getAllJoints')}";
+		var url2="{:U('Index/creatUrl')}";
+		</script>
+	</head>
+	<body>
+		<include file="Public/header"/>
+		<include file="Public/first2"/>
+		<!--主体第二层-->
+		<div class="content_Bf">
+			<div class="conBf_top">
+				<!--<img src="img/banner1.jpg"/>-->
+				<!--首页广告轮播开始-->
+				<div class="banner">
+					<div class="swiper-container">
+	  					<div class="swiper-wrapper">
+						<foreach name="ad_info" item="ai">
+						    <div class="swiper-slide"><a target="_blank" href="{$ai.ad_link}"><img src="__PUBLIC__/{$ai.ad_img}" /></a></div>
+						</foreach>	    
+						</div>
+						    <!-- 导航按钮 -->
+					    <div class="swiper-button-prev">
+					    	<img src="{$Think.const.HOME_RESOURCE}/img/btn_left.png" />
+					    </div>
+					    <div class="swiper-button-next">
+					    	<img src="{$Think.const.HOME_RESOURCE}/img/btn_right.png" />
+					    </div>
+					</div>
+				</div>
+				<!--首页广告轮播结束-->
+			</div>
+			<div class="conBf_bot">
+				<div class="conBf_bot_t">
+					<img src="{$Think.const.HOME_RESOURCE}/img/home_ico.png">
+					<span>{$Think.lang._PUBLIC_SERIAL_CLA_}</span>
+				</div>
+				<!--滚动轮播开始-->
+				<!--<div id="myscroll">-->
+				<div style="width: 100%;position: relative;overflow: hidden;">
+					<div class="conBf_bot_b" id="myscrollbox">
+						<ul style="display: block;">
+							<foreach name="serial_info" item="si">
+							<li style="width:20%; align-items:center;height: 150px; margin-top: 10px; float: left;">
+								<a class="serial2" data-id="{$si.category_id}"><empty name="si.cat_img"><img src="{$Think.const.HOME_RESOURCE}/img/lunbo1.png"/><else/><img src="__PUBLIC__/{$si.cat_img}"/></empty></a>
+								<!--<a href="{:U('Product/product_list')}"><empty name="si.cat_img"><img src="{$Think.const.HOME_RESOURCE}/img/lunbo1.png"/><else/><img src="__PUBLIC__/{$si.cat_img}"/></empty></a>-->
+								<!--弹出二级开始-->
+								<div class="index_popup" style="display:none;">
+									<select class="joint2">
+									</select>
+									<button class="searchBtn2">{$Think.lang._PUBLIC_SEARCH_BTN_}</button>
+									
+								</div>
+								<!--弹出二级结束-->
+							</li>
+							</foreach>
+						</ul>
+					</div>
+				</div>
+				<!--滚动轮播结束-->
+				<div class="button" style="display:none;">
+					<div class="btn_group">
+						<div class="btn_left" id="left">
+							<img src="{$Think.const.HOME_RESOURCE}/img/btn_left.png"/>
+						</div>
+						<div class="btn_right" id="right">
+							<img src="{$Think.const.HOME_RESOURCE}/img/btn_right.png" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/public.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/index.js"></script>
+		<include file="Public/footer" style="margin-top:500px; "/>
+		<script src="{$Think.const.HOME_RESOURCE}/js/swiper.min.js"></script>
+		<script type="text/javascript">
+		  var mySwiper = new Swiper('.swiper-container',{
+		    loop: false,
+			autoplay: 3000,
+			
+			 // 如果需要前进后退按钮
+		    nextButton: '.swiper-button-next',
+		    prevButton: '.swiper-button-prev'
+		  });
+		</script>
+		<script>
+		 $(document).ready(function(){
+		  	var blw=$("#myscrollbox li").width();
+		  	var liArr=$("#myscrollbox ul").children("li");
+			var mysw=$("#myscroll").width();
+			var mus=parseInt(mysw/blw);
+			var length=liArr.length-mus;
+			var i=0;
+			$("#right").click(function(){
+				i++
+				if(i<length){
+					$("#myscrollbox").css("left",-(blw*i));
+				}else{
+					i=length;
+					$("#myscrollbox").css("left",-(blw*length));
+				}
+			})
+			 $("#left").click(function(){
+				  i--
+				  if(i>=0){
+				     $("#myscrollbox").css("left",-(blw*i));
+				  }else{
+					 i=0;
+					 $("#myscrollbox").css("left",0);
+			      }
+		     });
+		     if(liArr.length < 6){
+		     	$(".button").css("display","none");
+		     }
+		})
+		</script>
+		<!--<script>
+				$("#myscrollbox li").click(function(){
+					$(".index_popup").toggle();
+				})
+		</script>-->
+	</body>
+</html>

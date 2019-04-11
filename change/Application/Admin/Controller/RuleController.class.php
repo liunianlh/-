@@ -1,0 +1,95 @@
+<?php
+namespace Admin\Controller;
+class RuleController extends BaseController {
+    public function index(){
+		if(!IS_POST){
+			$where=array(
+				"config_name"=>"rule_set_order",
+			);
+			$configInfo=M("Config")->where($where)->find();
+			
+			if(!isset($_GET['lang'])||empty($_GET['lang'])){
+				$lang="zh";
+			}else{
+				$lang=$_GET['lang'];
+			}
+			$this->assign("config_info",$configInfo);
+			$this->assign("lang",$lang);
+			$this->display();
+		}else{
+			$content=I("post.content",'','');
+			$lang="zh";
+			if(isset($_GET['lang'])&&!empty($_GET['lang'])){
+				$lang=$_GET['lang'];
+			}
+			$where=array(
+				"config_name"=>"rule_set_order",
+			);
+			if($lang=="zh"){
+				$data=array(
+					"config_value"=>$content,
+				);
+			}else{
+				$data=array(
+					"config_value2"=>$content,
+				);
+			}
+			
+			$config=M("Config");
+			$configInfo=$config->where($where)->find();
+			if(!empty($configInfo)){
+				$config->where($where)->save($data);
+				exit(json_encode(array("code"=>50001,"msg"=>"保存成功")));
+			}else{
+				$data['config_name']="rule_set_order";
+				$config->add($data);
+				exit(json_encode(array("code"=>50001,"msg"=>"保存成功")));
+			}
+		}
+	}
+	public function index2(){
+		if(!IS_POST){
+			$where=array(
+				"config_name"=>"rule_set_people",
+			);
+			$configInfo=M("Config")->where($where)->find();
+			if(!isset($_GET['lang'])||empty($_GET['lang'])){
+				$lang="zh";
+			}else{
+				$lang=$_GET['lang'];
+			}
+			$this->assign("config_info",$configInfo);
+			$this->assign("lang",$lang);
+			$this->display();
+		}else{
+			$content=I("post.content",'','');
+			$lang="zh";
+			if(isset($_GET['lang'])&&!empty($_GET['lang'])){
+				$lang=$_GET['lang'];
+			}
+			$where=array(
+				"config_name"=>"rule_set_people",
+			);
+			
+			if($lang=="zh"){
+				$data=array(
+					"config_value"=>$content,
+				);
+			}else{
+				$data=array(
+					"config_value2"=>$content,
+				);
+			}
+			$config=M("Config");
+			$configInfo=$config->where($where)->find();
+			if(!empty($configInfo)){
+				$config->where($where)->save($data);
+				exit(json_encode(array("code"=>50001,"msg"=>"保存成功")));
+			}else{
+				$data['config_name']="rule_set_people";
+				$config->add($data);
+				exit(json_encode(array("code"=>50001,"msg"=>"保存成功")));
+			}
+		}
+	}
+}

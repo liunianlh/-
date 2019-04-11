@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang._PUBLIC_PRODUCT_DETAIL_PAGE_}</title>
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" /><style type="text/css">
+		.invalid{
+			background-color:#dfdfdf !important;
+		}
+		</style>
+		<script type="text/javascript">
+		var url="{:U('Index/bindUrl')}";
+		</script>
+	</head>
+	<body class="index product_details">
+		<include file="Public/header"/>
+		<include file="Public/first2"/>
+		<!--主体第二层-->
+		<div class="content_Bf">
+			<div class="content_Bf_left">
+				<!--轮播开始-->
+				<div>
+				<div class="banner">
+					<div class="swiper-container">
+	  					<div class="swiper-wrapper">
+							<foreach name="ad_info" item="ai">
+							<div class="swiper-slide" style="width: 304px;">
+								<empty name="ai.ad_img">
+								<a target="_blank" href="{$ai.ad_link}"><img src="{$Think.const.HOME_RESOURCE}/img/product_1.png" /></a>
+								<else/>
+								<a target="_blank" href="{$ai.ad_link}"><img src="__PUBLIC__/{$ai.ad_img}" /></a>
+								</empty>
+							</div>
+							</foreach>
+						</div>
+						<!-- 导航按钮 -->
+					    <div class="swiper-button-prev">
+					    	<img src="{$Think.const.HOME_RESOURCE}/img/btn_left.png" />
+					    </div>
+					    <div class="swiper-button-next">
+					    	<img src="{$Think.const.HOME_RESOURCE}/img/btn_right.png" />
+					    </div>
+					</div>
+				</div>
+				</div>
+				<!--轮播结束-->
+				<!--<img src="img/product_1.png" />-->
+			</div>
+			<div class="content_Bf_right">
+				<div class="box">
+					<h1>{$Think.lang._PUBLIC_SEARCH_PRODUCT_}</h1>
+					<div class="search">
+						<p>{$Think.lang._PUBLIC_SERIAL_CLA_}</p>
+						<select id="serial" data-url="{:U('Index/getBigJoint')}" data-identity="1" autocomplete="off">
+							<option value="0">{$Think.lang._PUBLIC_PLEASE_SELECT_}</option>
+							<foreach name="serial_info" item="si">
+							<option value="{$si.category_id}"><eq name="langFlag" value="1">{$si.cat_chinese_name}<else/>{$si.cat_english_name}</eq></option>
+							</foreach>
+						</select>
+					</div>
+					<div class="search">
+						<p>{$Think.lang._PUBLIC_JOINT_CLA_}</p>
+						<select id="joint" data-identity="2" autocomplete="off">
+							<option value="0">{$Think.lang._PUBLIC_PLEASE_SELECT_}</option>
+							<foreach name="joint_info" item="ji">
+							<option value="{$ji.category_id}"><eq name="langFlag" value="1">{$ji.cat_chinese_name}<else/>{$ji.cat_english_name}</eq></option>
+							</foreach>
+						</select>
+					</div>
+					<div class="search">
+						<p>{$Think.lang._PUBLIC_KEYWORD_SEARCH_}</p>
+						<input id="keywords" type="text" placeholder="{$Think.lang._PUBLIC_KEYWORD_OR_CLA_}" />
+					</div>
+					<a href="javascript:;" id="searchBtn" class="search_button invalid" data-qualified="no">{$Think.lang._PUBLIC_SEARCH_BTN_}</a>
+				</div>
+			</div>
+			
+		</div>
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/public.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/textMode.js"></script>
+		<!--底部底部版权-->
+		<div class="footer">
+			 {$logo_botton.config_value}
+		</div>
+		<script src="{$Think.const.HOME_RESOURCE}/js/swiper.min.js"></script>
+		<script type="text/javascript">
+		  var mySwiper = new Swiper('.swiper-container',{
+		    loop: false,
+//			autoplay: 3000,
+			
+			 // 如果需要前进后退按钮
+		    nextButton: '.swiper-container .swiper-button-next',
+		    prevButton: '.swiper-button-prev'
+		  });
+		</script>
+		
+	</body>
+</html>

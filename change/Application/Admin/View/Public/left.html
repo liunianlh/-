@@ -1,0 +1,181 @@
+<!--侧边栏代码开始-->
+			<div class="left">
+				<div class="left_top">
+					<a href="{:U('Index/index')}"><img src="{$Think.const.ADMIN_RESOURCE}/img/logo.jpg"/></a>
+				</div>
+				<div class="left_bot">
+					<ul>
+						<!--<div class="toindex"><a style="color:#fff;" href="{$Think.const.WEB_ROOT}"></a></div>-->
+						<div class="color_block">
+							<li class="nav01"><i style="font-size: 15px;" class="iconfont icon-aiguifanfile"></i><a href="{:U('Index/index')}">首页</a></li>
+						</div>
+						<div class="color_block">
+							<li class="nav01"><i style="font-size: 15px;" class="iconfont icon-aiguifanfile"></i>
+							<a href="http://order.tonetron.com/Register/index.html">会员注册</a></li>
+						</div>
+						
+						<if condition="CONTROLLER_NAME=='Order'">
+						<div class="color_block">
+							<li class="nav cursel"><i class="iconfont icon-dingdanguanli"></i>订单管理</li>
+							<ul class='subnav'>
+								
+								<li><a <if condition="CONTROLLER_NAME=='Order' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Order/index','','',true)}">查看订单</a></li>
+								
+								<li><a <if condition="CONTROLLER_NAME=='Order' and ACTION_NAME=='createOrder'">class="onli"</if> href="{:U('Order/createOrder','','',true)}">新建订单</a></li>
+							</ul>
+						</div>
+						<else/>
+						<div class="color_block">
+							<li class="nav"><i class="iconfont icon-dingdanguanli"></i>订单管理</li>
+							<ul class='subnav tohide'>
+								<li><a href="{:U('Order/index','','',true)}">查看订单</a></li>
+								<li><a href="{:U('Order/createOrder','','',true)}">新建订单</a></li>
+							</ul>
+						</div>
+						</if>
+						
+						<if condition="CONTROLLER_NAME=='Customer'">
+						<div class="color_block">
+						<li class="nav cursel"><i style="font-size: 15px;" class="iconfont icon-kehuguanli"></i>客户管理</li>
+							<ul class="subnav">
+								<li><a <if condition="CONTROLLER_NAME=='Customer' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Customer/index','','',true)}">查看客户</a></li>
+							</ul>
+						</div>
+						<else/>
+						<div class="color_block">
+						<li class="nav"><i style="font-size: 14px;" class="iconfont icon-kehuguanli"></i>客户管理</li>
+							<ul class="subnav tohide">
+								<li><a href="{:U('Customer/index','','',true)}">查看客户</a></li>
+							</ul>
+						</div>
+						</if>
+						
+						<if condition="CONTROLLER_NAME=='Product'">
+						<div class="color_block">
+						<li class="nav cursel"><i class="iconfont icon-chanpinguanli"></i>产品管理</li>
+							<ul class="subnav">
+								<li><a <if condition="CONTROLLER_NAME=='Product' and ACTION_NAME=='view'">class="onli"</if> href="{:U('Product/view','','',true)}">查看产品</a></li>
+								<li><a <if condition="CONTROLLER_NAME=='Product' and ACTION_NAME=='add'">class="onli"</if> href="{:U('Product/add','','',true)}">新增产品</a></li>
+								<li><a <if condition="CONTROLLER_NAME=='Product' and ACTION_NAME=='batchSet'">class="onli"</if> href="{:U('Product/batchSet','','',true)}">批量设置权限</a></li>
+							</ul>
+						</div>
+						<else/>
+						<div class="color_block">
+						<li class="nav"><i class="iconfont icon-chanpinguanli"></i>产品管理</li>
+							<ul class="subnav tohide">
+								<li><a href="{:U('Product/view','','',true)}">查看产品</a></li>
+								<li><a href="{:U('Product/add','','',true)}">新增产品</a></li>
+								<li><a href="{:U('Product/batchSet','','',true)}">批量设置权限</a></li>
+							</ul>
+						</div>
+						</if>
+						
+						
+						<if condition="CONTROLLER_NAME=='Logistics'">
+						<div class="color_block">
+						<li class="nav cursel"><i style="font-size: 18px;" class="iconfont icon-wuliuguanli"></i>物流管理</li>
+							<ul class="subnav">
+								<li><a <if condition="CONTROLLER_NAME=='Logistics' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Logistics/index','','',true)}">查看模板</a></li>
+								<li><a <if condition="CONTROLLER_NAME=='Logistics' and ACTION_NAME=='add'">class="onli"</if> href="{:U('Logistics/add','','',true)}">新增模板</a></li>
+							</ul>	
+						</div>
+						<else/>
+						<div class="color_block">
+						<li class="nav"><i style="font-size: 18px;" class="iconfont icon-wuliuguanli"></i>物流管理</li>
+							<ul class="subnav tohide">
+								<li><a href="{:U('Logistics/index','','',true)}">查看模板</a></li>
+								<li><a href="{:U('Logistics/add','','',true)}">新增模板</a></li>
+							</ul>	
+						</div>
+						</if>
+						
+						<if condition="CONTROLLER_NAME=='Message'">
+						<div class="color_block">
+						<li class="nav cursel"><i class="iconfont icon-duanxinguanli"></i>站内信管理</li>
+							<ul class="subnav">
+								<li><a <if condition="CONTROLLER_NAME=='Message' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Message/index','','',true)}">站内信</a></li>
+							</ul>
+						</div>
+						<else/>
+						<div class="color_block">
+						<li class="nav"><i class="iconfont icon-duanxinguanli"></i>站内信管理</li>
+							<ul class="subnav tohide">
+								<li><a href="{:U('Message/index','','',true)}">站内信</a></li>
+							</ul>
+						</div>
+						</if>
+						
+						<if condition="CONTROLLER_NAME=='Ad'">
+						<div class="color_block">
+						<li class="nav cursel"><i class="iconfont icon-shouyeguanggaotupianguanli"></i>首页广告</li>
+							<ul class="subnav">
+								<li><a <if condition="CONTROLLER_NAME=='Ad' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Ad/index','','',true)}">首页广告</a></li>
+							</ul>	
+						</div>
+						<else/>
+						<div class="color_block">
+						<li class="nav"><i class="iconfont icon-shouyeguanggaotupianguanli"></i>首页广告</li>
+							<ul class="subnav tohide">
+								<li><a href="{:U('Ad/index','','',true)}">首页广告</a></li>
+							</ul>	
+						</div>
+						</if>
+						
+						<if condition="CONTROLLER_NAME=='Text' or CONTROLLER_NAME=='Category' or CONTROLLER_NAME=='Color' or CONTROLLER_NAME=='Grade' or CONTROLLER_NAME=='EmailSet' or CONTROLLER_NAME=='Warn' or CONTROLLER_NAME=='Country' or CONTROLLER_NAME=='Rate'  or CONTROLLER_NAME=='Rule' or CONTROLLER_NAME=='Shipment'">
+						<div class="color_block">
+						<li class="nav cursel"><i style="font-size: 15px;" class="iconfont icon-aiguifanfile"></i>内文管理</li>
+							<ul class="subnav">
+								<li><a <if condition="CONTROLLER_NAME=='Text' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Text/index','','',true)}">文字列表</a></li>
+								<li><a <if condition="CONTROLLER_NAME=='Category' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Category/index','','',true)}">系列列表</a></li>
+								<li><a <if condition="CONTROLLER_NAME=='Color' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Color/index','','',true)}">颜色列表</a></li>
+								<li><a <if condition="CONTROLLER_NAME=='Grade' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Grade/index','','',true)}">等级列表</a></li>
+								<li><a <if condition="CONTROLLER_NAME=='Shipment' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Shipment/index','','',true)}">运输列表</a></li>
+								<li><a <if condition="CONTROLLER_NAME=='Country' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Country/index','','',true)}">国家列表</a></li>
+								<li><a <if condition="CONTROLLER_NAME=='Rate' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Rate/index','','',true)}">汇率设置</a></li>
+								<li><a <if condition="CONTROLLER_NAME=='Warn' and (ACTION_NAME=='index' or ACTION_NAME=='index2')">class="onli"</if> href="{:U('Warn/index','','',true)}">警告设置</a></li>
+								<li><a <if condition="CONTROLLER_NAME=='EmailSet' and ACTION_NAME=='index'">class="onli"</if> href="{:U('EmailSet/index','','',true)}">邮件设置</a></li>
+								<li><a <if condition="CONTROLLER_NAME=='Rule' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Rule/index','','',true)}">协议设置</a></li>
+								<li><a href="{:U('Fob/index','','',true)}">Fob设置</a></li>
+								<!--<li><a <if condition="CONTROLLER_NAME=='Fob' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Fob/index','','',true)}">Fob设置</a></li>-->
+							</ul>
+						</div>
+						<else/>
+						<div class="color_block">
+						<li class="nav"><i style="font-size: 15px;" class="iconfont icon-aiguifanfile"></i>内文管理</li>
+							<ul class="subnav tohide">
+								<li><a href="{:U('Text/index','','',true)}">文字列表</a></li>
+								<li><a href="{:U('Category/index','','',true)}">系列列表</a></li>
+								<li><a href="{:U('Color/index','','',true)}">颜色列表</a></li>
+								<li><a href="{:U('Grade/index','','',true)}">等级列表</a></li>
+								<li><a href="{:U('Shipment/index','','',true)}">运输列表</a></li>
+								<li><a href="{:U('Country/index','','',true)}">国家列表</a></li>
+								<li><a href="{:U('Rate/index','','',true)}">汇率设置</a></li>
+								<li><a href="{:U('Warn/index','','',true)}">警告设置</a></li>
+								<li><a href="{:U('EmailSet/index','','',true)}">邮件设置</a></li>
+								<li><a href="{:U('Rule/index','','',true)}">协议设置</a></li>
+								<li><a href="{:U('Fob/index','','',true)}">Fob设置</a></li>
+							</ul>
+						</div>
+						</if>
+						
+						<if condition="CONTROLLER_NAME=='Role' or CONTROLLER_NAME=='Admin'">
+						<div class="color_block">
+						<li class="nav cursel"><i class="iconfont icon-chanpinguanli"></i>操作员设置</li>
+							<ul class="subnav">
+								<li><a <if condition="CONTROLLER_NAME=='Role' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Role/index','','',true)}">角色列表</a></li>
+								<li><a <if condition="CONTROLLER_NAME=='Admin' and ACTION_NAME=='index'">class="onli"</if> href="{:U('Admin/index','','',true)}">操作员列表</a></li>
+							</ul>	
+						</div>
+						<else/>
+						<div class="color_block">
+						<li class="nav"><i class="iconfont icon-chanpinguanli"></i>操作员设置</li>
+							<ul class="subnav tohide">
+								<li><a href="{:U('Role/index','','',true)}">角色列表</a></li>
+								<li><a href="{:U('Admin/index','','',true)}">操作员列表</a></li>
+							</ul>	
+						</div>
+						</if>
+					</ul>
+				</div>
+			</div>
+			<!--侧边栏代码结束-->

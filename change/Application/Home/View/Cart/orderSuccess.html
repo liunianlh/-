@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang._PUBLIC_SUCCESS_ORDER_}</title>
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+		<link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+	</head>
+	<body>
+		<include file="Public/header"/>
+		<include file="Public/first"/>
+		<!--主体第二层-->
+		<div class="content_Bf">
+			<div class="shopping_top">
+				<ul>
+					<li><a href="/">{$Think.lang._INDEX_}</a></li><span>-</span>
+					<li><a href="">{$Think.lang._PUBLIC_ORDER_COMPLETE_}</a></li>
+				</ul>
+			</div>
+			<div class="Successful_order">
+				<ul>
+					<li>{$Think.lang._PUBLIC_THANK_ORDER_}</li>
+					<li><span>{$Think.lang._PUBLIC_PO_NUMBER_}</span><span>{$order_info['order_ponumber']}</span></li>
+					<li><span>{$Think.lang._PUBLIC_SERIAL_NUMBER_}</span><span>{$order_info['order_serial_number']}</span></li>
+					<li>{$Think.lang._PUBLIC_NEED_ALL_ORDER_}<a href="{:U('Order/index')}">{$Think.lang._PUBLIC_HERE_}</a></li>
+				</ul>
+			</div>
+		</div>
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+		<include file="Public/footer"/>
+	</body>
+</html>

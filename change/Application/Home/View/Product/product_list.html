@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{$Think.lang._PUBLIC_PRODUCT_LIST_}</title>
+    <link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style2.css" />
+    <link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/fakeloader.css">
+    <script type="text/javascript">
+        var url = "{:U('Product/getProductInfo')}";
+      var url2 = "{:U('Cart/addCart')}";
+        var url4 = "{:U('Cart/addCollect')}";
+        var url3 = "{:U('Product/createUrl')}";
+        var inCart = "{$Think.lang._PUBLIC_CARTED_}";
+    </script>
+</head>
+
+<body class="index">
+<div class="fakeloader"></div>
+<include file="Public/header" />
+<include file="Public/first3" />
+<!--主体第二层-->
+<div class="content_Bf ">
+    <div class="conBf_top">
+        <ul>
+            <li><a href="{$Think.const.WEB_ROOT}">{$Think.lang._INDEX_}</li></a><span>-</span>
+            <li><a href="{$Think.const.WEB_ROOT}">{$Think.lang._PUBLIC_SERIAL_CLA_}</li></a><span>-</span>
+            <li><a href="">{$Think.lang._PUBLIC_JOINT_CLA_}</li></a><span>-</span>
+            <li><a href="">{$Think.lang._PUBLIC_PRODUCT_LIST_}</a></li>
+        </ul>
+        <ol>
+            <a href="javascript:history.go(-1)" class="back">{$Think.lang._PUBLIC_BACK_}</a>
+            <a href="javascript:;" id="setDisplayNumber" class="set">{$Think.lang._PUBLIC_SET_NUMBER_}</a>
+            <!--设置数量开始-->
+            <div class="show_amount" id="show_amount" style="display:none;">
+                <div class="top">
+                    <span id="descNumber">-</span>
+                    <p id="realNumber">{$displayNumber}</p>
+                    <span id="ascNumber">+</span>
+                </div>
+                <div class="bot">
+                    <span id="cancelDisplay">{$Think.lang._PUBLIC_CANCEL_}</span>
+                    <span id="confirmDisplay" data-url="{:U('Product/confirmDisplay')}">{$Think.lang._PUBLIC_CONFIRM_}</span>
+                </div>
+            </div>
+            <!--设置数量结束-->
+        </ol>
+    </div>
+    <!--搜索栏开始-->
+    <div class="conBf_bot_nav">
+        <ul>
+            <li>
+                <span>{$Think.lang._PUBLIC_SERIAL_CLA_}</span>
+                <select id="serial" data-joint="{$joint}" data-url="{:U('Quick/getAllSmallJoints')}" autocomplete="off">
+                    <option value="0">{$Think.lang._PUBLIC_PLEASE_SELECT_}</option>
+                    <foreach name="serial_info" item="si">
+                        <option value="{$si.category_id}" <eq name="si.category_id" value="$serial">selected</eq>><eq name="langFlag" value="1">{$si.cat_chinese_name}
+                        <else />{$si.cat_english_name}</eq>
+                        </option>
+                    </foreach>
+                </select>
+            </li>
+            <li>
+                <span>{$Think.lang._PUBLIC_JOINT_CLA_}</span>
+                <select id="joint" autocomplete="off">
+                    <option value="0">{$Think.lang._PUBLIC_PLEASE_SELECT_}</option>
+                    <foreach name="joint_info" item="ji">
+                        <option value="{$ji.category_id}">
+                            <eq name="langFlag" value="1">{$ji.cat_chinese_name}
+                                <else />{$ji.cat_english_name}</eq>
+                        </option>
+                    </foreach>
+                </select>
+            </li>
+            <li>
+                <span>{$Think.lang._PUBLIC_KEYWORD_SEARCH_}</span>
+                <input value="{$keyword}" id="keywords" placeholder="{$Think.lang._PUBLIC_KEYWORD_OR_CLA_}" />
+            </li>
+            <li><a href="javascript:;" class="search" id="searchBtn">{$Think.lang._PUBLIC_SEARCH_BTN_}</a></li>
+        </ul>
+    </div>
+    <!--搜索栏结束-->
+    <div class="conBf_bot">
+        <foreach name="products" item="pr">
+            <div class="box productsItem" data-id="{$pr.products_id}">
+                <div class="box_left">
+                    <img class="specImg" src="__PUBLIC__/{$pr.products_img}" />
+
+
+                    <!--<a <notempty name="pr.products_link">target="_blank"</notempty> href="{$pr.products_link}">{$Think.lang._PUBLIC_VIEW_WEBSITE_}</a>-->
+                    <!--<a <notempty name="pr.products_link">target="_blank"</notempty> href="{$pr.products_link}">{$zhen}</a>-->
+
+                    <eq name="zhen" value="en-us">
+                        <a <notempty name="pr.products_link">target="_blank"</notempty> href="{$pr.productse_link}">{$Think.lang._PUBLIC_VIEW_WEBSITE_}</a>
+                        <else />
+                        <a <notempty name="pr.products_link">target="_blank"</notempty> href="{$pr.products_link}">{$Think.lang._PUBLIC_VIEW_WEBSITE_}</a>
+                    </eq>
+                </div>
+                <div class="box_right">
+                    <div class="box_right_top">
+                        <ul>
+                            <li>{$Think.lang._PUBLIC_PRODUCT_MODEL_}</li>
+                            <li>{$Think.lang._PUBLIC_PRODUCT_SPECIFICATION_}</li>
+                            <li>{$Think.lang._PUBLIC_PRODUCT_LENGTH_}</li>
+                            <li>{$Think.lang._PUBLIC_PRODUCT_COLOR_}</li>
+                            <li>{$Think.lang._PUBLIC_OTHER_PARAM_}</li>
+                            <li>{$Think.lang._PUBLIC_REFERENCE_PRICE_}</li>
+                            <li>{$Think.lang._PUBLIC_OPERATE_}</li>
+                        </ul>
+                    </div>
+                    <div class="box_right_bot" data-id="{$pr.products_id}">
+                        <ul>
+                            <li class="model">
+
+                            </li>
+                            <li>
+                                <eq name="langFlag" value="1">{$pr.products_chinese_name}
+                                    <else />{$pr.products_english_name}</eq>
+                            </li>
+                            <li class="length">
+                                <dl>
+                                    <assign name="counter" value="0" />
+                                    <foreach name="pr.length" item="prl" key="k">
+                                        <eq name="counter" value="0">
+                                            <dt data-counter="{$counter++}"><input autocomplete="off" class="RDX" type="radio" name="length{$pr.products_id}" checked="checked" value="{$prl}" />{$prl}m</dt>
+                                            <else />
+                                            <dt data-counter="{$counter++}"><input autocomplete="off" class="RDX" type="radio" name="length{$pr.products_id}" value="{$prl}" />{$prl}m</dt>
+                                        </eq>
+                                    </foreach>
+                                </dl>
+                            </li>
+                            <li class="color">
+                                <dl>
+                                    <assign name="counter" value="0" />
+                                    <foreach name="pr.color" item="prc">
+                                        <eq name="counter" value="0">
+                                            <dt data-counter="{$counter++}"><input autocomplete="off" class="RDX" type="radio" name="color{$pr.products_id}" checked="checked" value="{$prc}" />{$prc}</dt>
+                                            <else />
+                                            <dt data-counter="{$counter++}"><input autocomplete="off" class="RDX" type="radio" name="color{$pr.products_id}" value="{$prc}" />{$prc}</dt>
+                                        </eq>
+                                    </foreach>
+                                </dl>
+                            </li>
+                            <li class="paramOther">
+
+                            </li>
+                            <li class="singlePrice">
+
+                            </li>
+                            <li class="productsInventory">
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </foreach>
+        <div class="slider">
+            <ul class="page" data-cur-page='' id="page">
+                {$page}
+            </ul>
+        </div>
+    </div>
+</div>
+<!--底部底部版权-->
+
+<include file="Public/footer" />
+<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+<script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+<script src="{$Think.const.HOME_RESOURCE}/js/fakeloader.min.js"></script>
+<script src="{$Think.const.HOME_RESOURCE}/js/productsList.js"></script>
+<script>
+    //        $("#fucking_add_collo").click(function(){
+    //            alter("111");
+    ////        $("#fucking_add_collo").css("background","rgb(231, 231, 231)");
+    //            });
+</script>
+</body>
+
+</html>

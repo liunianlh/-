@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{$Think.lang._PUBLIC_ACCOUNT_REGISTER_}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript">
+		var url="{:U('Register/index')}";
+		</script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/reg.js"></script>
+	</head>
+	<body class="password">
+		<div class="login_box">
+			<div class="left">
+				<div class="word">
+					<div class="text_box">
+						<h3>Tonetron</h3>
+						<h5>ORDER SYSTEM</h5>
+					</div>
+					<div class="copyright">
+						©Copyright 2017 Tonetron Electronic LTD.,
+					</div>
+				</div>
+			</div>
+			<div class="center">
+				<div class="ico_sanjiao"></div>
+			</div>
+			<div class="right">
+				<div class="CDAR">
+					<h1>{$Think.lang._PUBLIC_ACCOUNT_REGISTER_} <span>1/4</span></h1>
+					<ul>
+						<li>
+							<img src="{$Think.const.HOME_RESOURCE}/img/email.jpg"/><i></i><input id="email" type="text" placeholder="{$Think.lang._PUBLIC_EMAIL_}"/>
+						</li>
+						<li>
+							<img src="{$Think.const.HOME_RESOURCE}/img/password.jpg"/><i></i><input id="pwd" type="password" placeholder="{$Think.lang._PUBLIC_PWD_}"/>
+						</li>
+						<li>
+							<img src="{$Think.const.HOME_RESOURCE}/img/password.jpg"/><i></i><input id="cpwd" type="password" placeholder="{$Think.lang._PUBLIC_CONFIRM_PWD_}"/>
+						</li>
+						<li>
+							<a href="javascript:;" id="sendcode"><img src="{:U('ACH/Verify/index')}" width="128" height="40"/></a><input id="vcode" type="text" placeholder="{$Think.lang._PUBLIC_VERIFY_}"/>
+						</li>
+						<li>
+							<a href="javascript:;" data-qualified="no" class="reg" id="regBtn">{$Think.lang._PUBLIC_SUBMIT_}</a>
+						</li>
+						<li>
+							<div><a href="?hl=zh-cn">{$Think.lang._PUBLIC_CHINESE_}</a><span>/</span><a href="?hl=en-us">EN</a></div>
+						</li>
+					</ul>
+					<div class="tip" class="perror">{$Think.lang._PUBLIC_PWD_TIP_}</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<style type="text/css">
+	.regBtn{
+		background-color:#008cd6 !important;
+		color:#fff !important;
+	}
+	</style>
+</html>

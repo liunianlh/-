@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>找回密码</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+	</head>
+	<body class="password">
+		<div class="login_box">
+			<div class="left">
+				<div class="word">
+					<div class="text_box">
+						<h3>Tonetron</h3>
+						<h5>ORDER SYSTEM</h5>
+					</div>
+					<div class="copyright">
+						©Copyright 2017 Tonetron Electronic LTD.,
+					</div>
+				</div>
+			</div>
+			<div class="center">
+				<div class="ico_sanjiao"></div>
+			</div>
+			<div class="right">
+				<div class="content">
+					<h1>FORGET PASSWORD</h1>
+					<form>
+						<input name="username"  id="UID" type="text" placeholder="UID">
+						<input name="email" id="email" type="email" placeholder="邮箱">
+					</form>
+					<div class="login-submit">
+						<input id="register" class="" data-qualified="no" data-url="{:U('Forget/index')}"  type="button"  value="提交"/>
+					</div>
+					<!-- <p>我们将发一封密码重置的邮件到您的<a href="">邮箱</a>，请及时重置，谢谢。</p> -->
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/findPwd.js"></script>
+		<style type="text/css">
+		.active{
+			background-color:#008cd6 !important;
+			color:#fff !important;
+		}
+		</style>
+	</body>
+</html>

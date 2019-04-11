@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{$Think.lang._PUBLIC_ACCOUNT_INFO_}</title>
+    <link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+    <link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet/less" type="text/css" href="{$Think.const.HOME_RESOURCE}/less/style.less"> -->
+    <!-- <script src="{$Think.const.HOME_RESOURCE}/js/less.js" type="text/javascript"></script> -->
+    <link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+    <script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+    <script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+</head>
+
+<body class="shopping_confirm order_view">
+    <include file="Public/header" />
+    <include file="Public/first" />
+    <!--主体第二层-->
+    <div class="content_Bf">
+        <div class="shopping_top">
+            <ul>
+                <li><a href="{$Think.const.WEB_ROOT}">{$Think.lang._INDEX_}</a></li><span>-</span>
+                <li><a href="{:U('Account/index')}">{$Think.lang._PUBLIC_ACCOUNT_}</a></li>
+            </ul>
+        </div>
+        <div class="All_Orders">
+            <include file="Public/nav" />
+            <div class="OrderTable">
+                <!--7联系太昶客服-->
+                <div class="AccountInfo_table01 Accountmodle_07">
+                    <div class="info_nav">{$Think.lang._PUBLIC_CUSTOMER_SERVICE_}</div>
+                    <ul>
+                        <li><span>{$Think.lang._PUBLIC_CUSTOMER_SPEC_}</span>{$admin_info.admin_name}</li>
+                        <li><span>{$Think.lang._PUBLIC_CONTACT_EMAIL_}</span>{$admin_info.admin_email}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--底部底部版权-->
+    <include file="Public/footer" />
+    <script>
+        $(function() {
+            $(".All_Orders .order_nav ul li").click(function() {
+                $(this).addClass("on").siblings().removeClass("on"); //切换选中的按钮高亮状态
+                var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
+                $(".OrderTable > div").eq(index).show().siblings().hide(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
+            });
+            toblock_01('信息最多保存');
+            toblock_01("条，");
+            toblock_01("目前已保存");
+            toblock_01("剩余");
+
+            toblock_02('信息最多保存');
+            toblock_02("条，");
+            toblock_02("目前已保存");
+            toblock_02("剩余");
+
+            function toblock_01(content) {
+                var bodyHtml = $(".Accountmodle_02 ul li:last-child span:last-child").html();
+                var x = bodyHtml.replace(new RegExp(content, "gm"), "<font color='#3E3A39' >" + content + "</font>")
+                $(".Accountmodle_02 ul li:last-child span:last-child").html(x);
+            }
+
+            function toblock_02(content) {
+                var bodyHtml = $(".Accountmodle_04 ul li:last-child span:last-child").html();
+                var x = bodyHtml.replace(new RegExp(content, "gm"), "<font color='#3E3A39' >" + content + "</font>")
+                $(".Accountmodle_04 ul li:last-child span:last-child").html(x);
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{$msg_info['msg_title']}</title>
+    <link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+    <link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+</head>
+
+<body class="shopping_confirm order_view">
+    <include file="Public/header" />
+    <include file="Public/first" />
+    <!--主体第二层-->
+    <div class="content_Bf">
+        <div class="shopping_top">
+            <ul>
+                <li><a href="/">{$Think.lang._INDEX_}</a></li><span>-</span>
+                <li><a href="{:U('Message/mlist')}">{$Think.lang._PUBLIC_MAIL_}</a></li><span>-</span>
+                <li><a href="">{$msg_info['msg_title']}</a></li>
+            </ul>
+        </div>
+        <div class="important_theme" id="important_theme">
+            <ul>
+                <li><span>{$msg_info.msg_time|date="Y-m-d",###}</span>
+                    <!--<a href="javascript:;" id="printArea">{$Think.lang._PUBLIC_ORDER_PRINT_}</a>-->
+                </li>
+                <li>
+                    <h1>{$msg_info['msg_title']}</h1>
+                    <p>
+                        {$msg_info['msg_content']}
+                    </p>
+                </li>
+                <li>
+                    <eq name="msg_info.has_attachment" value="2">
+                        <div>
+                            <div class="left">
+                                <img src="{$Think.const.HOME_RESOURCE}/img/notice_ico02.jpg" />
+                            </div>
+                            <div class="right">
+                                <a href="{:U('Order/ERPOrder',array('id'=>$msg_info['order_id']))}">{$msg_info.xls}</a>
+                                <a target="_blank" href="{:U('Order/downloadOrder',array('id'=>$msg_info['order_id']))}">{$msg_info.pdf}</a>
+                                <notempty name="msg_info.attach">
+                                    <foreach name="msg_info.attach" item="ma">
+                                        <a href="{:U('Message/download',array('id'=>$ma['attach_id']))}">{$ma.pdf}</a>
+                                    </foreach>
+                                </notempty>
+                            </div>
+                        </div>
+                    </eq>
+                    <a href="javascript:history.go(-1);" class="return">{$Think.lang._PUBLIC_BACK_}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+    <script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+    <script src="__PUBLIC__/plugins/print/jquery.PrintArea.min.js"></script>
+    <script>
+        $(function() {
+            $("#printArea").click(function() {
+                $("#important_theme").printArea();
+            });
+        })
+    </script>
+    <!--底部底部版权-->
+    <include file="Public/footer" />
+
+</body>
+
+</html>

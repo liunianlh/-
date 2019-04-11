@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{$Think.lang._PUBLIC_CART2_}</title>
+    <link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+    <link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+    <script type="text/javascript">
+        var url = "{:U('Cart/calcPrice')}";
+        var url2 = "{:U('Cart/delSpecFromCart')}";
+        var url3 = "{:U('Area/getProv')}";
+        var url4 = "{:U('ACH/Upload/upload',array('category'=>'_xxxxx_'))}";
+        var url5 = "{:U('Invoice/getInvoiceByInvoiceId')}";
+        var url6 = "{:U('Forworder/getForworderByForworderId')}";
+        var url7 = "{:U('Logistics/getLogisticsByLogisticsId')}";
+        var publicPath = "__PUBLIC__/";
+        var url8 = "{:U('Area/getCity2')}";
+        var url9 = "{:U('Area/switchAddr')}";
+        var url10 = "{:U('Area/switchAddr2')}";
+        var url11 = "{:U('Area/getCity3')}";
+        var url12 = "{:U('Area/getProv2')}";
+        var url13 = "{:U('Cart/getCartList')}";
+        var rmbTotal = "{$Think.lang._PUBLIC_RMB_TOTAL_}";
+        var rmbTaxTotal = "{$Think.lang._PUBLIC_RMB_TAX_}";
+        var usdTotal = "{$Think.lang._PUBLIC_USD_TOTAL_}";
+        var usdTaxTotal = "{$Think.lang._PUBLIC_USD_TAX_}";
+        var excessInventory = "{$Think.lang._PUBLIC_EXCESS_INVENTORY_}";
+    </script>
+</head>
+
+<body class="upload USD">
+<div id="screen" style="display:none;position:fixed;width:100%;height:100%;background-color:rgba(247,247,247,0.3);z-index:1000;"></div>
+<div id="msgTip2" style="display:none;position:fixed;padding:0 30px;text-align:center;line-height:50px;height:50px;border:1px solid #e7e7e7;border-radius:3px;box-shadow:0 0 2px #ccc;background-color:#fff;z-index:2000;">
+    <div style="display:inline-block;width:12px;height:12px;line-height:12px;width:205px;position:relative;">
+        <span style="position:absolute;left:0;top:0;width:205px;height:12px;display:inline-block;background-color:#e7e7e7;border-radius:6px;"></span>
+        <span id="progressNum" style="position:absolute;left:0;top:0;width:5px;height:12px;display:inline-block;background-color:#008cd6;border-radius:6px;"></span>
+    </div>
+    <div style="display:inline-block;width:12px;line-height:12px;padding:0 10px;">
+        <span id="progressTip" class="count">0</span><span>%</span>
+    </div>
+</div>
+<include file="Public/header" />
+<include file="Public/first" />
+<!--主体第二层-->
+<div class="content_Bf">
+    <div class="shopping_top">
+        <ul>
+            <li><a href="{$Think.const.WEB_ROOT}">{$Think.lang._INDEX_}</a></li><span>-</span>
+            <li><a href="">{$Think.lang._PUBLIC_CART2_}</a></li>
+        </ul>
+    </div>
+    <div class="shopping_list">
+        <!--1购物车信息-->
+        <div class="shopping_A">{$Think.lang._PUBLIC_CART2_CONTENT_}</div>
+        <div class="shoppingbox_A">
+            <div class="warining"><img src="{$Think.const.HOME_RESOURCE}/img/warning.png">
+                <p>WARNING</p>
+            </div>
+            <ul>
+                <p>{$config_value}</p>
+            </ul>
+        </div>
+        <!--2产品信息-->
+        <input type="hidden" id="fobmoney" value="{$fobmoney}">
+        <div class="shopping_B">
+            <div><a>*</a><span>{$Think.lang._PUBLIC_PO_NUMBER_}</span><input id="PONumber" type="text" /></div>
+            <div><span>{$Think.lang._PUBLIC_REMARK_}</span><input id="remark" type="text" /></div>
+        </div>
+        <div class="shopping_B" style="margin-top: 0;height: 44px;">
+
+
+            <!--                <if condition="$user_Info.default_currency eq RMB">
+
+                                 <option value="hk">FOB HK</option>
+                                <else />
+                                <select name="fob_city" id="fob_city" style="width: 200px;height: 30px;border-color: #DCDCDC;">
+                                    <option value="shenzhen">FOB ShenZhen</option>
+                                    <option value="hk">FOB HK</option>
+                                </select>
+                            </if>-->
+
+
+        </div>
+        <div class="shoppingbox_B cartList" id="cartList">
+            <ul>
+                <li>{$Think.lang._PUBLIC_PRODUCT_IMG_}</li>
+                <li>{$Think.lang._PUBLIC_PRODUCT_MODEL_}</li>
+                <li>{$Think.lang._PUBLIC_PRODUCT_SPECIFICATION_}</li>
+                <li>{$Think.lang._PUBLIC_PRODUCT_LENGTH_}</li>
+                <li>{$Think.lang._PUBLIC_PRODUCT_COLOR_}</li>
+                <!--<li>{$Think.lang._PUBLIC_PRODUCT_PACKAGE_}</li>-->
+                <li>{$Think.lang._PUBLIC_PRODUCT_LOADING_}</li>
+                <li>{$Think.lang._PUBLIC_PRODUCT_BOX_}</li>
+                <li>{$Think.lang._PUBLIC_PRODUCT_TOTAL_}</li>
+                <li>{$Think.lang._PUBLIC_PRODUCT_SINGLE_PRICE_}</li>
+                <li>{$Think.lang._PUBLIC_PRODUCT_AMOUNT_}</li>
+            </ul>
+            <assign name="fun" value="count" />
+            <assign name="count" value="$fun($specInfo)" />
+            <foreach name="specInfo" item="spi" key="k">
+                <ul class="cartPItem">
+                    <notempty name="spi.spec_img">
+                        <li><img src="__PUBLIC__/{$spi['spec_img']}" /></li>
+                        <else />
+                        <li><img src="__PUBLIC__/{$spi['product']['products_img']}" /></li>
+                    </notempty>
+                    <li>{$spi['model_name']}</li>
+                    <li title="<eq name='langFlag' value='1'>{$spi['product']['products_chinese_name']}<else/>{$spi['product']['products_english_name']}</eq>">
+                        <eq name="langFlag" value="1">
+                            {$spi['product']['products_chinese_name']}
+                            <else />
+                            {$spi['product']['products_english_name']}
+                        </eq>
+                    </li>
+                    <li>{$spi['length']}m</li>
+                    <li>
+                        <eq name="langFlag" value="1">{$spi['color_name']}
+                            <else />{$spi['color_name2']}</eq>
+                    </li>
+                    <!--<li>{$Think.lang._PUBLIC_CARTON_}</li>-->
+                    <li>{$spi['loading']}</li>
+
+                    <li>
+                        <div data-spec-id="{$spi['specification_id']}">
+                            <span data-desc="down" class="down" style="cursor:pointer;">-</span>
+                            <font class="buyNum">1</font>
+                            <span data-desc="up" class="up" style="cursor:pointer;">+</span>
+                        </div>
+                    </li>
+
+                    <li class="orderBuyNum">{$spi['loading']}</li>
+                    <li>{$spi['rmb']|sprintf='%.2f',2}</li>
+                    <li class="smallPrice">{$spi['subtotal']|number_format=###,2}</li>
+                    <div style="cursor:pointer;" data-spec-id="{$spi['specification_id']}" class="del">-</div>
+                    <div class="shopping_tip">
+                        <span>{$Think.lang._PUBLIC_REFERENCE_INVENTORY_}<font class="inventory">{$spi['inventory']}</font></span>
+                        <if condition="($spi['inventory']-$spi['loading']) lt 0">
+                            <span class="error" style="color:red">*{$Think.lang._PUBLIC_EXCESS_INVENTORY_}</span>
+                        </if>
+                    </div>
+                </ul>
+                <lt name="k" value="$count-1">
+                    <div class="line"></div>
+                </lt>
+            </foreach>
+
+
+            <dl <gt name="totalPrice" value="$fobmoney">style="display:none;"</gt> class="extraLogisticsFee">
+            <eq name="defaultCurrency" value="RMB">
+                <dd>{$Think.lang._PUBLIC_LOGISTICS_EX_}</dd>
+                <else />
+                <dd>{$Think.lang._PUBLIC_SERVICE_FEE_}:<span id="fob_num">250</span>USD</dd>
+            </eq>
+            </dl>
+
+
+
+            <dl>
+                <if condition="$totalPrice gt $fobmoney">
+
+                    <eq name="defaultCurrency" value="RMB">
+                        <div>
+                            <dt>{$Think.lang._PUBLIC_RMB_TOTAL_}</dt>
+                            <dd id="totalPrice">{$totalPrice|default=0|number_format=###,2}</dd>
+                        </div>
+                        <else />
+                        <div>
+                            <dt>{$Think.lang._PUBLIC_USD_TOTAL_}</dt>
+                            <dd id="totalPrice">{$totalPrice|default=0|number_format=###,2}</dd>
+                        </div>
+                    </eq>
+
+
+                    <else />
+
+                    <eq name="defaultCurrency" value="RMB">
+                        <div>
+                            <dt>{$Think.lang._PUBLIC_RMB_TAX_}</dt>
+                            <dd id="totalPrice">{$totalPrice|default=0|number_format=###,2}</dd>
+                        </div>
+                        <else />
+                        <div>
+                            <dt>{$Think.lang._PUBLIC_USD_TAX_}</dt>
+                            <dd id="totalPrice">{:number_format($totalPrice+250,2)}</dd>
+                        </div>
+                    </eq>
+
+
+                </if>
+            </dl>
+
+
+
+
+        </div>
+        <!--3物流信息-->
+        <div class="shopping_C shop_C01">
+            <span>{$Think.lang._PUBLIC_LOGISTICS_INFO_}</span>
+            <span>{$Think.lang._PUBLIC_SWITCH_LOGISTICS_}</span>
+        </div>
+        <div class="shoppingbox_C">
+            <ul>
+                <li>
+                    <div><a>*</a><span>{$Think.lang._PUBLIC_COMPANY_NAME_}</span><input id="companyName" type="text" placeholder="{$Think.lang._PUBLIC_COMPANY_NAME_}" /></div>
+                    <div><a>*</a><span>{$Think.lang._PUBLIC_RECEIVER_}</span><input id="receiver" type="text" placeholder="{$Think.lang._PUBLIC_RECEIVER_}" /></div>
+                </li>
+                <li>
+                    <div><a>*</a><span>{$Think.lang._PUBLIC_RECEIVER_PHONE_}</span><input id="receiverPhone" type="text" placeholder="{$Think.lang._PUBLIC_RECEIVER_PHONE_}" /></div>
+                    <div><a>&nbsp;</a><span>{$Think.lang._PUBLIC_RECEIVER_EMAIL_}</span><input id="receiverEmail" type="text" placeholder="{$Think.lang._PUBLIC_RECEIVER_EMAIL_}" /></div>
+                </li>
+
+                <li id="l_rr1">
+                    <a>*</a><span>{$Think.lang._PUBLIC_RECEIVER_ADDRESS_}</span>
+                    <select id="country" autocomplete="off">
+
+                        <option value="1">-----</option>
+
+                        <eq name="language" value="2">
+
+                            <foreach name="country_info" item="ci">
+                                <option value="{$ci.country_id}">{$ci.country_name2}</option>
+                            </foreach>
+
+                            <else />
+
+                            <foreach name="country_info" item="ci">
+                                <option value="{$ci.country_id}">{$ci.country_name}</option>
+                            </foreach>
+
+                        </eq>
+                    </select>
+                </li>
+                <li>
+                    <span>&nbsp;</span><input id="address" type="text" placeholder="{$Think.lang._PUBLIC_DETAIL_ADDRESS_}" />
+                </li>
+            </ul>
+            <!--常用地址框-->
+            <div class="wuliu_info wuliuInfo01 logisticsList">
+                <empty name="logistics_info">
+                    <dl>
+                        {$Think.lang._PUBLIC_NO_COMMON_ADDRESS_}<a style="color:#008cd6;" target="_blank" href="{:U('Logistics/index')}">{$Think.lang._PUBLIC_ADD_}</a>
+                    </dl>
+                    <else />
+                    <foreach name="logistics_info" item="li">
+                        <dl>
+                            <dd><input type="radio" class="logisticsItem" data-id="{$li.logistics_id}" name="address"></dd>
+                            <dd class="width_companyname">{$li.logistics_company_name}</dd>
+                            <dd class="width_name">{$li.logistics_receiver}</dd>
+                            <dd class="width_phone">{$li.logistics_receiver_phone}</dd>
+                            <dd>{$li.logistics_province}{$li.logistics_city}{$li.logistics_dist}{$li.logistics_address}</dd>
+                        </dl>
+                    </foreach>
+                </empty>
+                <div class="sanjiao"></div>
+                <div class="white"></div>
+            </div>
+            <!--常用地址框-->
+        </div>
+        <!--3货代信息-->
+        <div class="shopping_C shop_C02 forworderBoxModule">
+            <span>{$Think.lang._PUBLIC_FORWORDER_INFO_}</span>
+            <span>{$Think.lang._PUBLIC_SWITCH_FORWORDER_INFO_}</span>
+        </div>
+        <div class="shoppingbox_C shopbox_C forworderBoxModule">
+            <ul>
+                <li>
+                    <div><span>{$Think.lang._PUBLIC_COMPANY_NAME_}</span><input id="fwdCompanyName" type="text" placeholder="{$Think.lang._PUBLIC_COMPANY_NAME_}" /></div>
+                    <div><span>{$Think.lang._PUBLIC_RECEIVER_}</span><input id="fwdReceiver" type="text" placeholder="{$Think.lang._PUBLIC_RECEIVER_}" /></div>
+                </li>
+                <li>
+                    <div><span>{$Think.lang._PUBLIC_RECEIVER_PHONE_}</span><input id="fwdReceiverPhone" type="text" placeholder="{$Think.lang._PUBLIC_RECEIVER_PHONE_}" /></div>
+                    <div><span>{$Think.lang._PUBLIC_RECEIVER_EMAIL_}</span><input id="fwdReceiverEmail" type="text" placeholder="{$Think.lang._PUBLIC_RECEIVER_EMAIL_}" /></div>
+                </li>
+                <li id="l_rr2">
+                    <span>{$Think.lang._PUBLIC_RECEIVER_ADDRESS_}</span>
+                    <select id="fwdCountry" autocomplete="off">
+                        <eq name="language" value="2">
+                            <foreach name="country_info" item="ci">
+                                <option value="{$ci.country_id}">{$ci.country_name2}</option>
+                            </foreach>
+                            <else />
+                            <foreach name="country_info" item="ci">
+                                <option value="{$ci.country_id}">{$ci.country_name}</option>
+                            </foreach>
+                        </eq>
+                    </select>
+                </li>
+                <li>
+                    <span>&nbsp;</span><input id="fwdAddress" type="text" placeholder="{$Think.lang._PUBLIC_DETAIL_ADDRESS_}" />
+                </li>
+                <li><span>{$Think.lang._PUBLIC_SHIP_WAY_}</span><select id="fwdShipment">
+                    <eq name="language" value="2">
+                        <foreach name="shipment_info" item="shi">
+                            <option value="{$shi.shipment_id}">{$shi.shi_english_name}</option>
+                        </foreach>
+                        <else />
+                        <foreach name="shipment_info" item="shi">
+                            <option value="{$shi.shipment_id}">{$shi.shi_chinese_name}</option>
+                        </foreach>
+                    </eq>
+                </select></li>
+            </ul>
+            <!--常用地址框-->
+            <div class="wuliu_info wuliuInfo02 forworderList">
+                <empty name="forworder_info">
+                    <dl>
+                        {$Think.lang._PUBLIC_NO_COMMON_ADDRESS_}<a style="color:#008cd6;" target="_blank" href="{:U('Forworder/index')}">{$Think.lang._PUBLIC_ADD_}</a>
+                    </dl>
+                    <else />
+                    <foreach name="forworder_info" item="fi">
+                        <dl>
+                            <dd><input type="radio" class="forworderItem" data-id="{$fi.forworder_id}" name="address_02"></dd>
+                            <dd>{$fi.for_company_name}</dd>
+                            <dd>{$fi.for_receiver}</dd>
+                            <dd>{$fi.for_receiver_phone}</dd>
+                            <dd>{$fi.for_country}{$fi.for_province}{$fi.for_city}{$fi.for_dist}{$fi.for_address}</dd>
+                        </dl>
+                    </foreach>
+                </empty>
+                <div class="sanjiao"></div>
+                <div class="white"></div>
+            </div>
+            <!--常用地址框-->
+        </div>
+        <div class="shopping_D invioceBoxModule" id="invoiceControl" data-control="1">
+            <span>{$Think.lang._PUBLIC_INVOICE_CONTENT_}</span>
+            <div class="btn">
+                <div class="open">{$Think.lang._PUBLIC_OPEN_}</div>
+                <div class="close">{$Think.lang._PUBLIC_CLOSE_}</div>
+            </div>
+            <span id="switchInvoiceContent">{$Think.lang._PUBLIC_SWITCH_INVOICE_}</span>
+        </div>
+        <div class="shoppingbox_D invioceBoxModule">
+            <ul>
+                <li>{$Think.lang._PUBLIC_INVOICE_INFO_}</li>
+                <li><input type="radio" checked="checked" autocomplete="off" class="invoiceType" name="invoice_type" data-type='1'>{$Think.lang._PUBLIC_PERSONAL_}</li>
+                <li><input type="radio" name="invoice_type" autocomplete="off" class="invoiceType" data-type='2'>{$Think.lang._PUBLIC_UNIT_SPEC_INVOICE_}</li>
+            </ul>
+            <div class="box invoiceContent">
+                <ol data-type="1">
+                    <li><span><a>*</a>{$Think.lang._PUBLIC_INVOICE_NAME_}</span><input id="invoiceName" type="text" /></li>
+                    <li><span><a>&#8194;</a>{$Think.lang._PUBLIC_INVOICE_CONTENT_}</span><label><input checked type="radio" class="invoiceContent2" autocomplete="off" name="invoice_name" data-type='1' />{$Think.lang._PUBLIC_BIG_CLASS_}</label><label><input
+                            type="radio" autocomplete="off" class="invoiceContent2" name="invoice_name" data-type='2' />{$Think.lang._PUBLIC_DETAIL_}</label></li>
+                </ol>
+                <ol data-type="2" style="display:none;">
+                    <li><span><a>*</a>{$Think.lang._PUBLIC_CREDIT_CODE_}</span><input id="invoiceCredit" type="text" /></li>
+                    <li><span>{$Think.lang._PUBLIC_INVOICE_CONTENT_}</span><label><input type="radio" checked autocomplete="off" class="invoiceContent3" name="invoice_name2" data-type='1' />{$Think.lang._PUBLIC_BIG_CLASS_}</label><label><input
+                            type="radio" autocomplete="off" class="invoiceContent3" name="invoice_name2" data-type='2' />{$Think.lang._PUBLIC_DETAIL_}</label></li>
+                    <li><span><a>*</a>{$Think.lang._PUBLIC_UPLOAD_INVOICE_INFO_}</span><a href="javascript:;" class="upload uploadBoxOpenBtn">{$Think.lang._PUBLIC_UPLOAD_}</a>
+                        <p>（{$Think.lang._PUBLIC_TIL_}）</p>
+                    </li>
+                    <li class="tips"><a>（{$Think.lang._PUBLIC_ONLY_PDF_}）</a></li>
+                    <li class="fileList"></li>
+                </ol>
+            </div>
+            <!--开票信息提示-->
+            <div class="invoice_info invoiceList">
+                <empty name="invoice_info">
+                    <dl>
+                        {$Think.lang._PUBLIC_NO_COMMON_ADDRESS_}<a style="color:#008cd6;" target="_blank" href="{:U('Invoice/index')}">{$Think.lang._PUBLIC_ADD_}</a>
+                    </dl>
+                    <else />
+                    <foreach name="invoice_info" item="ii">
+                        <dl>
+                            <dd><input type="radio" data-id="{$ii.invoice_id}" class="invoiceItem" name="invoice" />
+                                <eq name="ii.invoice_type_id" value="1">{$Think.lang._PUBLIC_PERSONAL_}
+                                    <else />{$Think.lang._PUBLIC_UNIT_SPEC_INVOICE_}</eq>
+                            </dd>
+                            <dd>
+                                <eq name="ii.invoice_type_id" value="1">{$ii.invoice_name}
+                                    <else />{$ii.invoice_credit}</eq>
+                            </dd>
+                        </dl>
+                    </foreach>
+                </empty>
+                <div class="sanjiao"></div>
+                <div class="white"></div>
+            </div>
+            <!--开票信息提示-->
+        </div>
+        <div class="shopping_E">
+            <ul>
+                <p>{$config_value}</p>
+            </ul>
+        </div>
+        <div class="shoppingbox_E">
+            <input type="checkbox" data-selected="no" id="cbx" />{$Think.lang._PUBLIC_AGREE_}
+        </div>
+        <div class="shopping_F">
+            <div><a href="{:U('Product/product_list')}">{$Think.lang._PUBLIC_CONTINUE_BUY_}</a><a class="saveBtn invalid" data-url="{:U('Cart/index')}" data-qualified="no" href="javascript:;">{$Think.lang._PUBLIC_SUBMIT_}</a></div>
+            <p>({$Think.lang._PUBLIC_NOT_SAVE_ORDER_})</p>
+        </div>
+    </div>
+</div>
+<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+<script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+<script src="{$Think.const.HOME_RESOURCE}/js/cart.js"></script>
+<script src="{$Think.const.HOME_RESOURCE}/js/cart2.js"></script>
+<script src="{$Think.const.HOME_RESOURCE}/js/cart3.js"></script>
+<include file="Public/footer" />
+<!--上传窗口-->
+<div class="upload_window uploadFileBox">
+    <ul>
+        <li><span>Tonetron Order Systrm</span>
+            <div><a class="cancelBtn" href="javascript:;">取消</a><i></i><a class="completeBtn" href="javascript:;">完成</a></div>
+        </li>
+        <li>{$Think.lang._PUBLIC_ONLY_PDF_}</li>
+        <li>{$Think.lang._PUBLIC_MAX_5_}</li>
+        <li>
+            <div class="up_box">
+                <div data-category="taxes" class="upload upload_04 uploadBtn">
+                    <dl>
+                        <dd><a href="javascript:;">+</a></dd>
+                        <dd>{$Think.lang._PUBLIC_GENERAL_TAX_}</dd>
+                    </dl>
+                </div>
+                <div data-category="license" class="upload upload_04 uploadBtn">
+                    <dl>
+                        <dd><a href="javascript:;">+</a></dd>
+                        <dd>{$Think.lang._PUBLIC_BUSINESS_LICENSE_}</dd>
+                    </dl>
+                </div>
+                <div data-category="invoice" class="upload upload_04 uploadBtn">
+                    <dl>
+                        <dd><a href="javascript:;">+</a></dd>
+                        <dd>{$Think.lang._PUBLIC_INVOICE_DATA_}</dd>
+                    </dl>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<!--上传窗口-->
+<script>
+    $(document).ready(function () {
+        $(".shop_C01 span:last-child").click(function (e) {
+            $(".wuliuInfo01").toggle();
+            e.stopPropagation();
+        });
+        $(".shop_C02 span:last-child").click(function (e) {
+            $(".wuliuInfo02").toggle();
+            e.stopPropagation();
+        });
+        $(".shopping_D span:last-child").click(function (e) {
+            $(".invoice_info").toggle();
+            e.stopPropagation();
+        });
+        $(".shopping_D .open").click(function () {
+            $(this).css("display", "none");
+            $(".shopping_D .close").css("display", "block");
+            $("#invoiceControl").attr("data-control", 2);
+            $("#switchInvoiceContent").hide();
+            $(".shoppingbox_D").hide();
+        });
+        $(".shopping_D .close").click(function () {
+            $(this).css("display", "none");
+            $(".shopping_D .open").css("display", "block");
+            $("#invoiceControl").attr("data-control", 1);
+            $("#switchInvoiceContent").show();
+            $(".shoppingbox_D").show();
+        });
+        $(document).click(function () {
+            $(".wuliuInfo01").hide();
+            $(".wuliuInfo02").hide();
+            $(".invoice_info").hide();
+        });
+    });
+</script>
+<style type="text/css">
+    .layui-upload-file {
+        display: none;
+    }
+
+    .invalid {
+        background-color: #dfdfdf !important;
+    }
+</style>
+</body>
+
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>收藏</title>
+    <link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+    <link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+    <script type="text/javascript">
+        
+          var add12 = "{:U('Cart/addCart')}";
+        var url = "{:U('Cart/calcPrice')}";
+        var url2 = "{:U('Cart/delSpecFromCart2')}";
+        var url3 = "{:U('Area/getProv')}";
+        var url4 = "{:U('ACH/Upload/upload',array('category'=>'_xxxxx_'))}";
+        var url5 = "{:U('Invoice/getInvoiceByInvoiceId')}";
+        var url6 = "{:U('Forworder/getForworderByForworderId')}";
+        var url7 = "{:U('Logistics/getLogisticsByLogisticsId')}";
+        var publicPath = "__PUBLIC__/";
+        var url8 = "{:U('Area/getCity2')}";
+        var url9 = "{:U('Area/switchAddr')}";
+        var url10 = "{:U('Area/switchAddr2')}";
+        var url11 = "{:U('Area/getCity3')}";
+        var url12 = "{:U('Area/getProv2')}";
+//        var url13 = "{:U('Cart/getCartList')}";
+        var rmbTotal = "{$Think.lang._PUBLIC_RMB_TOTAL_}";
+        var rmbTaxTotal = "{$Think.lang._PUBLIC_RMB_TAX_}";
+        var usdTotal = "{$Think.lang._PUBLIC_USD_TOTAL_}";
+        var usdTaxTotal = "{$Think.lang._PUBLIC_USD_TAX_}";
+        var excessInventory = "{$Think.lang._PUBLIC_EXCESS_INVENTORY_}";
+    </script>
+</head>
+
+<body class="upload USD" style="min-height:1000px;">
+    <div id="screen" style="display:none;position:fixed;width:100%;height:100%;background-color:rgba(247,247,247,0.3);z-index:1000;"></div>
+    <div id="msgTip2" style="display:none;position:fixed;padding:0 30px;text-align:center;line-height:50px;height:50px;border:1px solid #e7e7e7;border-radius:3px;box-shadow:0 0 2px #ccc;background-color:#fff;z-index:2000;">
+        <div style="display:inline-block;width:12px;height:12px;line-height:12px;width:205px;position:relative;">
+            <span style="position:absolute;left:0;top:0;width:205px;height:12px;display:inline-block;background-color:#e7e7e7;border-radius:6px;"></span>
+            <span id="progressNum" style="position:absolute;left:0;top:0;width:5px;height:12px;display:inline-block;background-color:#008cd6;border-radius:6px;"></span>
+        </div>
+        <div style="display:inline-block;width:12px;line-height:12px;padding:0 10px;">
+            <span id="progressTip" class="count">0</span><span>%</span>
+        </div>
+    </div>
+    <include file="Public/header" />
+    <include file="Public/first" />
+    <!--主体第二层-->
+    <div class="content_Bf">
+        <div class="shopping_top">
+            <ul>
+                <li><a href="{$Think.const.WEB_ROOT}">{$Think.lang._INDEX_}</a></li><span>-</span>
+                <li><a href="">收藏</a></li>
+            </ul>
+        </div>
+        <div class="shopping_list">
+            <!--2产品信息-->
+            <div class="shoppingbox_B cartList" id="cartList">
+                <ul>
+<!--                    <li style="margin-left:260px;">{$Think.lang._PUBLIC_PRODUCT_IMG_}</li>-->
+                    <li>{$Think.lang._PUBLIC_PRODUCT_IMG_}</li>
+                    <li>{$Think.lang._PUBLIC_PRODUCT_MODEL_}</li>
+                    <li>{$Think.lang._PUBLIC_PRODUCT_SPECIFICATION_}</li>
+                    <li>{$Think.lang._PUBLIC_PRODUCT_LENGTH_}</li>
+                    <li>{$Think.lang._PUBLIC_PRODUCT_COLOR_}</li>
+                    <!--<li>{$Think.lang._PUBLIC_PRODUCT_PACKAGE_}</li>-->
+                    <li>{$Think.lang._PUBLIC_PRODUCT_LOADING_}</li>
+<!--                    <li>{$Think.lang._PUBLIC_PRODUCT_BOX_}</li>-->
+                    <li>{$Think.lang._PUBLIC_PRODUCT_TOTAL_}</li>
+                    <li>{$Think.lang._PUBLIC_PRODUCT_SINGLE_PRICE_}</li>
+                    <li>{$Think.lang._PUBLIC_PRODUCT_AMOUNT_}</li>
+                    <li>操作</li>
+                </ul>
+                <assign name="fun" value="count" />
+                <assign name="count" value="$fun($specInfo)" />
+                <foreach name="specInfo" item="spi" key="k">
+                    <ul class="cartPItem" data-spec-id="{$spi.specification_id}">
+                        <notempty name="spi.spec_img">
+                            <li><img src="__PUBLIC__/{$spi['spec_img']}" /></li>
+                            <else />
+                            <li><img src="__PUBLIC__/{$spi['product']['products_img']}" /></li>
+                        </notempty>
+                        <li>{$spi['model_name']}</li>
+                        <li title="<eq name='langFlag' value='1'>{$spi['product']['products_chinese_name']}<else/>{$spi['product']['products_english_name']}</eq>">
+                            <eq name="langFlag" value="1">
+                                {$spi['product']['products_chinese_name']}
+                                <else />
+                                {$spi['product']['products_english_name']}
+                            </eq>
+                        </li>
+                        <li>{$spi['length']}m</li>
+                        <li>
+                            <eq name="langFlag" value="1">{$spi['color_name']}
+                                <else />{$spi['color_name2']}</eq>
+                        </li>
+                        <!--<li>{$Think.lang._PUBLIC_CARTON_}</li>-->
+                        <li>{$spi['loading']}</li>
+<!--                        <li>
+                            <div data-spec-id="{$spi['specification_id']}"><span data-desc="down" class="down" style="cursor:pointer;">-</span>
+                                <font class="buyNum">1</font><span data-desc="up" class="up" style="cursor:pointer;">+</span>
+                            </div>
+                        </li>-->
+                        <li class="orderBuyNum">{$spi['loading']}</li>
+                        <li>{$spi['rmb']|sprintf='%.2f',2}</li>
+                        <li class="smallPrice">{$spi['subtotal']|number_format=###,2}</li>
+                      <div style="cursor:pointer;" data-spec-id="{$spi['specification_id']}" class="del">-</div>
+                        
+                   <li ><a data-spec-id="{$spi.specification_id}" href="http://order.tonetron.com/collor/index.html?{$spi.specification_id}" class="add addCart" style="color:white;cursor:pointer;">{$Think.lang._PUBLIC_ADD_CART_}</a></li>
+     
+                         
+                    
+                    
+                        <div class="shopping_tip">
+                            <span>{$Think.lang._PUBLIC_REFERENCE_INVENTORY_}<font class="inventory">{$spi['inventory']}</font></span>
+                            <if condition="($spi['inventory']-$spi['loading']) lt 0">
+                                <span class="error" style="color:red">*{$Think.lang._PUBLIC_EXCESS_INVENTORY_}</span>
+                            </if>
+                        </div>
+                    </ul>
+                    <lt name="k" value="$count-1">
+                        <div class="line"></div>
+                    </lt>
+                </foreach>
+            </div>
+
+        </div>
+    </div>
+    <script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+    <script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+    <script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+    <script src="{$Think.const.HOME_RESOURCE}/js/cart.js"></script>
+    <script src="{$Think.const.HOME_RESOURCE}/js/cart2.js"></script>
+    <script src="{$Think.const.HOME_RESOURCE}/js/cart3.js"></script>
+    <script src="{$Think.const.HOME_RESOURCE}/js/quickBuy.js"></script>
+    <include file="Public/footer" />
+    <!--上传窗口-->
+    <div class="upload_window uploadFileBox">
+        <ul>
+            <li><span>Tonetron Order Systrm</span>
+                <div><a class="cancelBtn" href="javascript:;">取消</a><i></i><a class="completeBtn" href="javascript:;">完成</a></div>
+            </li>
+            <li>{$Think.lang._PUBLIC_ONLY_PDF_}</li>
+            <li>{$Think.lang._PUBLIC_MAX_5_}</li>
+            <li>
+                <div class="up_box">
+                    <div data-category="taxes" class="upload upload_04 uploadBtn">
+                        <dl>
+                            <dd><a href="javascript:;">+</a></dd>
+                            <dd>{$Think.lang._PUBLIC_GENERAL_TAX_}</dd>
+                        </dl>
+                    </div>
+                    <div data-category="license" class="upload upload_04 uploadBtn">
+                        <dl>
+                            <dd><a href="javascript:;">+</a></dd>
+                            <dd>{$Think.lang._PUBLIC_BUSINESS_LICENSE_}</dd>
+                        </dl>
+                    </div>
+                    <div data-category="invoice" class="upload upload_04 uploadBtn">
+                        <dl>
+                            <dd><a href="javascript:;">+</a></dd>
+                            <dd>{$Think.lang._PUBLIC_INVOICE_DATA_}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--上传窗口-->
+    <script>
+        
+        
+        
+        $(".addCart").click(function(){
+            var that=$(this);
+//       $(this).css("background","rgb(231, 231, 231)");
+       	var specId=$(this).attr("data-spec-id");
+		$.ajax({
+			url:add12,
+			type:"post",
+			dataType:"json",
+			data:{specId:specId},
+			success:function(res){
+				if(res.code==10112){
+                                    $(".cartNum").html(res.info);
+//                                    that.css("background","rgb(231, 231, 231)");
+                              
+				}
+			}
+		});
+          });
+               $(".del").click(function(){
+            var that=$(this);
+                window.location.reload();
+          });
+        
+        $(document).ready(function(){
+				$(".shop_C01 span:last-child").click(function(e){
+					$(".wuliuInfo01").toggle();
+					e.stopPropagation();
+				});
+				$(".shop_C02 span:last-child").click(function(e){
+					$(".wuliuInfo02").toggle();
+					e.stopPropagation();
+				});
+				$(".shopping_D span:last-child").click(function(e){
+					$(".invoice_info").toggle();
+					e.stopPropagation();
+				});
+				$(".shopping_D .open").click(function(){
+					$(this).css("display","none");
+					$(".shopping_D .close").css("display","block");
+					$("#invoiceControl").attr("data-control",2);
+					$("#switchInvoiceContent").hide();
+					$(".shoppingbox_D").hide();
+				});
+				$(".shopping_D .close").click(function(){
+					$(this).css("display","none");
+					$(".shopping_D .open").css("display","block");
+					$("#invoiceControl").attr("data-control",1);
+					$("#switchInvoiceContent").show();
+					$(".shoppingbox_D").show();
+				});
+				$(document).click(function(){
+					$(".wuliuInfo01").hide();
+					$(".wuliuInfo02").hide();
+					$(".invoice_info").hide();
+				});
+			 });
+                         
+                         
+                         
+                         
+                  
+                         
+                         
+		</script>
+    <style type="text/css">
+        .add{
+      width: 72px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 5px;
+    background: #008cd6;
+    display: block;
+    color: white;
+    text-align: center;
+    margin: 3px 0 0 7px;
+        }
+        
+/*        .add:link{
+            background: #008cd6; 
+        } */
+        .add:visited{
+            background: rgb(231, 231, 231);
+        }
+/*        .add:hover{
+                color:red;
+            }
+        .add:active{
+                color:#ccc;
+            }*/
+   .add2{
+      width: 72px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 5px;
+    background: rgb(231, 231, 231);
+    display: block;
+    color: white;
+    text-align: center;
+    margin: 10px 0 0 28px;
+        }
+     
+        
+        
+        .layui-upload-file {
+            display: none;
+        }
+
+        .invalid {
+            background-color: #dfdfdf !important;
+        }
+    </style>
+</body>
+
+</html>

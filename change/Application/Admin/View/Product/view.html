@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>查看产品</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/common.css" />
+    <link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/style.css" />
+    <link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/less/style.css" />
+    <link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/font/iconfont.css" />
+    <script src="{$Think.const.ADMIN_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+    <script src="{$Think.const.ADMIN_RESOURCE}/js/common.js"></script>
+    <script src="{$Think.const.ADMIN_RESOURCE}/js/page.js"></script>
+    <script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        var url = "{:U('Product/view')}";
+        var importUrl = "{:U('Import/importInventory')}";
+        var msgUrl = "{:U('Com/response')}";
+        var publicPath = "__PUBLIC__/";
+        var delUrl = "{:U('Specification/del')}";
+        var rateRMB = "{$Think.session.rate_rmb}";
+        var updateTimeUrl = "{:U('Import/updateTime')}";
+    </script>
+    <script src="{$Think.const.ADMIN_RESOURCE}/js/import_inventory.js"></script>
+    <script src="{$Think.const.ADMIN_RESOURCE}/js/product_view.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <include file="Public/left" />
+        <!--侧边栏代码结束-->
+        <div class="right">
+            <include file="Public/top" />
+            <div class="right_bot float_left">
+                <!--页面主体内容开始-->
+                <div class="customer_box Product">
+                    <div class="top">
+                        <ul>
+                            <li>
+                                <span>型号查询</span><input id="searchModel" autocomplete="off" type="text" />
+                            </li>
+                            <li>
+                                <span>关键词查询</span><input id="searchKeyWord" autocomplete="off" type="text" />
+                            </li>
+                            <li>
+                                <span>系列查询</span>
+                                <select id="searchCategory" autocomplete="off" data-url="{:U('Com/getAllSmallJointsBy')}">
+                                    <option value="0">全部</option>
+                                    <foreach name="product_info.category" item="pc">
+                                        <option value="{$pc.category_id}" autocomplete="off">{$pc.cat_chinese_name}</option>
+                                    </foreach>
+                                </select>
+                            </li>
+                            <li>
+                                <span>接头查询</span>
+                                <select id="searchJoint" autocomplete="off">
+                                    <option value="0">全部</option>
+                                    <foreach name="product_info.joint" item="pj">
+                                        <option value="{$pj.category_id}">{$pj.cat_chinese_name}</option>
+                                    </foreach>
+                                </select>
+                            </li>
+                            <li>
+                                <div>
+                                    <span>USD=(RMB/1.17)/人民币汇率</span>
+                                    <br />
+                                    <span>RMB=(USD*1.17)*美金汇率</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="handle">
+                        <div class="show">
+                            <ul>
+                                <li><span>显示</span></li>
+                                <li><a class="pagesize" data-page-size="20" href="javascript:;"><span>20</span></a></li>
+                                <li><a class="pagesize" data-page-size="40" href="javascript:;"><span>40</span></a></li>
+                                <li><a class="pagesize" data-page-size="60" href="javascript:;"><span>60</span></a></li>
+                                <li><a class="pagesize" data-page-size="80" href="javascript:;"><span>80</span></a></li>
+                                <li><a class="pagesize" data-page-size="100" href="javascript:;"><span>100</span></a></li>
+                                <li><a class="pagesize" data-page-size="9999" href="javascript:;"><span>显示全部</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="save">
+                            <div>
+                                <a href="javascript:;" id="importInventory"><span>导入库存数据</span></a>
+                                <a href="javascript:;" id="flushInventory"><span>刷新库存</span></a>
+
+                                <input id="add_auto_set_time" type="text" name="" value="" style="width:30px;"><a href="javascript:;" id="add_auto_set"><span>自动刷新</span></a>
+                                <a href="javascript:;" data-url="{:U('Product/saveInventory')}" id="saveInventory"><span>保存数据</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bot">
+                        <div id="Model" class="product_table">
+                            <ul>
+                                <li>图片</li>
+                                <li>系列</li>
+                                <li>接头类型</li>
+                                <li>型号</li>
+                                <!-- <li>产品型号</li> -->
+                                <li>规格</li>
+                                <li>长度</li>
+                                <li>颜色</li>
+                                <li>库存数</li>
+                                <li>
+                                    <select data-flag="grade" id="grade" autocomplete="off">
+                                        <foreach name="product_info.grade" item="gra">
+                                            <option value="{$gra.grade_id}" <eq name='gra.grade_id' value="$product_info['grade_id']">selected</eq>>{$gra.gr_chinese_name}</option>
+                                        </foreach>
+                                    </select>
+                                    <p>
+                                        <span>RMB</span>
+                                        <span>USD</span>
+                                    </p>
+                                </li>
+                                <li>状态</li>
+                                <li>
+                                    <select data-flag="user" id="user">
+                                        <foreach name="product_info.user" item="us">
+                                            <option value="{$us.user_id}" <eq name='us.user_id' value="$product_info['user_id']">selected</eq>>{$us.company_name}</option>
+                                        </foreach>
+                                    </select>
+                                    <p>
+                                        <span>RMB</span>
+                                        <span>USD</span>
+                                    </p>
+                                </li>
+                                <li>状态</li>
+                                <li>操作</li>
+                            </ul>
+                            <foreach name="product_info.spec" item="pi">
+                                <ul class="Mlist">
+                                    
+<!--                                    <empty name="pi.products_img">
+                                        <li class="uploadBtn" data-pic="{$pi.products_img}">
+                                            <img width="26" height="26" src="__PUBLIC__/{$pi.products_img}" />
+                                            <else />
+                                        <li class="uploadBtn" data-pic="{$pi.spec_img}">
+                                            <img width="26" height="26" src="__PUBLIC__/{$pi.products_img}" />
+                                    </empty>
+                                    -->
+                                    
+                                     <li class="uploadBtn" data-pic="{$pi.products_img}">
+                                            <img width="26" height="26" src="__PUBLIC__/{$pi.products_img}" />
+                                    </li>
+                                    <li>{$pi.serial_name}</li>
+                                    <li>{$pi.joint_name}</li>
+                                    <li>{$pi.model_name}</li>
+                                    <!-- <li>规格内容</li> -->
+                                    <li>{$pi.products_chinese_name}</li>
+                                    <li>{$pi.length}m</li>
+                                    <li>{$pi.color_name}</li>
+                                    <li><input type="text" class="inventory" value="{$pi.inventory|default=0}" placeholder=""></li>
+                                    <li>
+                                        <p><span>{$pi.rmb1|default="0.00"}</span><span>{:RMB2USD($pi['rmb1'])}</span></p>
+                                    </li>
+                                    <li>
+                                        <switch name="pi.status1">
+                                            <case value="1">
+                                                <font color='green'>上架</font>
+                                            </case>
+                                            <default />
+                                            <font color='red'>下架</font>
+                                        </switch>
+                                    </li>
+                                    <li>
+                                        <p><span>{$pi.rmb2|default="0.00"}</span><span>{:RMB2USD($pi['rmb2'])}</span></p>
+                                    </li>
+                                    <li>
+                                        <switch name="pi.status2">
+                                            <case value="1">
+                                                <font color='green'>上架</font>
+                                            </case>
+                                            <default />
+                                            <font color='red'>下架</font>
+                                        </switch>
+                                    </li>
+                                    <li><a class="view blue" data-spec-id="{$pi['specification_id']}" href="{:U('Product/add',array('id'=>$pi['products_id']))}">查看</a>&nbsp;|&nbsp;<a class="del blue" href="javascript:;" data-id="{$pi['specification_id']}">删除</a></li>
+                                </ul>
+                            </foreach>
+                        </div>
+                        <div class="slider" style="margin-top: 140px;">
+                            <ul class="page" data-cur-page='' id="page">
+                                {$product_info.page}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--页面主体内容结束-->
+            </div>
+        </div>
+        <div id="vituralBtn" style="display:none;"></div>
+        <div id="msgTip" style="display:none;position:fixed;padding:0 30px;text-align:center;line-height:50px;height:50px;border:1px solid #e7e7e7;border-radius:3px;box-shadow:0 0 2px #ccc;background-color:#fff;">
+            正在导入数据
+        </div>
+        <div id="screen" style="display:none;position:fixed;width:100%;height:100%;background-color:rgba(247,247,247,0.3);z-index:1000;"></div>
+        <div id="msgTip2" style="display:none;position:fixed;padding:0 30px;text-align:center;line-height:50px;height:50px;border:1px solid #e7e7e7;border-radius:3px;box-shadow:0 0 2px #ccc;background-color:#fff;z-index:2000;">
+            <div style="display:inline-block;width:12px;height:12px;line-height:12px;width:205px;position:relative;">
+                <span style="position:absolute;left:0;top:0;width:205px;height:12px;display:inline-block;background-color:#e7e7e7;border-radius:6px;"></span>
+                <span id="progressNum" style="position:absolute;left:0;top:0;width:5px;height:12px;display:inline-block;background-color:#008cd6;border-radius:6px;"></span>
+            </div>
+            <div style="display:inline-block;width:12px;line-height:12px;padding:0 10px;">
+                <span id="progressTip" class="count">0</span><span>%</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function add_fun_auto_set() {
+            $("#importInventory").trigger("click");
+        }
+
+
+        $("#add_auto_set").click(function() {
+            setInterval(add_fun_auto_set, $("#add_auto_set_time").val() * 60000);
+        })
+
+        $(window).resize(function() {
+            var whole = $(document).height();
+            var h1 = $(".wrap .left .left_top").height();
+            var h2 = $(".wrap .left .left_bot").height();
+            $(".wrap .left .left_bot").css("margin-bottom", whole - h1 - h2 + "px");
+            console.log("whole" + whole);
+            var h3 = $(".wrap .right .right_top").height();
+            var h4 = $(".customer_box .Customer_top").height();
+            $(".customer_box .Customer_bot").css("height", (whole - h3 - h4) / 1.3 + "px");
+        });
+    </script>
+    <script>
+        $(function() {
+            var array1 = $(".product_table ul:nth-of-type(n+2) li:nth-of-type(11)");
+            var array2 = $(".product_table ul:nth-of-type(n+2) li:nth-of-type(13)");
+            console.log("arry1的值：" + array1);
+            $(array1).each(function(index) {
+                if ($(this).text() == "上架") {
+                    $(this).css("color", "green");
+                } else if ($(this).text() == "下架") {
+                    $(this).css("color", "red");
+                }
+            });
+            $(array2).each(function(index) {
+                if ($(this).text() == "上架") {
+                    $(this).css("color", "green");
+                } else if ($(this).text() == "下架") {
+                    $(this).css("color", "red");
+                }
+            });
+
+        })
+    </script>
+    <script src="__PUBLIC__/plugins/plupload/plupload.full.min.js"></script>
+    <script src="__PUBLIC__/plugins/count/jquery.waypoints.min.js"></script>
+    <script src="__PUBLIC__/plugins/count/jquery.countup.min.js"></script>
+    <script type="text/javascript">
+        var counter = 0;
+        var uploader = new plupload.Uploader({
+            //创建实例的构造方法
+            runtimes: 'html5,flash,silverlight,html4', //上传插件初始化选用那种方式的优先级顺序
+            browse_button: 'vituralBtn', // 上传按钮
+            url: "{:U('Com/upload')}", //远程上传地址
+            flash_swf_url: '__PUBLIC__/plugins/plupload/Moxie.swf', //flash文件地址
+            silverlight_xap_url: '__PUBLIC__/plugins/plupload/Moxie.xap', //silverlight文件地址
+            filters: {
+                max_file_size: '10mb',
+                mime_types: [{
+                    title: "files",
+                    extensions: "jpg,png,gif"
+                }]
+            },
+            multi_selection: false,
+            multipart_params: {
+                _inx: null
+            },
+            init: {
+                FilesAdded: function(up, files) {
+                    var _inx = uploader.settings.multipart_params._inx;
+                    $('.uploadBtn').eq(_inx).attr('id', files[0].id);
+                    uploader.start();
+                },
+                UploadProgress: function(up, file) {
+                    var percent = file.percent;
+                    if (percent <= 100 && (counter == 0)) {
+                        msgTip(percent);
+                        if (percent >= 100) {
+                            counter++;
+                        }
+                    }
+                },
+                FileUploaded: function(up, file, info) {
+                    var data = JSON.parse(info.response);
+                    $("#" + file.id).attr("data-pic", data.picPath);
+                    $("#" + file.id).find("img").attr('src', publicPath + data.picPath);
+                },
+                Error: function(up, err) {
+                    alert(err.message);
+                }
+            }
+        });
+
+        uploader.init();
+        $(function() {
+            $(document).on("click", ".uploadBtn", function() {
+                var inx = $(this).index(".uploadBtn")
+                counter = 0; //初始化器
+                uploader.settings.multipart_params = {
+                    _inx: inx
+                }
+                $('#vituralBtn').trigger('click')
+            })
+        });
+
+        var t, flag = false;
+
+        function msgTip(percent) {
+            $("#msgTip2").show();
+            $("#screen").show();
+            if (counter <= 1) {
+                animate(percent);
+            }
+
+            var h = $(window).height();
+            var w = $(window).width();
+            var selfW = $("#msgTip2").width();
+            $("#msgTip2").css({
+                "top": (h / 2 - 25) + "px",
+                "left": (w - selfW) / 2 + "px"
+            });
+
+            function animate(percent) {
+                percents = $("#progressTip").html() - 0;
+                if (percents < percent) {
+                    percents++;
+                    if (percents >= 100) {
+                        percents = 100;
+                        flag = true
+                    }
+                    $("#progressTip").html(percents);
+                    $("#progressNum").css("width", (percents * 2) + 5 + "px");
+
+                    t = setTimeout(function() {
+                        animate(percent);
+                    }, 30);
+                } else {
+                    clearTimeout(t);
+                    if (flag) {
+                        $("#msgTip2").fadeOut(2000, "swing", function() {
+                            $("#screen").hide();
+                            $("#progressTip").html(0);
+                            $("#progressNum").css({
+                                "width": 5 + "px"
+                            });
+                        });
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        .layui-upload-file {
+            display: none;
+        }
+    </style>
+</body>
+
+</html>

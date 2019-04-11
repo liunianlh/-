@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/common.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/less/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/font/iconfont.css" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+	</head>
+	<body>
+		<div class="wrap">
+			<include file="Public/left"/>
+			<div class="right">
+				<include file="Public/top"/>
+				<div class="right_bot float_left">
+					<!--页面主体内容开始-->
+					<div class="index_box">
+						<h1>会员状况 <a href="http://order.tonetron.com/Register/index.html"><span class="float-right font-size-14 blue">会员注册</span></a></h1>
+						<div class="model">
+							<ul>
+								<li>已处理会员数</li>		<span>{$dealed2}</span>
+								<foreach name="dealed" item="dea">
+								<li>已处理{$dea.cname}数</li>	<span>{$dea.count}</span>
+								</foreach>
+							</ul>
+						</div>
+						<div class="model">
+							<ul>
+								<li>未处理会员数</li>		<span>{$deal}</span>
+							</ul>
+						</div>
+						<div class="model model_style">
+							<ul>
+								<li>1个月未登入会员数</li>		<span>{$one_month}</span>
+								<li>3个月未登入会员数</li>	<span>{$three_month}</span>
+							</ul>
+						</div>
+					</div>
+					<div class="index_box" style="min-height:250px;margin-bottom:30px;">
+						<h1>订单状况</h1>
+						<div class="model">
+							<ul>
+								<li>今日处理订单数</li>		<span>{$today_order.dealOrderCount}</span>
+								<li>今日处理订单金额</li>	<span>￥{$today_order.dealOrderMoney}</span>
+								<li>今日已发货订单数</li>		<span>{$today_order.sendOrderCount}</span>
+								<li>今日已发货订单金额</li>	<span>￥{$today_order.sendOrderMoney}</span>
+								<li>今日已完成订单数</li>		<span>{$today_order.completedOrderCount}</span>
+								<li>今日已完成订单金额</li>	<span>￥{$today_order.completedOrderMoney}</span>
+								<li>今日未处理订单数</li>		<span>{$today_order.undealOrderCount}</span>
+								<li>今日未处理订单金额</li>	<span>￥{$today_order.undealOrderMoney}</span>
+							</ul>
+						</div>
+						<div class="model">
+							<ul>
+								<li>本月处理订单数</li>		<span>{$month_order.dealOrderCount}</span>
+								<li>本月处理订单金额</li>	<span>￥{$month_order.dealOrderMoney}</span>
+								<li>本月已发货订单数</li>		<span>{$month_order.sendOrderCount}</span>
+								<li>本月已发货订单金额</li>	<span>￥{$month_order.sendOrderMoney}</span>
+								<li>本月已完成订单数</li>		<span>{$month_order.completedOrderCount}</span>
+								<li>本月已完成订单金额</li>	<span>￥{$month_order.completedOrderMoney}</span>
+								<li>本月未处理订单数</li>		<span>{$month_order.undealOrderCount}</span>
+								<li>本月未处理订单金额</li>	<span>￥{$month_order.undealOrderMoney}</span>
+							</ul>
+						</div>
+					</div>
+					<!--页面主体内容结束-->
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/common.js"></script>
+	</body>
+</html>

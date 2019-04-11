@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{$Think.lang._PUBLIC_QUICK_BUY_}</title>
+    <link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+    <script type="text/javascript">
+        var url = "{:U('Cart/addCart')}";
+        var url2 = "{:U('Quick/index')}";
+        var addCart = "{$Think.lang._PUBLIC_ADD_CART_}";
+        var noSearchResult = "{$Think.lang._PUBLIC_NO_SEARCH_RESULT_}";
+    </script>
+</head>
+
+<body class="index quicktobuy">
+    <include file="Public/header" />
+    <include file="Public/first" />
+    <!--主体第二层-->
+    <div class="content_Bf">
+        <div class="conBf_top">
+            <ul>
+                <li><a href="{$Think.const.WEB_ROOT}">{$Think.lang._INDEX_}</a></li><span>-</span>
+                <li><a href="">{$Think.lang._PUBLIC_QUICK_BUY_}</a></li>
+            </ul>
+            <ol>
+                <a href="javascript:history.go(-1);" class="back">{$Think.lang._PUBLIC_BACK_}</a>
+            </ol>
+        </div>
+        <div class="conBf_bot">
+            <div class="conBf_bot_nav">
+                <ul>
+                    <li>
+                        <span>{$Think.lang._PUBLIC_SERIAL_CLA_}</span>
+                        <select id="serial" data-url="{:U('Quick/getAllSmallJoints')}" autocomplete="off">
+                            <option value="0">{$Think.lang._PUBLIC_PLEASE_SELECT_}</option>
+                            <foreach name="serial_info" item="si">
+                                <option value="{$si.category_id}">
+                                    <eq name="langFlag" value="1">{$si.cat_chinese_name}
+                                        <else />{$si.cat_english_name}</eq>
+                                </option>
+                            </foreach>
+                        </select>
+                    </li>
+                    <li>
+                        <span>{$Think.lang._PUBLIC_JOINT_CLA_}</span>
+                        <select id="joint" autocomplete="off">
+                            <option value="0">{$Think.lang._PUBLIC_PLEASE_SELECT_}</option>
+                            <foreach name="joint_info" item="ji">
+                                <option value="{$ji.category_id}">
+                                    <eq name="langFlag" value="1">{$ji.cat_chinese_name}
+                                        <else />{$ji.cat_english_name}</eq>
+                                </option>
+                            </foreach>
+                        </select>
+                    </li>
+                    <li>
+                        <span>{$Think.lang._PUBLIC_KEYWORD_SEARCH_}</span>
+                        <input value="" id="keywords" placeholder="{$Think.lang._PUBLIC_KEYWORD_OR_CLA_}" />
+                    </li>
+                    <li><a href="javascript:;" class="search" id="searchBtn">{$Think.lang._PUBLIC_SEARCH_BTN_}</a></li>
+                </ul>
+            </div>
+            <div class="conBf_bot_table productsList">
+                <ul>
+                    <li>{$Think.lang._PUBLIC_SERIAL_CLA_}</li>
+                    <li>{$Think.lang._PUBLIC_JOINT_CLA_}</li>
+                    <li>{$Think.lang._PUBLIC_PRODUCT_MODEL_}</li>
+                    <li>{$Think.lang._PUBLIC_PRODUCT_SPECIFICATION_}</li>
+                    <li>{$Think.lang._PUBLIC_PRODUCT_LENGTH_}</li>
+                    <li>{$Think.lang._PUBLIC_PRODUCT_COLOR_}</li>
+                    <li>{$Think.lang._PUBLIC_ROUGH_WEIGHT_}</li>
+                    <li>{$Think.lang._PUBLIC_NET_WEIGHT_}</li>
+                    <li>{$Think.lang._PUBLIC_VOLUME_}</li>
+                    <li>{$Think.lang._PUBLIC_PRODUCT_LOADING_}</li>
+                    <li>
+                        <eq name="defaultCurrency" value="USD">
+                            {$Think.lang._PUBLIC_SINGLE_PRICE_2}
+                            <else />
+                            {$Think.lang._PUBLIC_SINGLE_PRICE_}
+                        </eq>
+                    </li>
+                    <li>{$Think.lang._PUBLIC_OPERATE_}</li>
+                </ul>
+                <notempty name="product_info">
+                    <foreach name="product_info" item="pi">
+                        <ul class="productsItem">
+                            <li>{$pi.serial_name}</li>
+                            <li>{$pi.joint_name}</li>
+                            <li>{$pi.model_name}</li>
+                            <li>{$pi.products_name}</li>
+                            <li>{$pi.length}m</li>
+                            <li>{$pi.color_name}</li>
+                            <li>{$pi.rough_weight}</li>
+                            <li>{$pi.net_weight}</li>
+                            <li>{$pi.volume}</li>
+                            <li>{$pi.loading}</li>
+                            <li>{$pi.rmb}</li>
+                            <li><a data-spec-id="{$pi.specification_id}" href="javascript:;" class="add addCart">{$Think.lang._PUBLIC_ADD_CART_}</a></li>
+                        </ul>
+                    </foreach>
+                    <else />
+                    <ul class="productsItem">
+                        <li style="width:100%">{$Think.lang._PUBLIC_NO_SEARCH_RESULT_}</li>
+                    </ul>
+                </notempty>
+            </div>
+        </div>
+    </div>
+    <script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+    <script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+    <script src="__PUBLIC__/plugins/layui/layui.js"></script>
+    <script src="{$Think.const.HOME_RESOURCE}/js/quickBuy.js"></script>
+    <include file="Public/footer" />
+</body>
+
+</html>

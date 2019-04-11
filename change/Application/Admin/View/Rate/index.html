@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>汇率设置</title>
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/common.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/less/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/font/iconfont.css" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+	</head>
+		<body>
+		<div class="wrap">
+			<include file="Public/left"/>
+			<!--侧边栏代码结束-->
+			<div class="right">
+				<include file="Public/top"/>
+				<div class="right_bot float_left">
+					<!--页面主体内容开始-->
+						<div class="customer_box common">
+							<div class="Customer_top">
+								<div class="UID">汇率设置</div>
+								<div class="handle">
+									<span><a id="saveBtn" data-url="{:U('Rate/index')}" href="javascript:;">保存数据</a></span>
+								</div>
+								<div class="blue_wire"></div>
+							</div>
+							<div class="template">
+								<ul>
+									<li >
+										<ul>
+											<li><span style="width:30%;">人民币汇率</span><input id="RMB" type="text" value="{$rate_info.rmb}" placeholder="设置人民币汇率" /></li>
+										</ul>
+									</li>
+									<li>
+										<ul>
+											<li><span style="width:30%;">美金汇率</span><input id="USD" type="text" value="{$rate_info.usd}" placeholder="设置美金汇率" /></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+					<!--页面主体内容结束-->
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/common.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/rate.js"></script>
+		<script>
+			 $(window).resize(function(){
+			var whole=$(document).height();
+			var h1=$(".wrap .left .left_top").height();
+			var h2=$(".wrap .left .left_bot").height();
+			$(".wrap .left .left_bot").css("margin-bottom",whole-h1-h2+"px");
+			console.log("whole"+whole);
+			var h3=$(".wrap .right .right_top").height();
+			var h4=$(".customer_box .Customer_top").height();
+			$(".customer_box .Customer_bot").css("height",(whole-h3-h4)/1.3+"px");
+		});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang._PUBLIC_IMPORTANT_NOTICE_}</title>
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+		<link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+	</head>
+	<body class="shopping_confirm order_view">
+		<include file="Public/header"/>
+		<include file="Public/first"/>
+		<!--主体第二层-->
+		<div class="content_Bf">
+			<div class="shopping_top">
+				<ul>
+					<li><a href="{$Think.const.WEB_ROOT}">{$Think.lang._INDEX_}</a></li><span>-</span>
+					<li>{$Think.lang._PUBLIC_MAIL_}</li>
+				</ul>
+			</div>
+			<div class="important_notice">
+				<dl>
+					<dd>
+						<a href="{:U('Message/mlist',array('wh'=>1))}">{$Think.lang._PUBLIC_TODAY_}</a>
+						<a href="{:U('Message/mlist',array('wh'=>2))}">{$Think.lang._PUBLIC_WEEK_}</a>
+						<a href="{:U('Message/mlist',array('wh'=>3))}">{$Think.lang._PUBLIC_A_MONTH_}</a>
+						<a href="{:U('Message/mlist',array('wh'=>4))}">{$Think.lang._PUBLIC_THREE_MONTH_}</a>
+						<a href="{:U('Message/mlist',array('wh'=>5))}">{$Think.lang._PUBLIC_A_YEAR_}</a>
+					</dd>
+					<dd>
+						<div>
+							<form method="get" action="{:U('Message/mlist')}">
+							<input type="text" name="keyword" placeholder="{$Think.lang._PUBLIC_TOPIC_OR_CONTENT_}" value="{$keyword}"/>
+							<button type="submit">{$Think.lang._PUBLIC_SEARCH_BTN_}</span>
+							</form>
+						</div>
+					</dd>
+				</dl>
+				<ol>
+					<foreach name="msg_info" item="mi">
+					<li><span>{$mi.msg_time|date="Y-m-d",###}</span><span><a href="{:U('Message/mdetail',array('id'=>$mi['message_id']))}">{$mi.msg_title}</a></span><eq name="mi.is_read" value="1"><i></i></eq><eq name="mi.has_attachment" value="2"><img src="{$Think.const.HOME_RESOURCE}/img/notice_ico01.jpg"></eq></li>
+					</foreach>
+				</ol>
+				<div class="slider">
+					<ul class="page" data-cur-page=''  id="page">
+					{$page}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+		<include file="Public/footer"/>
+	</body>
+</html>

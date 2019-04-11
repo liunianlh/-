@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>批量设置权限</title>
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/common.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/less/style2.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/font/iconfont.css" />
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/common.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/batchSet.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/import_inventory2.js"></script>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<script type="text/javascript">
+			var rateRMB="{$Think.session.rate_rmb}";
+            function changes(obj){
+                var money=$(obj).val();
+                $(obj).next().val(RMB2USD(money))
+                //layer.msg(money);
+                //obj.val(999);
+            }
+            function change_start(obj){
+                var money=$(obj).val();
+                $(obj).prev().val(USD2RMB(money))
+                //layer.msg(money);
+                //obj.val(999);
+            }
+            function USD2RMB(usd){
+                if(((rateRMB-0)==0)||((usd-0)==0)){
+                    return 0.00;
+                }
+                rmb=usd*1.17*rateRMB;
+                return rmb.toFixed(2);
+            }
+            function RMB2USD(rmb){
+                if(((rateRMB-0)==0)||((rmb-0)==0)){
+                    return 0.00;
+                }
+                usd=rmb/1.17/rateRMB;
+                return usd.toFixed(2);
+            }
+            function toFixed(rmb){
+                rmb=rmb-0;
+                return rmb.toFixed(2);
+            }
+		</script>
+	</head>
+		<body>
+		<div class="wrap">
+			<include file="Public/left"/>
+			<!--侧边栏代码结束-->
+			<div class="right">
+				<include file="Public/top"/>
+				<div class="right_bot float_left">
+					<!--页面主体内容开始-->
+						<div class="customer_box Customers product_permission">
+							<div class="Customer_top">
+								<div class="UID">批量设置权限(产品)</div>
+								<div class="handle">
+									<!-- <span><a href="{:U('Import/exportPrice')}">导出价格</a></span> -->
+									<span><a id="import" data-url="{:U('Import/importPrice')}" href="javascript:;">导入价格</a></span>
+									<span><a id="saveBtn" data-url="{:U('Product/batchSetSave')}" href="javascript:;">保存</a></span>
+								</div>
+								<div class="blue_wire"></div>
+							</div>
+							<div class="product_details search">
+								<div class="P_details_right">
+									<div>
+										<input type="text" autocomplete="off" id="searchModel" placeholder="请输入相关型号"/>
+										<a href="javascript:;" data-url="{:U('Product/batchSet')}" id="searchBtn"><span>型号搜索</span></a>
+									</div>
+								</div>
+							</div>
+							<div class="product_bot">
+								<div class="edit state">
+										<a class="editStatus" data-status-value="1" href="javascript:;">上架</a>
+										<div class="wire"></div>
+										<a class="editStatus" data-status-value="2" href="javascript:;">下架</a>
+								</div>
+								<div class="newpermission_table">
+									<div class="box spec_info">
+										<ul style="display:inline;white-space: nowrap;">
+										<!--模块1开始-->
+										<li>
+											<div class="model_1 serialList">
+											<ul>
+												<li>&nbsp;</li>
+												<li>
+													<dl>
+														<dt><div><input type="checkbox" data-serial="serial" class="serialAllCBX"/></div><span>系列</span></dt>
+														<dt><div><input type="checkbox" data-model="model" class="modelAllCBX"/></div><span>型号</span></dt>
+													</dl>
+												</li>
+												<foreach name="spec_info" item="spi" key="k">
+												<li class="serialItem">
+													<dl class="border_bot_none">
+														<eq name='temp_serial_name' value="$spi.serial_name">
+														<dt class="border_bot_none">&nbsp;</dt>
+														<else/>
+														<neq name="k" value="0">
+														<dt class="border_bot_none" style="border-top: 1px solid rgb(223, 223, 223) !important;"><div><input class="serialCBX" data-serial-id="serial{$spi.serial_id}" data-flag="serial" data-serial="serial" type="checkbox"/></div>{$spi.serial_name}</dt>
+														<else/>
+														<dt class="border_bot_none"><div><input type="checkbox" class="serialCBX" data-serial-id="serial{$spi.serial_id}" data-flag="serial" data-serial="serial"/></div>{$spi.serial_name}</dt>
+														</neq>
+														</eq>
+														<dt><div><input class="modelCBX" type="checkbox" data-serial-id="serial{$spi.serial_id}" data-model-id="model{$spi.specification_id}" data-serial="serial" data-model="model" data-flag="model"/></div><span title="ABC123:00142">{$spi.model_name}</span></dt>
+													</dl>
+												</li>
+												<assign name="temp_serial_name" value="$spi.serial_name"/>
+												</foreach>
+											</ul>
+											</div>
+										</li>
+										<!-- 模块2开始 -->
+										<foreach name="grade_info" item="gri" key="kg">
+										<li>
+											<div class="model_2 gpsList">
+											<ul>
+												<li>{$gri.name}</li>
+												<li><div><input type="checkbox" class="gradeCBX" data-grade-id="grade{$gri.gradeId}"/></div><span>RMB</span><span>USD</span><span>状态</span></li>
+												<foreach name="gri.value" item="griv" key="grivk">
+												<li class="gpsItem" data-hash="{$griv._hashKey}">
+													<div><input type="checkbox" class="rusCBX" data-grade-id="grade{$griv.grade_id}" data-model="model" data-serial-id="serial{$griv.serial_id}" data-model-id="model{$griv.specification_id}" data-serial="serial"/></div>
+													<input type="text"  oninput="changes(this)"  class="rmb" value="{$griv.rmb|default='0.00'}" placeholder=""/>
+													<input type="text"  oninput="change_start(this)"  class="usd" value="{:RMB2USD($griv['rmb'])}" placeholder=""/>
+													<select autocomplete="off" class="status">
+													<option value="1" <eq name="griv.products_status_id" value="1">selected</eq>>上架</option>
+													<option value="2" <eq name="griv.products_status_id" value="2">selected</eq>>下架</option>
+													</select>
+												</li>
+												</foreach>
+											</ul>
+											</div>
+										</li>
+										</foreach>
+										<!-- 模块2结束 -->
+										</ul>
+									</div>
+									
+									
+									
+								</div>
+							</div>
+						</div>
+					<!--页面主体内容结束-->
+				</div>
+			</div>
+			<div id="msgTip" style="display:none;position:fixed;padding:0 30px;text-align:center;line-height:50px;height:50px;border:1px solid #e7e7e7;border-radius:3px;box-shadow:0 0 2px #ccc;background-color:#fff;">
+				正在导入数据
+			</div>
+			<div id="screen" style="display:none;position:fixed;width:100%;height:100%;background-color:rgba(247,247,247,0.3);z-index:1000;"></div>
+		</div>
+		<script>
+		 $(window).resize(function(){
+		var whole=$(document).height();
+		var h1=$(".wrap .left .left_top").height();
+		var h2=$(".wrap .left .left_bot").height();
+		$(".wrap .left .left_bot").css("margin-bottom",whole-h1-h2+"px");
+		console.log("whole"+whole);
+		var h3=$(".wrap .right .right_top").height();
+		var h4=$(".customer_box .Customer_top").height();
+		$(".customer_box .Customer_bot").css("height",(whole-h3-h4)/1.3+"px");
+	});
+	</script>
+		<script>
+	$(function(){
+			var array1=$(".permission_table ul:nth-of-type(n+3) li:nth-of-type(n+2) select");
+			console.log("arry1的值："+array1);
+			
+			$(array1).each(function(index){
+					if($(this).val()=="上架"){
+				    	$(this).css("color","green");
+				    }else if($(this).val()=="下架"){
+				    	$(this).css("color","red");
+				    }
+				$(this).change(function(){
+					if($(this).val()=="上架"){
+				    	$(this).css("color","green");
+				    }else if($(this).val()=="下架"){
+				    	$(this).css("color","red");
+				    }
+				})
+			  
+			});
+			
+			
+		})
+	</script>
+	<style type="text/css">
+	.layui-upload-file{
+		display:none;
+	}
+	</style>
+	</body>
+</html>

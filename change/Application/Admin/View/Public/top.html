@@ -1,0 +1,13 @@
+<div class="right_top">
+	<div class="copyright">{$logo_botton.config_value}</div>
+	<notempty name="configs">
+	<div class="copyright">同步时间：{$configs['time']|date='Y-m-d H:i:s',###},状态：成功，{$configs['success']}笔修改</div>
+	</notempty>
+	<div class="search">
+	<form method="GET" id="globalOrderForm" action="{:U('Order/index')}">
+	<input type="text" name="keyword" value="{$keyword}" placeholder="请输入订单号或关键字"/>
+	<div class="Order_search" id="globalOrderBtn">订单搜索</div>
+	<a class="Order_search small" href="{:U('Login/layout')}">登出</a>
+	</form>
+	</div>
+</div>

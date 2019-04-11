@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>密码重置</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+	</head>
+	<body class="password">
+		<div class="login_box">
+			<div class="left">
+			</div>
+			<div class="center">
+				<div class="ico_sanjiao"></div>
+			</div>
+			<div class="right">
+				<div class="content">
+					<h1>FORGET PASSWORD</h1>
+					<form>
+						<input name="password"  id="password" type="password" placeholder="新设密码">
+						<input name="password_sure" id="password_sure" type="password" placeholder="确认密码">
+					</form>
+					<div class="login-submit">
+						<input id="register" class="" data-qualified="no" data-url="{:U('Reset/index')}"   type="button"  value="提交"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/resetPwd.js"></script>
+		<style type="text/css">
+		.active{
+			background-color:#008cd6 !important;
+			color:#fff !important;
+		}
+		</style>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang._PUBLIC_ACCOUNT_INFO_}</title>
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+		<link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/password.js"></script>
+	</head>
+	<body class="shopping_confirm order_view">
+		<include file="Public/header"/>
+		<include file="Public/first"/>
+		<!--主体第二层-->
+		<div class="content_Bf">
+			<div class="shopping_top">
+				<ul>
+					<li><a href="{$Think.const.WEB_ROOT}">{$Think.lang._INDEX_}</a></li><span>-</span>
+					<li><a href="{:U('Account/index')}">{$Think.lang._PUBLIC_ACCOUNT_}</a></li>
+				</ul>
+			</div>
+			<div class="All_Orders">
+				<include file="Public/nav"/>
+				<div class="OrderTable">
+					<!--6修改账户密码-->
+					<div class="AccountInfo_table01 Accountmodle_06">
+						<div class="info_nav">{$Think.lang._PUBLIC_MODIFY_PWD_}</div>
+						<ul>
+							<li><span>{$Think.lang._PUBLIC_OLD_PWD_}</span><input type="password" id="pwd1" value=""></li>
+							<li><span>{$Think.lang._PUBLIC_NEW_PWD_}</span><input type="password" id="pwd2"/><a>{$Think.lang._PUBLIC_PWD_TIP_}</a></li>
+							<li><span>{$Think.lang._PUBLIC_CONFIRM_PWD_}</span><input type="password" id="pwd3"/><a style="display:none;" class="errortip">{$Think.lang._PUBLIC_PWD_COMPAIR_}</a></li>
+							<li><span>&nbsp;</span><a href="javascript:;" class="disabled" data-qualified="no" data-url="{:U('EditPassword/index')}" id="pwdBtn">{$Think.lang._PUBLIC_SAVE_BTN_}</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<include file="Public/footer"/>
+		<style type="text/css">
+		.disabled{
+			background-color:#dfdfdf !important;
+		}
+		</style>
+	</body>
+</html>

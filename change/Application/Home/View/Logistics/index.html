@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang._PUBLIC_ACCOUNT_INFO_}</title>
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+		<link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet/less" type="text/css" href="{$Think.const.HOME_RESOURCE}/less/style.less">
+		<!-- <script src="{$Think.const.HOME_RESOURCE}/js/less.js" type="text/javascript"></script> -->
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript">
+		var editLogistics="{$Think.lang._PUBLIC_EDIT_LOGISTICS_INFO_}";
+		var url="{:U('Area/getProv')}";
+		var url2="{:U('Area/getCity2')}";
+		var url3="{:U('Area/switchAddr')}";
+		</script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/logistics.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/logistics2.js"></script>
+	</head>
+	<body class="shopping_confirm order_view">
+		<include file="Public/header"/>
+		<include file="Public/first"/>
+		<!--主体第二层-->
+		<div class="content_Bf">
+			<div class="shopping_top">
+				<ul>
+					<li><a href="{$Think.const.WEB_ROOT}">{$Think.lang._INDEX_}</a></li><span>-</span>
+					<li><a href="{:U('Account/index')}">{$Think.lang._PUBLIC_ACCOUNT_}</a></li>
+				</ul>
+			</div>
+			<div class="All_Orders">
+				<include file="Public/nav"/>
+				<div class="OrderTable">
+					<!--4Forworder Info-->
+					<div class="AccountInfo_table01  Accountmodle_04">
+						<div class="info_nav" id="info_nav">{$Think.lang._PUBLIC_NEW_LOGISTICS_INFO_}</div>
+						<ul>
+							<li><span><a>*</a>{$Think.lang._PUBLIC_COMPANY_NAME_}</span><input id="company" type="text"/><span><a>*</a>{$Think.lang._PUBLIC_RECEIVER_}</span><input id="receiver" type="text"></li>
+							<li><span><a>*</a>{$Think.lang._PUBLIC_RECEIVER_PHONE_}</span><input id="phone" type="text"/><span><a>*</a>{$Think.lang._PUBLIC_RECEIVER_EMAIL_}</span><input id="email" type="text"></li>
+							<li id="l_rr1"><span><a>*</a>{$Think.lang._PUBLIC_RECEIVER_ADDRESS_}</span>
+							<select id="country" autocomplete="off" style="width: 100px;margin-left: -4px;">
+								<eq name="language" value="2">
+								<foreach name="country_info" item="ci">
+								<option value="{$ci.country_id}">{$ci.country_name2}</option>
+								</foreach>
+								<else/>
+								<foreach name="country_info" item="ci">
+								<option value="{$ci.country_id}">{$ci.country_name}</option>
+								</foreach>
+								</eq>
+							</select>
+							</li>
+							<li><span>&nbsp;</span><input id="address" type="text" placeholder="{$Think.lang._PUBLIC_DETAIL_ADDRESS_}"/></li>
+							<li style="display:none;"></li>
+							<li><span>&nbsp;</span><a class="disabled" data-qualified="no" data-logistics="0" data-url="{:U('Logistics/index')}" id="saveBtn" href="javascript:;">{$Think.lang._PUBLIC_SAVE_BTN_}</a></li>
+							<li><span>&nbsp;</span><span>{$Think.lang._PUBLIC_SAVE_INFO_MOST_}，{$Think.lang._PUBLIC_SAVED_} {$count} {$Think.lang._PUBLIC_ITEM_}，{$Think.lang._PUBLIC_REST_} {$rest} {$Think.lang._PUBLIC_ITEM_}</span></li>
+						</ul>
+						<div class="info_nav">{$Think.lang._PUBLIC_LOGISTICS_INFO_}</div>
+						<dl>
+						<foreach name="logistics_info" item="li">
+							<dd class="juzhong">
+								<input type="radio" name="wuliu"/><span class="width_name">{$li.logistics_receiver}</span><span class="width_phone">{$li.logistics_receiver_phone}</span><span class="width_country">{$li.logistics_country}</span><span class="width_province">{$li.logistics_province}</span><span class="width_city">{$li.logistics_city}</span><span class="width_address">{$li.logistics_address}</span><div class="div_right"><a class="editA" check-key="{$li.checkKey}" data-url="{:U('Logistics/edit',array('id'=>$li['logistics_id']))}" href="javascript:;">{$Think.lang._PUBLIC_EDIT_}</a><i></i><a class="delA" check-key="{$li.checkKey}" data-url="{:U('Logistics/delA',array('id'=>$li['logistics_id']))}" href="javascript:;">{$Think.lang._PUBLIC_DEL_}</a></div>
+							</dd>
+						</foreach>	
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+		<include file="Public/footer"/>
+		<style type="text/css">
+		.disabled{
+			background-color:#dfdfdf !important;
+		}
+		</style>
+	</body>
+</html>

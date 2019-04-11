@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang._PUBLIC_ACCOUNT_INFO_}</title>
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+		<link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript">
+		var url2="{:U('Invoice/del')}";
+		var url3="{:U('Invoice/index')}";
+		var publicPath="__PUBLIC__/";
+		var invoiceContent="{$Think.lang._PUBLIC_INVOICE_NAME_}";
+		var creditCode="{$Think.lang._PUBLIC_CREDIT_CODE_}";
+		var editInvoice="{$Think.lang._PUBLIC_EDIT_INVOICE_INFO_}";
+		</script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/invoice.js"></script>
+	</head>
+	<body class="shopping_confirm order_view">
+		<div id="screen" style="display:none;position:fixed;width:100%;height:100%;background-color:rgba(247,247,247,0.3);z-index:1000;"></div>
+		<div id="msgTip2" style="display:none;position:fixed;padding:0 30px;text-align:center;line-height:50px;height:50px;border:1px solid #e7e7e7;border-radius:3px;box-shadow:0 0 2px #ccc;background-color:#fff;z-index:2000;">
+			<div style="display:inline-block;width:12px;height:12px;line-height:12px;width:205px;position:relative;">
+				<span style="position:absolute;left:0;top:0;width:205px;height:12px;display:inline-block;background-color:#e7e7e7;border-radius:6px;"></span>
+				<span id="progressNum" style="position:absolute;left:0;top:0;width:5px;height:12px;display:inline-block;background-color:#008cd6;border-radius:6px;"></span>
+			</div>
+			<div style="display:inline-block;width:12px;line-height:12px;padding:0 10px;">
+				<span id="progressTip" class="count">0</span><span>%</span>
+			</div>
+		</div>
+		<include file="Public/header"/>
+		<include file="Public/first"/>
+		<!--主体第二层-->
+		<div class="content_Bf">
+			<div class="shopping_top">
+				<ul>
+					<li><a href="{$Think.const.WEB_ROOT}">{$Think.lang._INDEX_}</a></li><span>-</span>
+					<li><a href="{:U('Account/index')}">{$Think.lang._PUBLIC_ACCOUNT_}</a></li>
+				</ul>
+			</div>
+			<div class="All_Orders">
+				<include file="Public/nav"/>
+				<div class="OrderTable">
+					<!--2账户信息模块-->
+					<div class="AccountInfo_table01 Accountmodle_02">
+						<div class="info_nav" id="info_nav">{$Think.lang._PUBLIC_NEW_INVOICE_INFO_}</div>
+						<ul>
+							<li><label><input type="radio" id="personal" value="1" class="invoice_type" name="type_01"/>{$Think.lang._PUBLIC_PERSONAL_}</label><label><input type="radio" class="invoice_type" value="2" id="company" checked="checked" name="type_01"/>{$Think.lang._PUBLIC_UNIT_SPEC_INVOICE_}</label></li>
+							<li><span id="name">{$Think.lang._PUBLIC_CREDIT_CODE_}</span><input id="society" type="text"/></li>
+							<li><span>{$Think.lang._PUBLIC_INVOICE_CONTENT_}</span><label><input type="radio" id="big" value="1" class="invoice_content" checked="checked" name="type_02"/>{$Think.lang._PUBLIC_BIG_CLASS_}</label><label><input type="radio" class="invoice_content" id="detail"  value="2" name="type_02"/>{$Think.lang._PUBLIC_DETAIL_}</label></li>
+							<li class="uploadContent" style="height:auto;"><span>{$Think.lang._PUBLIC_UPLOAD_INVOICE_INFO_}</span>
+							{$Think.lang._PUBLIC_TAXES_}：<div class="addBtn" data-url="{:U('Invoice/upload')}" data-type="taxes">+</div>
+							</li>
+							<li class="uploadContent" style="height:auto;">
+							<span style="width:15%;"></span>{$Think.lang._PUBLIC_LICENSE_}：<div class="addBtn" data-url="{:U('Invoice/upload')}" data-type="license">+</div>
+							</li>
+							<li class="uploadContent" style="height:auto;">
+								<span style="width:15%;"></span>{$Think.lang._PUBLIC_INVOICE_}：<div class="addBtn" data-url="{:U('Invoice/upload')}" data-type="invoice">+</div>
+							</li>
+							<li><span>&nbsp;</span><a href="javascript:;" class="disabled" data-invoice="0" data-qualified="no" id="saveBtn">{$Think.lang._PUBLIC_SAVE_BTN_}</a></li>
+							<li><span>&nbsp;</span><span>{$Think.lang._PUBLIC_SAVE_INFO_MOST_}，{$Think.lang._PUBLIC_SAVED_} {:count($invoice_info)} {$Think.lang._PUBLIC_ITEM_}，{$Think.lang._PUBLIC_REST_} {$rest} {$Think.lang._PUBLIC_ITEM_}</span></li>
+						</ul>
+						<div class="info_nav">{$Think.lang._PUBLIC_INVOICE_INFO_}</div>
+						<dl>
+							<foreach name="invoice_info" item="v">
+							<dd>
+								<input type="radio" name="wuliu"/>
+								<p>
+								<switch name="v.invoice_type_id">
+									<case value="1">{$Think.lang._PUBLIC_PERSONAL_}</case>
+									<case value="2">{$Think.lang._PUBLIC_UNIT_SPEC_INVOICE_}</case>
+								</switch>
+								</p>
+								<p>
+								<switch name="v.invoice_type_id">
+									<case value="1">{$v.invoice_name}</case>
+									<case value="2">{$v.invoice_credit}</case>
+								</switch>
+								</p>
+								<p>
+								<switch name="v.invoice_content_id">
+									<case value="1">{$Think.lang._PUBLIC_BIG_CLASS_}</case>
+									<case value="2">{$Think.lang._PUBLIC_DETAIL_}</case>
+								</switch>
+								</p>
+								<eq name="v.invoice_type_id" value="2">
+								<foreach name="v.addon" item="vv">
+								<p>{$vv.name}</p>
+								</foreach>
+								</eq>
+								<div class="div_right"><a class="editA" check-key="{$v.checkKey}" data-url="{:U('Invoice/edit',array('id'=>$v['invoice_id']))}" href="javascript:;">{$Think.lang._PUBLIC_EDIT_}</a><i></i><a class="delA" check-key="{$v.checkKey}" data-url="{:U('Invoice/delA',array('id'=>$v['invoice_id']))}" href="javascript:;">{$Think.lang._PUBLIC_DEL_}</a></div>
+							</dd>
+							</foreach>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+		<include file="Public/footer"/>
+		<style type="text/css">
+		.layui-upload-file{
+			display:none;
+		}
+		.disabled{
+			background-color:#dfdfdf !important;
+		}
+		</style>
+	</body>
+</html>

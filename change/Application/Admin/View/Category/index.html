@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>系列列表</title>
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/common.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/less/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/font/iconfont.css" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+	</head>
+	<body>
+		<div class="wrap">
+			<include file="Public/left"/>
+			<!--侧边栏代码结束-->
+			<div class="right">
+				<include file="Public/top"/>
+				<div class="right_bot float_left">
+					<!--页面主体内容开始-->
+					<div class="customer_box Customers">
+						<div class="customer_box">
+							<div class="Customer_top">
+								<div class="UID">系列列表</div>
+								<div class="handle">
+									<span><a href="{:U('Category/add')}">添加</a>&nbsp;&nbsp;&nbsp;&nbsp;<a id="sortBtn" href="javascript:;" data-url="{:U('Category/order')}">排序</a></span>
+								</div>
+								<div class="blue_wire"></div>
+							</div>
+						</div>
+						<div class="bot">
+							<div class="table">
+								<ul>
+									<li style="width:5%;">编号</li>
+									<li style="width:5%;">排序</li>
+									<li style="width:15%;">中文名称</li>
+									<li style="width:15%;">英文名称</li>
+									<li style="width:16%;">图片</li>
+									<li style="width:12%;">链接</li>
+									<li style="width:12%;">父级</li>
+									<li style="width:10%;">分类</li>
+									<li style="width:10%;">操作</li>
+								</ul>
+								<foreach name="category_info" item="ci">
+								<ul>
+									<li style="width:5%;">{$ci.category_id}</li>
+									<li style="width:5%;"><input style="width:80%" type="text" class="sort" data-id="{$ci.category_id}" value="{$ci.cat_sort}"/></li>
+									<li style="width:15%;text-align:left;">{$ci.cat_chinese_name}</li>
+									<li style="width:15%;">{$ci.cat_english_name}</li>
+									<li style="width:16%;"><notempty name="ci.cat_img"><img style="vertical-align:middle;" height="22" src='__PUBLIC__/{$ci.cat_img}'/><else/>无图片</notempty></li>
+									<li style="width:12%;">{$ci.cat_link|default='--'}</li>
+									<li style="width:12%;">{$ci.cat_parent}</li>
+									<li style="width:10%;">{$ci.cat_level}</li>
+									<li style="width:10%;"><a class="border_right" href="{:U('Category/edit',array('id'=>$ci['category_id']))}">修改</a>&nbsp;&nbsp;<a data-url="{:U('Category/del',array('id'=>$ci['category_id']))}" class="delCatBtn" data-key="{:md5($ci['category_id'])}" href="javascript:;">删除</a></li></a>
+								</ul>
+								</foreach>
+							</div>
+						</div>
+					</div>
+					<!--页面主体内容结束-->
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/common.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/category.js"></script>
+	</body>
+</html>

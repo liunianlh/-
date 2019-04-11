@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{$Think.lang._LOGIN_PAGE_}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/login.css" />
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/login.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript">
+		var url="{:U('Login/index')}";
+		</script>
+	</head>
+	<body>
+		<div class="login_box">
+			<div class="left">
+				<!--<img src="img/login.png"/>-->
+				<div class="word">
+					<div class="text_box">
+						<h3>Tonetron</h3>
+						<h5>ORDER SYSTEM</h5>
+					</div>
+					<div class="copyright">
+						©Copyright 2019 Tonetron Electronic LTD.,
+					</div>
+				</div>
+			</div>
+			<div class="center">
+				<div class="ico_sanjiao"></div>
+			</div>
+			<div class="right">
+				<div class="content">
+					<h1>Welcome</h1>
+					<form>
+						<div class="login-ic">
+							<div class="ico1"></div>
+							<div class="line"></div>
+							<input name="username"  id="email" type="text" value="{$duid}" placeholder="{$Think.lang._USN_}">
+						</div>
+						<div class="login-ic">
+							<div class="ico2"></div>
+							<div class="line"></div>
+							<input name="password" id="password" type="password" value="{$dpwd}" placeholder="{$Think.lang._PSD_}">
+						</div>
+					</form>
+						
+						<div class="login-affirm">
+							<input type="checkbox" id="duid" <notempty name="duid">checked</notempty> data-uid="no" id="duid"/>{$Think.lang._REMEMBER_UID_}
+							<input type="checkbox" id="dpwd" <notempty name="dpwd">checked</notempty> data-pwd="no" id="dpwd"/>{$Think.lang._REMEMBER_PASSWORD_}
+							<a href="{:U('Forget/index')}"><span class="margin-left-50 float-right blue"> {$Think.lang._FORGET_PASSWORD_}</span></a>
+						</div>
+						<span class="hide red" id="tip">账号或密码输入错误，还有4次机会</span>
+						<div class="login-submit">
+							<input id="register" class="disabled" data-qualified="no" type="submit"  value="{$Think.lang._LOGIN_}"/>
+						</div>
+						<a href="?hl=zh-cn" style="float:left;">{$Think.lang._PUBLIC_CHINESE_}/</a><a  style="float:left;" href="?hl=en-us">EN</a>
+						 <!--<a href="{:U('Register/index')}"><span class="float-right font-size-14 blue">{$Think.lang._REGISTER_}</span></a>-->
+						<div style="clear: both;margin-top: 10px;">{$Think.lang._IE8_TIP_}</div>
+				</div>
+			</div>
+		</div>
+		<style type="text/css">
+		.disabled{
+			background-color:#dfdfdf !important;
+		}
+		</style>
+	</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>站内信息发送</title>
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/common.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/less/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/font/iconfont.css" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		
+		<!--引用路径正确与否决定kindeditor是否被成功引用-->
+        <link rel="stylesheet" href="__PUBLIC__/plugins/kindeditor/themes/default/default.css"/>
+        <script charset="utf-8" src="__PUBLIC__/plugins/kindeditor/kindeditor.js"></script>
+        <script charset="utf-8" src="__PUBLIC__/plugins/kindeditor/lang/zh_CN.js"></script>
+        <script>
+        KindEditor.ready(function(K) {
+        	K.options.items = [
+		'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+		'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+		'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+		'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+		'formatblock', 'fontname', 'fontsize', '|','forecolor', 'hilitecolor', 'bold',
+		'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat'
+		]
+                window.editor = K.create('#editor_id');
+                
+        });
+		var searchUrl="{:U('Message/search')}";
+		var insertUrl="{:U('Message/insertO')}";
+		var importUrl="{:U('Message/upload')}";
+        </script>
+   		 <!--end kindeditor-->
+	</head>
+		<body>
+		<div class="wrap">
+			<include file="Public/left"/>
+			<!--侧边栏代码结束-->
+			<div class="right">
+				<include file="Public/top"/>
+				<div class="right_bot float_left">
+					<!--页面主体内容开始-->
+						<div class="customer_box common">
+							<div class="Customer_top">
+								<div class="UID">站内信息发送</div>
+								<div class="blue_wire"></div>
+							</div>
+							<div class="SendMessage">
+								<ul>
+									<li>
+										<div class="Message_left">
+											<span id="sendMsg" data-url="{:U('Message/send')}"><a href="javascript:;">发送</a></span>
+											<span id="fixedTime" style="position:relative;"><p id="start" style="position:absolute;background:rgba(0,0,0,0);width:100%;height:100%;top:0;left:0;color:rgba(0,0,0,0);"></p><a href="javascript:;">定时发送</a></span>
+											<span id="sendEmail" data-url="{:U('Email/index')}"><a href="javascript:;">转为邮件</a></span>
+										</div>
+										<div class="Message_right" id="addonMessageFz" style="display:none;">
+											<span>信件大小</span>
+											<span id="addonFz"></span>
+										</div>
+									</li>
+									<li>
+										<div>收件人:</div><input id="input_auto" type="text" value="">
+										<a class="lianxiren"><div class="add">+</div></a>
+									</li>
+									<li>
+										<div>主旨:</div><input id="input_title" type="text" value=""/>
+										<div class="insert" id="insertAttach" style="margin-right:60px;">插入附件</div>
+										<div class="insert" id="insertOrder">插入订单</div>
+									</li>
+									<li>
+										<textarea id="editor_id" name="content" style="width:100%;height:386px;"></textarea>
+									</li>
+									<li id="addonOrderLi" style="display:none;">
+										<div class="addon-order">
+											<div class="addon-img">
+												<img width=20 src="{$Think.const.ADMIN_RESOURCE}/img/link.svg" />
+											</div>
+											<div class="addon-order-list" id="addonOrderList">
+												
+											</div>
+											<div style="clear:both;"></div>
+										</div>
+										<div style="clear:both;"></div>
+									</li>
+									
+								</ul>
+								<!--收件人列表开始-->
+								<div class="modal_01 fade_01">
+									<div class="modal-body_01">
+										<div class="modal-header">
+											<div class="modal-title_01">
+												<span>插入联系人</span>
+												<a class="close_01" href="#">&times;</a>
+											</div>
+										</div>
+										<div class="modal-content_01">
+											<div class="content_table_01">
+												<ol>
+													<li>联系人</li>
+												</ol>
+												<ol id="contacts">
+													<foreach name="user_info" item="ui">
+													<li class="contacts" data-id="{$ui.user_uid}">{$ui.company_contacts}</li>
+													</foreach>
+												</ol>
+												<div><a href="javascript:;" id="confirmBtn">插入</a></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-backup_01"></div>
+								<!--收件人列表结束-->
+								<!--插入附件开始-->
+								<div class="modal_02 fade_02">
+									<div class="modal-body_02">
+										<div class="modal-header">
+											<div class="modal-title_02">
+												<span>插入订单</span>
+												<a class="close_02" href="#">&times;</a>
+											</div>
+										</div>
+										<div class="modal-content_02">
+											<div class="content_table_02">
+												<ol>
+													<li>订单编号</li>
+												</ol>
+												<ol>
+													<div class="search101">
+													 <form action="" class="search-form" method="" id="search-form">
+													  <input type="text" id="sou1" class="sou1" name="word" maxlength="8048" value="" placeholder="" baiduSug=1 onmouseover="focus()">
+													  <!-- <input type="submit" id="insertResult" value="插入"/> -->
+													 </form>
+										 			</div>	
+													<div id="searchResult" style="display:none;">
+														<dl id="searchResultList" class="search">
+														</dl>
+													</div>
+												</ol>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-backup_02"></div>
+								<!-- 插入附件结束-->
+							</div>
+						</div>
+					<!--页面主体内容结束-->
+				</div>
+			</div>
+			<div id="msgTip" style="display:none;position:fixed;padding:0 30px;text-align:center;line-height:50px;height:50px;border:1px solid #e7e7e7;border-radius:3px;box-shadow:0 0 2px #ccc;background-color:#fff;">
+				正在导入数据...
+			</div>
+		</div>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/common.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js"></script>
+		<script src="__PUBLIC__/plugins/laydate/laydate.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/message.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/import_file.js"></script>
+		<script>
+			 $(window).resize(function(){
+			var whole=$(document).height();
+			var h1=$(".wrap .left .left_top").height();
+			var h2=$(".wrap .left .left_bot").height();
+			$(".wrap .left .left_bot").css("margin-bottom",whole-h1-h2+"px");
+			console.log("whole"+whole);
+			var h3=$(".wrap .right .right_top").height();
+			var h4=$(".customer_box .Customer_top").height();
+			$(".customer_box .Customer_bot").css("height",(whole-h3-h4)/1.3+"px");
+		});
+		</script>
+		<script>
+	      $(function(){
+	      	//联系人信息
+	       	$(".lianxiren").on("click",function(){
+	       	 $(".modal_01").addClass("in_01");
+	       	 $(".modal_01").css('z-index','1001');
+	       	 $(".modal-backup_01").css('display','block');
+	       });
+	      	$(".close_01").on("click",function(){
+	       	 $(".modal_01").removeClass('in_01');
+	       	 $(".modal_01").css('z-index','-1');
+	       	 $(".modal-backup_01").css('display','none');
+	       });
+	       //插入附件
+	       
+			$("#insertOrder").on("click",function(){
+	       	 $(".modal_02").addClass("in_02");
+	       	 $(".modal_02").css('z-index','1001');
+	       	 $(".modal-backup_02").css('display','block');
+	       });
+	      	$(".close_02").on("click",function(){
+	       	 $(".modal_02").removeClass('in_02');
+	       	 $(".modal_02").css('z-index','-1');
+	       	 $(".modal-backup_02").css('display','none');
+	       });
+	      })
+		</script>
+		<script type="text/javascript">
+		laydate.skin('default');
+		var start = {
+		  elem: '#start',
+		  format: 'YYYY-MM-DD hh:mm:ss',
+		  min: '1970-08-00 00:00:00',
+		  max: '2036-06-16 23:59:59', //最大日期
+		  istime: true,
+		  istoday: false,
+		  choose: function(datas){
+			var selTime=$('#start').html();
+			sendMsg(selTime);
+		  }
+		};
+		laydate(start);
+		</script>
+		<script>
+   		 	window.onload=function(){
+   		 		  	var addon_order = $(".addon-order").height();
+					$(".addon-img").css({"height":addon_order+"px"});
+					var align_=(addon_order-20)/2;
+					$(".addon-img>img").css({"padding-top":align_+"px"}).show();
+   		 	}
+   		</script>
+		<style type="text/css">
+		.layui-upload-file{
+			display:none;
+		}
+		</style>
+	</body>
+</html>

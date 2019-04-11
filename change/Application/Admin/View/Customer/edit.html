@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>查看客户（编辑状态）</title>
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/common.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/less/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/font/iconfont.css" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<script type="text/javascript">
+		var url="{:U('Customer/edit',array('id'=>$id))}";
+		var url2="{:U('ACH/Area/getDist')}";
+		var getPCUrl="{:U('Area/getPC')}";
+		var getCUrl="{:U('Area/getC')}";
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<include file="Public/left"/>
+			<!--侧边栏代码结束-->
+			<div class="right">
+				<include file="Public/top"/>
+				<div class="right_bot float_left">
+					<!--页面主体内容开始-->
+					<div class="customer_box Customers">
+						<div class="Customer_top">
+							<div class="UID">UID:{$user_info.user_uid}</div>
+							<div class="handle font-size-14">
+								<a href="javascript:;" id="saveBtn" data-url="{:U('Customer/customerSave')}"><span>保存</span></a>
+								<div class="line"></div>
+								<a href="javascript:history.go(-1);"><span>返回</span></a>
+							</div>
+							<div class="blue_wire"></div>
+						</div>
+						<div class="message_model">
+							<div class="BOX">
+								<div class="box_01">
+									<ul>
+										<li><h1>会员信息</h1></li>
+										<li><span>注册时间</span><div><span>{$user_info.user_time|date="Y-m-d",###}</span><span>{$user_info.user_time|date="H:i:s",###}</span></div></li>
+										<li><span>联系人</span><div><input type="text" id="contacts" value="{$company_info.company_contacts}"/></div></li>
+										<li><span>联系电话</span><div><input type="text" id="contactsPhone" value="{$company_info.company_phone}"></div></li>
+										<li><span>联系邮箱</span><div><input type="text" id="contactsEmail" value="{$user_info.user_email}"></div></li>
+										<li><span>修改密码</span><div><input type="password" id="userPwd" data-id="{$user_info.user_id}"/><div data-id="{$user_info.user_id}" id="editPassword" data-url="{:U('Customer/editPassword')}" class="affirm">确认</div></div></li>
+										<li><span>账号状态</span>
+											<div>
+												<select id="accountStatus">
+													<option value="1" <eq name="user_info.account_status_id" value="1">selected</eq>>正常</option>
+													<option value="2" <eq name="user_info.account_status_id" value="2">selected</eq>>待审核</option>
+													<option value="3" <eq name="user_info.account_status_id" value="3">selected</eq>>失效</option>
+													<option value="4" <eq name="user_info.account_status_id" value="4">selected</eq>>注册失败</option>
+												</select>
+											</div>
+										</li>
+										<li><span>默认币种</span>
+											<div>
+												<select id="defaultCurrency">
+													<option value="RMB" <eq name="user_info.default_currency" value="RMB">selected</eq>>RMB</option>
+													<option value="USD" <eq name="user_info.default_currency" value="USD">selected</eq>>USD</option>
+<!--                                                                                                        <option value="FOB" <eq name="user_info.default_currency" value="FOB">selected</eq>>FOB</option>-->
+												</select>
+											</div>
+										</li>
+										<li><span>天心代码</span><div><input type="text" id="tianxinCode" value="{$user_info.tianxin_code}"></div></li>
+									</ul>
+								</div>
+							</div>
+							<div class="BOX">
+								<div class="box_01">
+									<ul>
+										<li><h1>公司信息</h1></li>
+										<li><span>公司名称</span><div><input type="text" id="companyName" value="{$company_info.company_name}"/></div></li>
+										<li><span>所在国家</span>
+											<div>
+												<select class="companyArea" autocomplete="off">
+													<foreach name="country_info" item="coi">
+													<option value="{$coi.country_id}" <eq name="logistics_info.logistics_country" value="$coi['country_name']">selected</eq>>{$coi['country_name']}</option>
+													</foreach>
+												</select>
+											</div>
+										</li>
+										<li><span>公司网站</span><div><input id="companyWebsit"  type="text" value="{$company_info.company_website}"/></div></li>
+										<li><span>邮政编码</span><div><input id="companyPostalcode" type="text" value="{$company_info.company_postalcode}"/></div></li>
+										<li><span>公司地址</span></li>
+										<li>
+											<span>
+												<select class="companyArea" id="logCountry" autocomplete="off" data-ori-prov="{$company_info.company_province}"  data-ori-city="{$company_info.company_city}">
+													<foreach name="country_info" item="coi">
+													<option value="{$coi.country_id}" <eq name="company_info.company_area" value="$coi['country_name']">selected</eq>>{$coi['country_name']}</option>
+													</foreach>
+												</select>
+											</span>
+											<div id="PCA"></div>
+										</li>
+										<li>
+											<textarea id="address">{$company_info.company_address}</textarea>
+										</li>
+										<li><span>会员等级</span>
+											<div>
+												<select id="grade" autocomplete="off">
+													<foreach name="grade_info" item="gi">
+													<option value="{$gi.grade_id}" <eq name="user_info.grade_id" value="$gi['grade_id']">selected</eq>>{$gi.gr_chinese_name}</option>
+													</foreach>
+												</select>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="BOX">
+								<div class="box_01">
+									<ul>
+										<li><h1>订单信息</h1></li>
+										<li><span>订单数量</span><div><span>{$order_collect_info.all}</span></div></li>
+										<li><span>完成数量</span><div><span >{$order_collect_info.completed}</span></div></li>
+										<li><span>本月订单数量</span><div><span>{$order_collect_info.current}</span></div></li>
+										<li><span>本月订单金额</span><div><span>USD&nbsp;&nbsp;</span><span>${$order_collect_info.usd|number_format=###}</span></div></li>
+										<li><span>&#12288;</span><div><span>RMB&nbsp;&nbsp;</span><span>￥{$order_collect_info.rmb|number_format=###}</span></div></li>
+										<li><span>取消数量</span><div><span>{$order_collect_info.canceled}</span></div></li>
+										<li><span>最后下单日期</span><div><span >{$order_collect_info.last_time}</span></div></li>
+									</ul>
+								</div>
+								<div class="box_01">
+									<ul>
+										<li><h1>折扣</h1></li>
+										<li><span>折扣</span><div><input type="text" id="discount" value="{$user_info.discount}"/></div></li>
+										<li><span>折扣开始日期</span><div><input autocomplete="off" id="kaishi" value="{$user_info.start_time}"/></div></li>
+										<li><span>折扣结束日期</span><div><input autocomplete="off" id="jieshu" value="{$user_info.end_time}"/></div></li>
+									</ul>
+								</div>
+							</div>
+							<div class="BOX">
+								<div class="box_01">
+									<ul>
+										<li><h1>业务信息</h1></li>
+										<li><span>业务专员</span>
+											<div>
+											<select id="operator" autocomplete="off" data-url="{:U('Admin/getAdminInfo')}">
+												<foreach name="admin_infos" item="ai">
+												<option value="{$ai.admin_id}" <eq name="user_info.admin_id" value="$ai['admin_id']">selected</eq>>{$ai.admin_name}</option>
+												</foreach>
+											</select>
+											</div>
+										</li>
+										<li><span>邮箱地址</span><div><span id="adminEmail"></span></div></li>
+									</ul>
+								</div>
+								<div class="box_01">
+									<ul>
+										<li><h1>有效期</h1></li>
+										<li><span>合约到期日</span>
+											<div>
+											<ul class="timer">
+												<li><input type="text" autocomplete="off" id="year" value="{$contract_time[0]|default=''}"/><span>年</span><input autocomplete="off" type="text" id="month" value="{$contract_time[1]|default=''}" /><span>月</span><input autocomplete="off" type="text" id="day" value="{$contract_time[2]|default=''}" /><span>日</span></li>
+												<li><input type="text" autocomplete="off" id="hour" value="{$contract_time[3]|default=''}"/><span>时</span><input autocomplete="off" type="text" id="minute" value="{$contract_time[4]|default=''}"/><span>分</span><input autocomplete="off" type="text" id="second" value="{$contract_time[5]|default=''}"/><span>秒</span></li>
+											</ul>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="top clear">
+							<dl>
+								<dt>
+									<span>起始日期</span><input autocomplete="off" id="start" type="date"/><div class="hr"></div><input autocomplete="off" id="end" type="date" />
+								</dt>
+								<dt>
+									<span>订单状态</span>
+									<select id="orderStatus" autocomplete="off">
+										<option value="0">全部</option>
+										<option value="1">待处理</option>
+										<option value="3">已完成</option>
+										<option value="4">已取消</option>
+									</select>
+								</dt>
+								<dt>
+									<span>PO单号</span><input id="PONumber" type="text"/>
+								</dt>
+								<dt>
+									<span>流水单号</span><input id="serialNumber" type="text" />
+								</dt>
+							</dl>
+						</div>
+						<div class="bot">
+							<div class="table edit_table orderList">
+								<ul>
+									<li style="width:6%;">状态</li>
+									<li>PO单号</li>
+									<li style="width:15%;">流水单号</li>
+									<li>下单日期</li>
+									<li>上次操作日期</li>
+									<li>币种</li>
+									<li>UID</li>
+									<li style="width:6%;">业务员</li>
+									<li>操作</li>
+								</ul>
+								<foreach name="order_info" item="oi">
+								<ul class="orderItem">
+									<li style="width:6%;">
+										<switch name="oi.order_status">
+											<case value="1">待处理</case>
+											<case value="6">待确认</case>
+											<case value="2">已确认</case>
+											<case value="3">已完成</case>
+											<case value="4">已取消</case>
+											<case value="5">运输中</case>
+											<default/>--
+										</switch>
+									</li>
+									<li>{$oi.order_ponumber}</li>
+									<li style="width:15%;">{$oi.order_serial_number}</li>
+									<li>{$oi.order_time|date="Y-m-d",###}</li>
+									<li>2017-07-03</li>
+									<li>{$oi.order_currency}</li>
+									<li>{$oi.user_uid}</li>
+									<li style="width:6%;">{$oi.admin_name|default='--'}</li>
+									<li>
+										<a href="{:U('Order/view',array('id'=>$oi['order_id']))}"><span>查看</span></a>
+										<a target="_blank" href="{:U('Print/orderPrint',array('id'=>$oi['order_id']))}"><span>打印</span></a>
+										<a target="_blank" href="{:U('Order/downloadOrder',array('id'=>$oi['order_id']))}"><span>下载</span></a>
+										<a href="{:U('Order/ERPOrder',array('id'=>$oi['order_id']))}"><span>ERP</span></a>
+									</li>
+								</ul>
+								</foreach>
+							</div>
+							<div class="slider">
+								<ul class="page" data-cur-page=''  id="page">
+									{$page}
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!--页面主体内容结束-->
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/common.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/customerEdit.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js"></script>
+		<script src="__PUBLIC__/plugins/laydate/laydate.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/customerEdit2.js"></script>
+		<script type="text/javascript">
+			laydate.skin('default');
+			var start = {
+				elem: '#kaishi',
+				format: 'YYYY-MM-DD',
+				min: '1970-08-00',
+				max: '2036-06-16', //最大日期
+				istime: true,
+				istoday: false,
+				choose: function(datas){
+					end.min = datas;
+					end.start = datas;
+//					where=wrapCondition();
+//					dataDeal(url,where);
+				},
+				order:function(){
+//					where=wrapCondition();
+//					dataDeal(url,where);
+				}
+			};
+			var end = {
+				elem: '#jieshu',
+				format: 'YYYY-MM-DD',
+				min: '1970-08-00',
+				max: '2036-06-16',
+				istime: true,
+				istoday: false,
+				choose: function(datas){
+					start.max = datas;
+//					where=wrapCondition();
+//					dataDeal(url,where);
+				},
+				order:function(){
+//					where=wrapCondition();
+//					dataDeal(url,where);
+				}
+			};
+			laydate(start);
+			laydate(end);
+		</script>
+
+		<script type="text/javascript">
+		laydate.skin('default');
+		var start = {
+		  elem: '#start',
+		  format: 'YYYY-MM-DD hh:mm:ss',
+		  min: laydate.now(), //设定最小日期为当前日期
+		  max: '2036-06-16 23:59:59', //最大日期
+		  istime: true,
+		  istoday: false,
+		  choose: function(datas){
+			 end.min = datas;
+			 end.start = datas,
+			 where=wrapCondition();
+			 dataDeal(url,where);
+		  },
+		  order:function(){
+			 where=wrapCondition();
+			 dataDeal(url,where);
+		  }
+		};
+		var end = {
+		  elem: '#end',
+		  format: 'YYYY-MM-DD hh:mm:ss',
+		  min: laydate.now(),
+		  max: '2036-06-16 23:59:59',
+		  istime: true,
+		  istoday: false,
+		  choose: function(datas){
+			start.max = datas;
+			where=wrapCondition();
+			dataDeal(url,where);
+		  },
+		  order:function(){
+			 where=wrapCondition();
+			 dataDeal(url,where);
+		  }
+		};
+		laydate(start);
+		laydate(end);
+		</script>
+	</body>
+</html>

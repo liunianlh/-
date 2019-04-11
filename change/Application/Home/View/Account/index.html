@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang._PUBLIC_ACCOUNT_INFO_}</title>
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+		<link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+	</head>
+	<body class="shopping_confirm order_view">
+		<include file="Public/header"/>
+		<include file="Public/first"/>
+		<!--主体第二层-->
+		<div class="content_Bf">
+			<div class="shopping_top">
+				<ul>
+					<li><a href="{$Think.const.WEB_ROOT}">{$Think.lang._INDEX_}</a></li><span>-</span>
+					<li><a href="{:U('Account/index')}">{$Think.lang._PUBLIC_ACCOUNT_}</a></li>
+				</ul>
+			</div>
+			<div class="All_Orders">
+				<include file="Public/nav"/>
+				<div class="OrderTable">
+					<!--1账户信息模块-->
+					<div class="AccountInfo_table01 AccountBOX">
+						<div class="info_nav">{$Think.lang._PUBLIC_ACCOUNT_INFO_}<a href="{:U('Account/account')}">{$Think.lang._PUBLIC_EDIT_}</a></div>
+						<ul>
+							<li><span>{$Think.lang._PUBLIC_UID_NUMBER_}:</span><span>{$user_info.user_uid}</span></li>
+							<li><span>{$Think.lang._PUBLIC_COMPANY_NAME_}:</span><span>{$company_info.company_name}</span></li>
+							<li><span>{$Think.lang._PUBLIC_ACCOUNT_PWD_}:</span><span><a href="{:U('EditPassword/index')}">修改密码</a></span></li>
+							<li><span>{$Think.lang._PUBLIC_COUNTRY_}:</span><span>{$company_info.company_area}</span></li>
+							<li><span>{$Think.lang._PUBLIC_CONTACT_NAME_}:</span><span>{$company_info.company_contacts}</span></li>
+							<li><span>{$Think.lang._PUBLIC_EMAIL_}:</span><span>{$user_info.user_email}</span></li>
+							<li><span>{$Think.lang._PUBLIC_CONTACT_PHONE_}:</span><span>{$company_info.company_phone}</span></li>
+						</ul>
+						<div class="info_nav">{$Think.lang._PUBLIC_INVOICE_INFO_}<a href="{:U('Invoice/index')}">{$Think.lang._PUBLIC_EDIT_}</a></div>
+						<dl>
+						<foreach name="invoice_info" item="ii">
+							<dd>
+								<input type="radio" name="wuliu02"/><span><eq name="ii.invoice_type_id" value="1">个人<else/>单位专用发票</eq></span><span><eq name="ii.invoice_type_id" value="1">{$ii.invoice_name}<else/>{$ii.invoice_credit}</eq></span><span><eq name="ii.invoice_content_id" value="1">大类<else/>明细</eq></span>
+							</dd>
+						</foreach>	
+						</dl>
+						<div class="info_nav">{$Think.lang._PUBLIC_FORWORDER_INFO_}<a href="{:U('Forworder/index')}">{$Think.lang._PUBLIC_EDIT_}</a></div>
+						<dl>
+						<foreach name="forworder_info" item="fi">
+							<dd>
+								<input type="radio" name="wuliu01"/><span class="width_name">{$fi.for_receiver}</span><span class="width_phone">{$fi.for_receiver_phone}</span><span class="width_country">{$fi.for_country}</span><span class="width_province">{$fi.for_province}</span><span class="width_city">{$fi.for_city}</span><span class="width_dist">{$fi.for_dist}</span><span  class="width_address">{$fi.for_address}</span><span class="width_shipment">{$fi.for_shipment}</span>
+							</dd>
+							</dd>
+						</foreach>	
+						</dl>
+						<div class="info_nav">{$Think.lang._PUBLIC_LOGISTICS_INFO_}<a href="{:U('Logistics/index')}">{$Think.lang._PUBLIC_EDIT_}</a></div>
+						<dl>
+							<foreach name="logistics_info" item="li">
+							<dd>
+								<input type="radio"name="wuliu"/><span class="width_name">{$li.logistics_receiver}</span><span class="width_phone">{$li.logistics_receiver_phone}</span><span class="width_country">{$li.logistics_country}</span><span class="width_province">{$li.logistics_province}</span><span class="width_city">{$li.logistics_city}</span><span class="width_dist">{$li.logistics_dist}</span><span class="width_address">{$li.logistics_address}</span>
+							</foreach>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+		<include file="Public/footer"/>
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+	</body>
+</html>

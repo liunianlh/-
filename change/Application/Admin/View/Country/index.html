@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>国家列表</title>
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/common.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/less/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/font/iconfont.css" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+	</head>
+	<body>
+		<div class="wrap">
+			<include file="Public/left"/>
+			<!--侧边栏代码结束-->
+			<div class="right">
+				<include file="Public/top"/>
+				<div class="right_bot float_left">
+					<!--页面主体内容开始-->
+					<div class="customer_box Customers">
+						<div class="customer_box">
+							<div class="Customer_top">
+								<div class="UID">国家列表</div>
+								<div class="blue_wire"></div>
+							</div>
+						</div>
+						<div class="bot">
+							<div class="table">
+								<ul>
+									<li style="width:5%;">编号</li>
+									<li style="width:40%;">中文名称</li>
+									<li style="width:40%;">英文名称</li>
+									<li style="width:15%;">操作</li>
+								</ul>
+								<foreach name="country_info" item="ci">
+								<ul>
+									<li style="width:5%;">{$ci.country_id}</li>
+									<li style="width:40%;">{$ci.country_name}</li>
+									<li style="width:40%;">{$ci.country_name2}</li>
+									<li style="width:15%;"><a href="{:U('Country/edit',array('id'=>$ci['country_id']))}">修改</a></li>
+								</ul>
+								</foreach>
+							</div>
+						</div>
+					</div>
+					<!--页面主体内容结束-->
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/common.js"></script>
+	</body>
+</html>

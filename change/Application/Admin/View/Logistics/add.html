@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>新增-修改模板</title>
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/common.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/css/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/less/style.css" />
+		<link rel="stylesheet" href="{$Think.const.ADMIN_RESOURCE}/font/iconfont.css" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<script type="text/javascript">
+		var url="{:U('ACH/Area/getCity')}";
+		var url2="{:U('Logistics/add')}";
+		</script>
+	</head>
+		<body>
+		<div class="wrap">
+			<include file="Public/left"/>
+			<!--侧边栏代码结束-->
+			<div class="right">
+				<include file="Public/top"/>
+				<div class="right_bot float_left">
+					<!--页面主体内容开始-->
+						<div class="customer_box SF wuliu_template common">
+							<div class="Customer_top">
+								<div class="UID">新增/修改模板</div>
+								<div class="blue_wire"></div>
+							</div>
+							<div class="add_template">
+								<div class="template_left">
+									<ul>
+										<li>
+											<span>模板名称</span>
+											<div><select id="logisticsTplName">
+											<foreach name="logistics_company" item="lc">
+											<option value="{$lc.logistics_company_id}">{$lc.logistics_company_name}</option>
+											</foreach>
+											</select></div>
+										</li>
+										<li>
+											<span>运送地区</span>
+											<div><input id="transportArea" autocomplete="off" type="text" /><a href="javascript:;" id="openArea">新增</a></div>
+										</li>
+										<li>
+											<span>计价方式</span>
+											<div>
+												<label><input type="radio" name="type_A" class="priceWay"  value="1" checked="checked"/>按件数</label>
+												<label><input type="radio" name="type_A" class="priceWay" value="2"/>按重量(KG)</label>
+												<label><input type="radio" name="type_A" class="priceWay" value="3"/>按材积</label>
+											</div>
+										</li>
+										<li>
+											<span>运费币别</span>
+											<div>
+												<label><input type="radio" name="type_B" class="transCurrency"  value="1" checked="checked"/>RMB</label>
+												<label><input type="radio" name="type_B" class="transCurrency" value="2"/>USD</label>
+											</div>
+										</li>
+										<li>
+											<span class="firstWeightTitle">首重(件)</span>
+											<div><input id="firstWeight" type="text" /> <span>费用</span><input id="firstFee" type="text" /></div>
+										</li>
+										<li>
+											<span class="secondWeightTitle" >次重(件)</span>
+											<div><input id="secondWeight" type="text" /> <span>费用</span><input id="secondFee" type="text" /></div>
+										</li>
+										<li>
+											<a href="javascript:;" data-id="0" class="addTransAreaBtn"><input type="button" value="新增地区" /></a>
+										</li>
+									</ul>
+								</div>
+								<div class="template_right" id="areaSelectBox" style="display:none;">
+									<nav>
+										<p>选择区域</p>
+										<a href="javascript:;" id="closeArea"><span>关闭</span></a>
+									</nav>
+									<ul class="diqu">
+										<li>
+											<input type="checkbox" class="bigDist"/><span>华北</span>
+										</li>
+										<ul class="sheng">
+											<foreach name="area_info.area0" item="ai0" key="key0">
+											<li><input class="areaCBX" autocomplete="off" value="{$ai0.area_id}" type="checkbox"/><span>{$ai0.area_name}</span></li>
+											</foreach>
+											<ul class="shi">
+												
+											</ul>
+										</ul>
+										<li><input type="checkbox" class="bigDist"/><span>华东</span></li>
+										<ul class="sheng">
+											<foreach name="area_info.area1" item="ai1" key="key1">
+											<li><input class="areaCBX" autocomplete="off" value="{$ai1.area_id}" type="checkbox"/><span>{$ai1.area_name}</span></li>
+											</foreach>
+											<ul class="shi">
+												
+											</ul>
+										</ul>
+										<li><input type="checkbox" class="bigDist"/><span>华南</span></li>
+										<ul class="sheng">
+											<foreach name="area_info.area2" item="ai2" key="key2">
+											<li><input class="areaCBX" autocomplete="off" value="{$ai2.area_id}" type="checkbox"/><span>{$ai2.area_name}</span></li>
+											</foreach>
+											<ul class="shi">
+												
+											</ul>
+										</ul>
+										<li><input type="checkbox" class="bigDist"/><span>华中</span></li>
+										<ul class="sheng">
+											<foreach name="area_info.area3" item="ai3" key="key3">
+											<li><input class="areaCBX" autocomplete="off" value="{$ai3.area_id}" type="checkbox"/><span>{$ai3.area_name}</span></li>
+											</foreach>
+											<ul class="shi">
+												
+											</ul>
+										</ul>
+										<li><input type="checkbox" class="bigDist"/><span>东北</span></li>
+										<ul class="sheng">
+											<foreach name="area_info.area4" item="ai4" key="key4">
+											<li><input class="areaCBX" autocomplete="off" value="{$ai4.area_id}" type="checkbox"/><span>{$ai4.area_name}</span></li>
+											</foreach>
+											<ul class="shi">
+												
+											</ul>
+										</ul>
+										<li><input type="checkbox" class="bigDist"/><span>西南</span></li>
+										<ul class="sheng">
+											<foreach name="area_info.area5" item="ai5" key="key5">
+											<li><input class="areaCBX" autocomplete="off" value="{$ai5.area_id}" type="checkbox"/><span>{$ai5.area_name}</span></li>
+											</foreach>
+											<ul class="shi">
+												
+											</ul>
+										</ul>
+										<li><input type="checkbox" class="bigDist"/><span>西北</span></li>
+										<ul class="sheng">
+											<foreach name="area_info.area6" item="ai6" key="key6">
+											<li><input class="areaCBX" autocomplete="off" value="{$ai6.area_id}" type="checkbox"/><span>{$ai6.area_name}</span></li>
+											</foreach>
+											<ul class="shi">
+												
+											</ul>
+										</ul>
+										<li><input type="checkbox" class="bigDist"/><span>港澳台</span></li>
+										<ul class="sheng">
+											<foreach name="area_info.area7" item="ai7" key="key7">
+											<li><input class="areaCBX" autocomplete="off" value="{$ai7.area_id}" type="checkbox"/><span>{$ai7.area_name}</span></li>
+											</foreach>
+											<ul class="shi">
+												
+											</ul>
+										</ul>
+									</ul>
+								</div>
+							</div>
+							<notempty name="logistics_info">
+							<div class="Customer_top margin_top_45">
+								<div class="UID">{$logistics_info[0]['logistics_tpl_name']}</div>
+								<!--<div class="handle font-size-14">
+									<span><a  href="">复制模板</a></span>
+									<span><a  href="">修改</a></span>
+									<span><a  href="">删除</a></span>
+								</div>-->
+								<!--<div class="blue_wire"></div>-->
+							</div>
+							<div class="SF_table">
+								<ul>
+									<li>运送地区</li>
+									<li>首重<br>(KG)</li>
+									<li>费用<br>(RMB)</li>
+									<li>续重<br>(KG)</li>
+									<li>费用<br>(RMB)</li>
+									<!-- <li>本月费用</li> -->
+									<!-- <li>本月使用次数</li> -->
+									<li>操作</li>
+								</ul>
+								<foreach name="logistics_info" item="li">
+								<ul>
+									<li>{$li.logistics_tpl_area}</li>
+									<li>{$li.logistics_tpl_first_weight}</li>
+									<li>{$li.logistics_tpl_first_fee}</li>
+									<li>{$li.logistics_tpl_second_weight}</li>
+									<li>{$li.logistics_tpl_second_fee}</li>
+									<!-- <li>12</li> -->
+									<!-- <li>12</li> -->
+									<li><a class="border_right tplEdit" href="javascript:;"  data-url="{:U('Logistics/tplEdit',array('id'=>$li['logistics_tpl_id']))}">修改</a><a href="javascript:;" class="tplDel" data-url="{:U('Logistics/tplDel',array('id'=>$li['logistics_tpl_id']))}">删除</a></li>
+								</ul>
+								</foreach>
+							</div>
+							</notempty>
+						</div>
+					<!--页面主体内容结束-->
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/common.js"></script>
+		<script src="{$Think.const.ADMIN_RESOURCE}/js/logisticsAdd.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js"></script>
+		<script>
+			 $(window).resize(function(){
+			var whole=$(document).height();
+			var h1=$(".wrap .left .left_top").height();
+			var h2=$(".wrap .left .left_bot").height();
+			$(".wrap .left .left_bot").css("margin-bottom",whole-h1-h2+"px");
+			console.log("whole"+whole);
+			var h3=$(".wrap .right .right_top").height();
+			var h4=$(".customer_box .Customer_top").height();
+			$(".customer_box .Customer_bot").css("height",(whole-h3-h4)/1.3+"px");
+			
+		});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{$Think.lang._PUBLIC_ALL_ORDERS_}</title>
+    <link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+    <link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+    <script type="text/javascript">
+        var url = "{:U('Order/index')}";
+        var waiting = "{$Think.lang._PUBLIC_WAIT_}";
+        var transit = "{$Think.lang._PUBLIC_ORDER_TRANSIT_}";
+        var completed = "{$Think.lang._PUBLIC_COMPLETE_}";
+        var canceled = "{$Think.lang._PUBLIC_CANCEL_}";
+        var confired = "{$Think.lang._PUBLIC_CONFIRED_}";
+        var waitConfired = "{$Think.lang._PUBLIC_WAIT_CONFIRM_}";
+        var view = "{$Think.lang._PUBLIC_ORDER_VIEW_}";
+        var download = "{$Think.lang._PUBLIC_ORDER_DOWNLOAD_}";
+    </script>
+</head>
+
+<body class="shopping_confirm order_view">
+    <include file="Public/header" />
+    <include file="Public/first" />
+    <!--主体第二层-->
+    <div class="content_Bf">
+        <div class="shopping_top">
+            <ul>
+                <li><a href="{$Think.const.WEB_ROOT}">{$Think.lang._INDEX_}</a></li><span>-</span>
+                <li><a href="">{$Think.lang._PUBLIC_ORDER_DETAIL_}</a></li>
+            </ul>
+        </div>
+        <div class="All_Orders">
+            <include file="Public/nav" />
+            <div class="OrderTable">
+                <!--1我的账户信息模块-->
+                <div class="order_table01 orderList">
+                    <dl>
+                        <p>{$Think.lang._PUBLIC_ALL_ORDERS_}</p>
+                        <dd><span>{$Think.lang._PUBLIC_START_END_}</span>
+                            <div><input id="start" /><a>一</a><input id="end" /><a class="dataValue" data-value="1" href="javascript:;">{$Think.lang._PUBLIC_TODAY_}</a><a class="dataValue" data-value='2' href="javascript:;">{$Think.lang._PUBLIC_WEEK_}</a><a
+                                    class="dataValue" data-value="3" href="javascript:;">{$Think.lang._PUBLIC_A_MONTH_}</a><a class="dataValue" data-value="4" href="javascript:;">{$Think.lang._PUBLIC_THREE_MONTH_}</a><a class="dataValue" data-value="5"
+                                    href="javascript:;">{$Think.lang._PUBLIC_A_YEAR_}</a></div>
+                        </dd>
+                        <dd><span>
+                                <!--{$Think.lang._PUBLIC_ORDER_STATUS_}-->
+                            </span>
+                            <div>
+                                <select id="orderStatus" autocomplete="off">
+                                    <option value="0">{$Think.lang._PUBLIC_ALL_}</option>
+                                    <option value="1">{$Think.lang._PUBLIC_WAIT_}</option>
+                                    <option value="5">{$Think.lang._PUBLIC_ORDER_TRANSIT_}</option>
+                                    <option value="4">{$Think.lang._PUBLIC_CANCEL_}</option>
+                                </select> <a>{$Think.lang._PUBLIC_CURRENCY_}</a>
+                                <select id="orderCurrency">
+                                    <option value="0">{$Think.lang._PUBLIC_ALL_}</option>
+                                    <option value="RMB">RMB</option>
+                                    <option value="USD">USD</option>
+                                </select>
+                            </div>
+                        </dd>
+                        <dd><span>
+                                <!--{$Think.lang._PUBLIC_PONUMBER_}-->
+                            </span>
+                            <div><input id="PONumber" type="text" /></div>
+                        </dd>
+                        <dd><span>&nbsp;</span>
+                            <div><a class="searchBtn" href="javascript:;">{$Think.lang._PUBLIC_FILTER_}</a></div>
+                        </dd>
+                    </dl>
+                    <ul>
+                        <li>{$Think.lang._PUBLIC_ORDER_STATUS_}</li>
+                        <li>{$Think.lang._PUBLIC_PONUMBER_}</li>
+                        <li style="width:18%;">{$Think.lang._PUBLIC_SERIAL_NUMBER_}</li>
+                        <li>{$Think.lang._PUBLIC_ORDER_DATE_}</li>
+                        <li style="width:12%;">{$Think.lang._PUBLIC_ORDER_MONEY_}</li>
+                        <li style="width:12%;">{$Think.lang._PUBLIC_CURRENCY_}</li>
+                        <li>{$Think.lang._PUBLIC_ORDER_LIST_}</li>
+                    </ul>
+                    <foreach name="order_info" item="oi">
+                        <ul class="orderItem">
+                            <li>
+                                <switch name="oi.order_status">
+                                    <case value="1">{$Think.lang._PUBLIC_WAIT_}</case>
+                                    <case value="2">{$Think.lang._PUBLIC_CONFIRED_}</case>
+                                    <case value="3">{$Think.lang._PUBLIC_COMPLETE_}</case>
+                                    <case value="4">{$Think.lang._PUBLIC_CANCEL_}</case>
+                                    <case value="5">{$Think.lang._PUBLIC_ORDER_TRANSIT_}</case>
+                                    <case value="6">{$Think.lang._PUBLIC_WAIT_CONFIRM_}</case>
+                                    <default />--
+                                </switch>
+                            </li>
+                            <li>{$oi.order_ponumber}</li>
+                            <li style="width:18%;">{$oi.order_serial_number}</li>
+                            <li>{$oi.order_time|date="Y-m-d",###}</li>
+                            <li style="width:12%;">{$oi.order_total_price|number_format=###}</li>
+                            <li style="width:12%;">{$oi.order_currency}</li>
+                            <li>
+                                <a href="{:U('Order/view',array('id'=>$oi['order_id']))}"><span class="border_r">{$Think.lang._PUBLIC_ORDER_VIEW_}</span></a>
+                                <a target="_blank" href="{:U('Order/downloadOrder',array('id'=>$oi['order_id']))}"><span>{$Think.lang._PUBLIC_ORDER_DOWNLOAD_}</span></a>
+                                <!--<a target="_blank" href="{:U('Admin/Order/ERPOrder',array('id'=>$oi['order_id']))}"><span >ERP</span></a>-->
+                            </li>
+                        </ul>
+                    </foreach>
+                    <div class="slider orderPage">
+                        <ul class="page" data-cur-page='' id="page">
+                            {$page}
+                        </ul>
+                    </div>
+                </div>
+                <!--2全部订单-->
+                <div class="order_table01"></div>
+                <!--3修改账号密码-->
+                <div class="order_table01">
+
+                </div>
+                <!--2联系太昶客服-->
+                <div class="order_table01">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+    <script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+    <script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+    <script src="{$Think.const.HOME_RESOURCE}/js/orderList.js"></script>
+    <script src="__PUBLIC__/plugins/laydate/laydate.js"></script>
+    <script type="text/javascript">
+        laydate.skin('default');
+        var start = {
+            elem: '#start',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            min: '1970-08-00 00:00:00',
+            max: '2036-06-16 23:59:59', //最大日期
+            istime: true,
+            istoday: false,
+            choose: function(datas) {
+                end.min = datas;
+                end.start = datas,
+                    where = wrapCondition();
+                dataDeal(url, where);
+            },
+            order: function() {
+                where = wrapCondition();
+                dataDeal(url, where);
+            }
+        };
+        var end = {
+            elem: '#end',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            min: '1970-08-00 00:00:00',
+            max: '2036-06-16 23:59:59',
+            istime: true,
+            istoday: false,
+            choose: function(datas) {
+                start.max = datas;
+                where = wrapCondition();
+                dataDeal(url, where);
+            },
+            order: function() {
+                where = wrapCondition();
+                dataDeal(url, where);
+            }
+        };
+        laydate(start);
+        laydate(end);
+    </script>
+    <!--底部底部版权-->
+
+    <include file="Public/footer" />
+    <script>
+        $(function() {
+            $(".All_Orders .order_nav ul li").click(function() {
+                $(this).addClass("on").siblings().removeClass("on"); //切换选中的按钮高亮状态
+                var index = $(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
+                $(".OrderTable > div").eq(index).show().siblings().hide(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
+            });
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$Think.lang._PUBLIC_ACCOUNT_INFO_}</title>
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/css/swiper.min.css">
+		<link href="{$Think.const.HOME_RESOURCE}/css/zzsc.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+	</head>
+	<body class="shopping_confirm order_view">
+		<include file="Public/header"/>
+		<include file="Public/first"/>
+		<!--主体第二层-->
+		<div class="content_Bf">
+			<div class="shopping_top">
+				<ul>
+					<li><a href="{$Think.const.WEB_ROOT}">{$Think.lang._INDEX_}</a></li><span>-</span>
+					<li><a href="{:U('Account/index')}">{$Think.lang._PUBLIC_ACCOUNT_}</a></li>
+				</ul>
+			</div>
+			<div class="All_Orders">
+				<include file="Public/nav"/>
+				<div class="OrderTable">
+					<!--1账户信息模块-->
+					<div class="AccountInfo_table01">
+						<div class="info_nav">{$Think.lang._PUBLIC_ACCOUNT_INFO_}</div>
+						<ul>
+							<li><span>{$Think.lang._PUBLIC_UID_NUMBER_}:</span><span>{$user_info['user_uid']}</span></li>
+							<li><span>{$Think.lang._PUBLIC_COMPANY_NAME_}:</span><span>{$company_info['company_name']}</span></li>
+							<li><span>{$Think.lang._PUBLIC_ACCOUNT_PWD_}:</span><span><a href="{:U('EditPassword/index')}">修改密码</a></span></li>
+							<li><span>{$Think.lang._PUBLIC_COUNTRY_}:</span><span><select id="country">
+							<foreach name="country_info" item="ci">
+							<option value="{$ci.country_name}" <eq name="ci.country_name" value="$company_info['company_area']">selected</eq>>{$ci.country_name}</option>
+							</foreach>
+							</select></span></li>
+							<li><span>{$Think.lang._PUBLIC_CONTACT_NAME_}:</span><span><input id="contacts" type="text" value="{$company_info['company_contacts']}"/></span></li>
+							<li><span>{$Think.lang._PUBLIC_EMAIL_}:</span><span><input id="email" type="text" value="{$user_info['user_email']}"/></span></li>
+							<li><span>{$Think.lang._PUBLIC_CONTACT_PHONE_}:</span><span><input id="phone" type="text" value="{$company_info['company_phone']}"/></span></li>
+							<li><span></span><span class="saveBtn active" data-url="{:U('Account/account')}" data-qualified="yes" id="saveBtn" style="">{$Think.lang._PUBLIC_SAVE_BTN_}</span></li>
+							<style type="text/css">
+							.saveBtn{
+								padding:3px 12px;
+								border-radius:3px;
+								background-color:#dfdfdf;
+								color:#999;
+								cursor:pointer;
+							}
+							.active{
+								background-color:#0684c6;
+								color:#fff;
+							}
+							</style>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/common.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/account.js?v=1.1"></script>
+		<include file="Public/footer"/>
+	</body>
+</html>

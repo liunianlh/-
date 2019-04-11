@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{$Think.lang._PUBLIC_CERTIFICATE_}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet/less" type="text/css" href="{$Think.const.HOME_RESOURCE}/less/style.less">
+		<!-- <script src="{$Think.const.HOME_RESOURCE}/js/less.js" type="text/javascript"></script> -->
+		<link rel="stylesheet" href="{$Think.const.HOME_RESOURCE}/less/style.css" />
+		<script src="{$Think.const.HOME_RESOURCE}/js/jquery-1.8.0.min.js"></script>
+		<script src="__PUBLIC__/plugins/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript">
+		var url="{:U('Register/upload',array('category'=>'_xxxxx_'))}";
+		var loginUrl="{:U('Login/index')}";
+		</script>
+		<script src="{$Think.const.HOME_RESOURCE}/js/license.js"></script>
+	</head>
+	<body class="password">
+		<div id="screen" style="display:none;position:fixed;width:100%;height:100%;background-color:rgba(247,247,247,0.3);z-index:1000;"></div>
+		<div id="msgTip2" style="display:none;position:fixed;padding:0 30px;text-align:center;line-height:50px;height:50px;border:1px solid #e7e7e7;border-radius:3px;box-shadow:0 0 2px #ccc;background-color:#fff;z-index:2000;">
+			<div style="display:inline-block;width:12px;height:12px;line-height:12px;width:205px;position:relative;">
+				<span style="position:absolute;left:0;top:0;width:205px;height:12px;display:inline-block;background-color:#e7e7e7;border-radius:6px;"></span>
+				<span id="progressNum" style="position:absolute;left:0;top:0;width:5px;height:12px;display:inline-block;background-color:#008cd6;border-radius:6px;"></span>
+			</div>
+			<div style="display:inline-block;width:12px;line-height:12px;padding:0 10px;">
+				<span id="progressTip" class="count">0</span><span>%</span>
+			</div>
+		</div>
+		<div class="login_box">
+			<div class="left">
+				<div class="word">
+					<div class="text_box">
+						<h3>Tonetron</h3>
+						<h5>ORDER SYSTEM</h5>
+					</div>
+					<div class="copyright">
+						©Copyright 2017 Tonetron Electronic LTD.,
+					</div>
+				</div>
+			</div>
+			<div class="center">
+				<div class="ico_sanjiao"></div>
+			</div>
+			<div class="right">
+				<div class="Progress_Audit">
+					<h1>{$Think.lang._PUBLIC_PROCESS_} <span>3/4</span></h1>
+					<ul>
+						<li>
+							<span>{$Think.lang._PUBLIC_DEALING_}</span>
+							<span>{$deal_time}</span>
+						</li>
+						<li>
+							<div class="progress">
+								<span>
+									<div class="circle"></div>
+								</span>
+							</div>
+						</li>
+						<li>
+							<span>{$Think.lang._PUBLIC_COMPLETED2_}</span>
+							<span>{$Think.lang._PUBLIC_WORKING_DAYS_}</span>
+						</li>
+					</ul>
+					<div class="upload"><a id="uploadBtns" href="javascript:;">{$Think.lang._PUBLIC_CLICK_UPLOAD_}<span>{$Think.lang._PUBLIC_LICENSE_}</span></a></div>
+				</div>
+			</div>
+		</div>
+		<!--上传窗口-->
+		<div class="AR_upload" id="AR_upload" style="display:none;">
+			<ul>
+				<li><span>Tonetron Order Systrm</span><div><a id="cancle" href="javascript:;">{$Think.lang._PUBLIC_CANCEL_}</a><i></i><a id="complete" href="javascript:;">{$Think.lang._PUBLIC_COMPLETED2_}</a></div></li>
+				<li>{$Think.lang._PUBLIC_ONLY_PDF_}</li>
+				<li>{$Think.lang._PUBLIC_MAX_5_}</li>
+				<li>
+					<!-- <div class="upload_01"><span>一般纳税人证明（带公章）<br>已上传</span></div> -->
+					<!-- <div class="upload_02"> -->
+						<!-- <dl> -->
+							<!-- <dd>营业执照(带公章)</dd> -->
+							<!-- <dd>档案太大</dd> -->
+							<!-- <dd><a href="">点击重新上传</a></dd> -->
+						<!-- </dl> -->
+					<!-- </div> -->
+					<!-- <div class="upload_03"> -->
+						<!-- <dl> -->
+							<!-- <dd> -->
+								<!-- 开票资料(带公章)<br> -->
+								<!-- （开票名称/银行信息） -->
+							<!-- </dd> -->
+							<!-- <dd>不明格式</dd> -->
+							<!-- <dd><a href="">点击重新上传</a></dd> -->
+						<!-- </dl> -->
+					<!-- </div> -->
+					<div class="up_box">
+						<div  data-category="taxes" class="upload upload_04 uploadBtn">
+							<dl>
+								<dd><a href="javascript:;">+</a></dd>
+								<dd style="font-size:12px;">{$Think.lang._PUBLIC_GENERAL_TAX_}<br/></dd>
+							</dl>
+						</div>
+						<div data-category="license" class="upload upload_04 uploadBtn">
+							<dl>
+								<dd><a href="javascript:;">+</a></dd>
+								<dd style="font-size:12px;">{$Think.lang._PUBLIC_BUSINESS_LICENSE_}<br/></dd>
+							</dl>
+						</div>
+						<div data-category="invoice" class="upload upload_04 uploadBtn">
+							<dl>
+								<dd><a href="javascript:;">+</a></dd>
+								<dd style="font-size:12px;line-height:28px;">{$Think.lang._PUBLIC_INVOICE_DATA_}<br/>（{$Think.lang._PUBLIC_INVOICE_BANK_}）<br/></dd>
+							</dl>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!--上传窗口-->
+	</body>
+	<style type="text/css">
+	.upload{
+		<!-- margin-right:40px !important; -->
+	}
+	.layui-upload-file{
+		display:none;
+	}
+	</style>
+</html>
